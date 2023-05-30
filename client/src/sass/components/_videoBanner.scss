@@ -1,0 +1,46 @@
+.videoBanner {
+  margin-bottom: 2rem;
+  position: relative;
+  height: 800px;
+
+  #myVideo {
+    position: absolute;
+    left: -3rem;
+    width: 110vw;
+    @include tablet {
+      left: -2.5rem;
+    }
+
+    @include mobile {
+      left: -1.5rem;
+    }
+  }
+
+  #topLeftImg {
+    position: absolute;
+    left: -7rem;
+    @include tablet {
+      left: -2rem;
+    }
+
+    @include mobile {
+      left: -1.5rem;
+    }
+  }
+  #topRightImg {
+    position: absolute;
+    right: 10rem;
+
+    @include tablet {
+      right: 0rem;
+    }
+
+    @include mobile {
+      right: -0.5rem;
+    }
+  }
+  #bottomImg {
+    position: absolute;
+    left: -4rem;
+  }
+}
