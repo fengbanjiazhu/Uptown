@@ -1,5 +1,5 @@
 import Helmet from "../components/Helmet";
-import { Button, Form, Input, InputNumber } from "antd";
+import { Button, Form, Input } from "antd";
 const layout = {
   labelCol: {
     span: 8,
@@ -9,15 +9,11 @@ const layout = {
   },
 };
 
-/* eslint-disable no-template-curly-in-string */
 const validateMessages = {
   required: "${label} is required!",
   types: {
     email: "${label} is not a valid email!",
     number: "${label} is not a valid number!",
-  },
-  number: {
-    range: "${label} must be between ${min} and ${max}",
   },
 };
 
@@ -27,13 +23,14 @@ const onFinish = (values) => {
 
 const Contact = () => {
   return (
-    <Helmet title="Contact">
+    <Helmet title="Uptown | Contact">
       <Form
         {...layout}
         name="nest-messages"
         onFinish={onFinish}
         style={{
           maxWidth: 600,
+          margin: "10rem 5rem 0",
         }}
         validateMessages={validateMessages}
       >
