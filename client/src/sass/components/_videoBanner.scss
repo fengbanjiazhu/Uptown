@@ -1,7 +1,8 @@
 .videoBanner {
   margin-bottom: 2rem;
   position: relative;
-  height: 800px;
+  // height: 800px;
+  min-height: 70vw;
 
   #myVideo {
     position: absolute;

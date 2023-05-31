@@ -56,12 +56,12 @@ const ProductView = (props) => {
 
   const check = () => {
     if (color === undefined) {
-      alert("Vui lòng chọn màu sắc!");
+      alert("Please select a color!");
       return false;
     }
 
     if (size === undefined) {
-      alert("Vui lòng chọn kích cỡ!");
+      alert("Please select a size!");
       return false;
     }
 
@@ -124,14 +124,14 @@ const ProductView = (props) => {
           <img src={previewImg} alt="" />
         </div>
         <div className={`product-description ${descriptionExpand ? "expand" : ""}`}>
-          <div className="product-description__title">Chi tiết sản phẩm</div>
+          <div className="product-description__title">Product details</div>
           <div
             className="product-description__content"
             dangerouslySetInnerHTML={{ __html: product.description }}
           ></div>
           <div className="product-description__toggle">
             <Button size="sm" onClick={() => setDescriptionExpand(!descriptionExpand)}>
-              {descriptionExpand ? "Thu gọn" : "Xem thêm"}
+              {descriptionExpand ? "Show less" : "Show more"}
             </Button>
           </div>
         </div>
@@ -200,7 +200,7 @@ const ProductView = (props) => {
         ></div>
         <div className="product-description__toggle">
           <Button size="sm" onClick={() => setDescriptionExpand(!descriptionExpand)}>
-            {descriptionExpand ? "Thu gọn" : "Xem thêm"}
+            {descriptionExpand ? "Show Less" : "Show more"}
           </Button>
         </div>
       </div>
