@@ -29,7 +29,7 @@ const ProductView = (props) => {
       description: "",
     };
 
-  const [previewImg, setPreviewImg] = useState(product.image01);
+  const [previewImg, setPreviewImg] = useState(product.img01);
 
   const [descriptionExpand, setDescriptionExpand] = useState(false);
 
@@ -48,7 +48,7 @@ const ProductView = (props) => {
   };
 
   useEffect(() => {
-    setPreviewImg(product.image01);
+    setPreviewImg(product.img01);
     setQuantity(1);
     setColor(undefined);
     setSize(undefined);
@@ -107,17 +107,11 @@ const ProductView = (props) => {
     <div className="product">
       <div className="product__images">
         <div className="product__images__list">
-          <div
-            className="product__images__list__item"
-            onClick={() => setPreviewImg(product.image01)}
-          >
-            <img src={product.image01} alt="" />
+          <div className="product__images__list__item" onClick={() => setPreviewImg(product.img01)}>
+            <img src={product.img01} alt="" />
           </div>
-          <div
-            className="product__images__list__item"
-            onClick={() => setPreviewImg(product.image02)}
-          >
-            <img src={product.image02} alt="" />
+          <div className="product__images__list__item" onClick={() => setPreviewImg(product.img02)}>
+            <img src={product.img02} alt="" />
           </div>
         </div>
         <div className="product__images__main">

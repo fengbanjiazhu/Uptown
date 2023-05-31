@@ -1,46 +1,45 @@
-// const product_01_image_01 = require("../images/products/product-01 (1).jpg").default;
-const product_01_image_01 = require("../images/products/product-01 (1).jpg").default;
-const product_01_image_02 = require("../images/products/product-01 (2).jpg").default;
+import product_01_image_01 from "../images/products/product-01 (1).jpg";
+import product_01_image_02 from "../images/products/product-01 (2).jpg";
 
-const product_02_image_01 = require("../images/products/product-02 (1).jpg").default;
-const product_02_image_02 = require("../images/products/product-02 (2).jpg").default;
+import product_02_image_01 from "../images/products/product-02 (1).jpg";
+import product_02_image_02 from "../images/products/product-02 (2).jpg";
 
-const product_03_image_01 = require("../images/products/product-03 (1).jpg").default;
-const product_03_image_02 = require("../images/products/product-03 (2).jpg").default;
+import product_03_image_01 from "../images/products/product-03 (1).jpg";
+import product_03_image_02 from "../images/products/product-03 (2).jpg";
 
-const product_04_image_01 = require("../images/products/product-04 (1).jpg").default;
-const product_04_image_02 = require("../images/products/product-04 (2).jpg").default;
+import product_04_image_01 from "../images/products/product-04 (1).jpg";
+import product_04_image_02 from "../images/products/product-04 (2).jpg";
 
-const product_05_image_01 = require("../images/products/product-05 (1).jpg").default;
-const product_05_image_02 = require("../images/products/product-05 (2).jpg").default;
+import product_05_image_01 from "../images/products/product-05 (1).jpg";
+import product_05_image_02 from "../images/products/product-05 (2).jpg";
 
-const product_06_image_01 = require("../images/products/product-06 (1).jpg").default;
-const product_06_image_02 = require("../images/products/product-06 (2).jpg").default;
+import product_06_image_01 from "../images/products/product-06 (1).jpg";
+import product_06_image_02 from "../images/products/product-06 (2).jpg";
 
-const product_07_image_01 = require("../images/products/product-07 (1).jpg").default;
-const product_07_image_02 = require("../images/products/product-07 (2).jpg").default;
+import product_07_image_01 from "../images/products/product-07 (1).jpg";
+import product_07_image_02 from "../images/products/product-07 (2).jpg";
 
-const product_08_image_01 = require("../images/products/product-08 (1).jpg").default;
-const product_08_image_02 = require("../images/products/product-08 (2).jpg").default;
+import product_08_image_01 from "../images/products/product-08 (1).jpg";
+import product_08_image_02 from "../images/products/product-08 (2).jpg";
 
-const product_09_image_01 = require("../images/products/product-09 (1).jpg").default;
-const product_09_image_02 = require("../images/products/product-09 (2).jpg").default;
+import product_09_image_01 from "../images/products/product-09 (1).jpg";
+import product_09_image_02 from "../images/products/product-09 (2).jpg";
 
-const product_10_image_01 = require("../images/products/product-10 (1).jpg").default;
-const product_10_image_02 = require("../images/products/product-10 (2).jpg").default;
+import product_10_image_01 from "../images/products/product-10 (1).jpg";
+import product_10_image_02 from "../images/products/product-10 (2).jpg";
 
-const product_11_image_01 = require("../images/products/product-11 (1).jpg").default;
-const product_11_image_02 = require("../images/products/product-11 (2).jpg").default;
+import product_11_image_01 from "../images/products/product-11 (1).jpg";
+import product_11_image_02 from "../images/products/product-11 (2).jpg";
 
-const product_12_image_01 = require("../images/products/product-12 (1).jpg").default;
-const product_12_image_02 = require("../images/products/product-12 (2).jpg").default;
+import product_12_image_01 from "../images/products/product-12 (1).jpg";
+import product_12_image_02 from "../images/products/product-12 (2).jpg";
 
 const products = [
   {
     title: "T-shirt Dinosaur 01",
-    price: "189000",
-    image01: product_01_image_01,
-    image02: product_01_image_02,
+    price: "189",
+    img01: product_01_image_01,
+    img02: product_01_image_02,
     categorySlug: "T-shirt",
     colors: ["white", "red", "orange"],
     slug: "t-shirt-dinosaur-01",
@@ -50,9 +49,9 @@ const products = [
   },
   {
     title: "T-shirt Dinosaur 02",
-    price: "159000",
-    image01: product_02_image_01,
-    image02: product_02_image_02,
+    price: "159",
+    img01: product_02_image_01,
+    img02: product_02_image_02,
     categorySlug: "T-shirt",
     colors: ["white", "red", "blue"],
     slug: "t-shirt-dinosaur-02",
@@ -62,9 +61,9 @@ const products = [
   },
   {
     title: "T-shirt Dinosaur 03",
-    price: "190000",
-    image01: product_03_image_01,
-    image02: product_03_image_02,
+    price: "190",
+    img01: product_03_image_01,
+    img02: product_03_image_02,
     categorySlug: "T-shirt",
     colors: ["white", "red", "orange", "yellow"],
     slug: "t-shirt-dinosaur-03",
@@ -74,9 +73,9 @@ const products = [
   },
   {
     title: "T-shirt Polo 04",
-    price: "194000",
-    image01: product_04_image_01,
-    image02: product_04_image_02,
+    price: "194",
+    img01: product_04_image_01,
+    img02: product_04_image_02,
     categorySlug: "T-shirt",
     colors: ["white", "orange", "blue"],
     slug: "t-shirt-polo-04",
@@ -86,9 +85,9 @@ const products = [
   },
   {
     title: "T-shirt Polo 05",
-    price: "194000",
-    image01: product_05_image_01,
-    image02: product_05_image_02,
+    price: "194",
+    img01: product_05_image_01,
+    img02: product_05_image_02,
     categorySlug: "T-shirt",
     colors: ["white", "pink"],
     slug: "t-shirt-polo-05",
@@ -98,9 +97,9 @@ const products = [
   },
   {
     title: "T-shirt 06",
-    price: "194000",
-    image01: product_06_image_01,
-    image02: product_06_image_02,
+    price: "194",
+    img01: product_06_image_01,
+    img02: product_06_image_02,
     categorySlug: "T-shirt",
     colors: ["black"],
     slug: "t-shirt-06",
@@ -110,9 +109,9 @@ const products = [
   },
   {
     title: "Shirt 07",
-    price: "194000",
-    image01: product_07_image_01,
-    image02: product_07_image_02,
+    price: "194",
+    img01: product_07_image_01,
+    img02: product_07_image_02,
     categorySlug: "shirt",
     colors: ["white", "red", "orange", "blue"],
     slug: "shirt-07",
@@ -122,9 +121,9 @@ const products = [
   },
   {
     title: "Shirt 08",
-    price: "194000",
-    image01: product_08_image_01,
-    image02: product_08_image_02,
+    price: "194",
+    img01: product_08_image_01,
+    img02: product_08_image_02,
     categorySlug: "shirt",
     colors: ["white", "red", "black"],
     slug: "shirt-08",
@@ -134,9 +133,9 @@ const products = [
   },
   {
     title: "Shirt 09",
-    price: "194000",
-    image01: product_09_image_01,
-    image02: product_09_image_02,
+    price: "194",
+    img01: product_09_image_01,
+    img02: product_09_image_02,
     categorySlug: "shirt",
     colors: ["white", "blue"],
     slug: "shirt-09",
@@ -146,9 +145,9 @@ const products = [
   },
   {
     title: "jean 10",
-    price: "194000",
-    image01: product_10_image_01,
-    image02: product_10_image_02,
+    price: "194",
+    img01: product_10_image_01,
+    img02: product_10_image_02,
     categorySlug: "jean",
     colors: ["blue", "black"],
     slug: "jean-10",
@@ -158,9 +157,9 @@ const products = [
   },
   {
     title: "jean 11",
-    price: "194000",
-    image01: product_11_image_01,
-    image02: product_11_image_02,
+    price: "194",
+    img01: product_11_image_01,
+    img02: product_11_image_02,
     categorySlug: "jean",
     colors: ["blue", "black"],
     slug: "jean-11",
@@ -170,9 +169,9 @@ const products = [
   },
   {
     title: "jean 12",
-    price: "194000",
-    image01: product_12_image_01,
-    image02: product_12_image_02,
+    price: "194",
+    img01: product_12_image_01,
+    img02: product_12_image_02,
     categorySlug: "jean",
     colors: ["blue"],
     slug: "jean-12",
@@ -182,9 +181,9 @@ const products = [
   },
   {
     title: "T-shirt Dinosaur 13",
-    price: "189000",
-    image01: product_01_image_01,
-    image02: product_01_image_02,
+    price: "189",
+    img01: product_01_image_01,
+    img02: product_01_image_02,
     categorySlug: "T-shirt",
     colors: ["white", "red"],
     slug: "t-shirt-dinosaur-13",
@@ -194,9 +193,9 @@ const products = [
   },
   {
     title: "T-shirt Dinosaur 14",
-    price: "159000",
-    image01: product_02_image_01,
-    image02: product_02_image_02,
+    price: "159",
+    img01: product_02_image_01,
+    img02: product_02_image_02,
     categorySlug: "T-shirt",
     colors: ["white", "blue"],
     slug: "t-shirt-dinosaur-14",
@@ -206,9 +205,9 @@ const products = [
   },
   {
     title: "T-shirt Dinosaur 15",
-    price: "190000",
-    image01: product_03_image_01,
-    image02: product_03_image_02,
+    price: "190",
+    img01: product_03_image_01,
+    img02: product_03_image_02,
     categorySlug: "T-shirt",
     colors: ["red", "blue"],
     slug: "t-shirt-dinosaur-15",
@@ -218,9 +217,9 @@ const products = [
   },
   {
     title: "Shirt 16",
-    price: "194000",
-    image01: product_08_image_01,
-    image02: product_08_image_02,
+    price: "194",
+    img01: product_08_image_01,
+    img02: product_08_image_02,
     categorySlug: "shirt",
     colors: ["blue", "black"],
     slug: "shirt-16",
@@ -230,9 +229,9 @@ const products = [
   },
   {
     title: "Shirt 17",
-    price: "194000",
-    image01: product_09_image_01,
-    image02: product_09_image_02,
+    price: "194",
+    img01: product_09_image_01,
+    img02: product_09_image_02,
     categorySlug: "shirt",
     colors: ["white", "blue"],
     slug: "shirt-17",
@@ -242,9 +241,9 @@ const products = [
   },
   {
     title: "jean 18",
-    price: "194000",
-    image01: product_10_image_01,
-    image02: product_10_image_02,
+    price: "194",
+    img01: product_10_image_01,
+    img02: product_10_image_02,
     categorySlug: "jean",
     colors: ["blue", "black"],
     slug: "jean-18",

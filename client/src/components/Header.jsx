@@ -9,7 +9,7 @@ const mainNav = [
     path: "/",
   },
   {
-    display: "Catalog",
+    display: "Product",
     path: "/catalog",
   },
   {
