@@ -20,17 +20,7 @@ export const cartItemsSlice = createSlice({
         state.value = state.value.filter(
           (e) => e.slug !== newItem.slug || e.color !== newItem.color || e.size !== newItem.size
         );
-        state.value = [
-          ...state.value,
-          {
-            id: newItem._id,
-            slug: newItem.slug,
-            color: newItem.color,
-            size: newItem.size,
-            price: newItem.price,
-            quantity: newItem.quantity + duplicate[0].quantity,
-          },
-        ];
+        state.value = [...state.value];
       } else {
         state.value = [
           ...state.value,

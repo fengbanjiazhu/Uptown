@@ -7,26 +7,43 @@ import Helmet from "../components/Helmet";
 import CartItem from "../components/CartItem";
 import Button from "../components/Button";
 
-import productData from "../assets/fake-data/products";
 import numberWithCommas from "../utils/numberWithCommas";
+
+const getCartItemsInfo = (products, cartItems) => {
+  let res = [];
+  if (cartItems.length > 0) {
+    cartItems.forEach((item) => {
+      let product = products.find((product) => product.slug === item.slug);
+      res.push({
+        ...item,
+        product: product,
+      });
+    });
+  }
+  return res.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0));
+};
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value);
-  console.log(cartItems);
-
-  const [cartProducts, setCartProducts] = useState(productData.getCartItemsInfo(cartItems));
-
+  const products = useSelector((state) => state.productModal.value);
+  const [cartProducts, setCartProducts] = useState(getCartItemsInfo(products, cartItems));
+  const [totalPrice, setTotalPrice] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
 
-  const [totalPrice, setTotalPrice] = useState(0);
-
   useEffect(() => {
-    setCartProducts(productData.getCartItemsInfo(cartItems));
+    setCartProducts(getCartItemsInfo(products, cartItems));
+
     setTotalPrice(
       cartItems.reduce((total, item) => total + Number(item.quantity) * Number(item.price), 0)
     );
+
     setTotalProducts(cartItems.reduce((total, item) => total + Number(item.quantity), 0));
-  }, [cartItems]);
+  }, []);
+
+  const checkOut = () => {
+    console.log(totalPrice);
+    console.log(cartProducts);
+  };
 
   return (
     <Helmet title="Uptown | Cart">
@@ -39,7 +56,9 @@ const Cart = () => {
             </div>
           </div>
           <div className="cart__info__btn">
-            <Button size="block">Place order</Button>
+            <Button onClick={checkOut} size="block">
+              Place order
+            </Button>
             <Link to="/catalog">
               <Button size="block">Continue shopping</Button>
             </Link>

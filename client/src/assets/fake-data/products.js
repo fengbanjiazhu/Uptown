@@ -1,7 +1,3 @@
-// import { useSelector } from "react-redux";
-
-// const products = useSelector((state) => state.productModal.value);
-
 const getProducts = (products, count) => {
   const max = products.length - count;
   const min = 0;
@@ -11,11 +7,11 @@ const getProducts = (products, count) => {
 
 const getProductBySlug = (products, slug) => products.find((e) => e.slug === slug);
 
-const getCartItemsInfo = (cartItems) => {
+const getCartItemsInfo = (cartItems, products) => {
   let res = [];
   if (cartItems.length > 0) {
     cartItems.forEach((e) => {
-      let product = getProductBySlug(e.slug);
+      let product = getProductBySlug(products, e.slug);
       res.push({
         ...e,
         product: product,
