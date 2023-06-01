@@ -9,14 +9,12 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Product must have a price"],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
-  image: {
-    type: String,
-    required: [true, "A tour must have a cover image"],
-  },
+  images: [
+    {
+      type: String,
+      required: [true, "A tour must have images"],
+    },
+  ],
   description: {
     type: String,
     required: [true, "Product must have a name"],

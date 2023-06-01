@@ -8,10 +8,10 @@ const dotenv = require("dotenv");
 
 const app = express();
 
-// const productRoute = require("./Routes/productRoutes");
+const productRoute = require("./Routes/productRoutes");
 // const orderRoute = require("./Routes/orderRoutes");
 // const cartRoute = require("./Routes/cartRoutes");
-// const employeeRoute = require("./Routes/employeeRoutes");
+const userRoute = require("./Routes/userRoutes");
 
 // solving CORS issue
 app.use(
@@ -52,10 +52,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use("/api/product", productRoute);
+app.use("/api/products", productRoute);
 // app.use("/api/order", orderRoute);
 // app.use("/api/cart", cartRoute);
-// app.use("/api/employee", employeeRoute);
+app.use("/api/user", userRoute);
 
 dotenv.config({ path: "./server/config.env" });
 

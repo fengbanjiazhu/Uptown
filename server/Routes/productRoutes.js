@@ -7,19 +7,19 @@ const router = express.Router();
 router
   .route("/")
   .get(
-    authController.protect,
-    authController.restrictTo("admin", "manager"),
+    // authController.protect,
+    // authController.restrictTo("admin", "manager"),
     productController.getAllProduct
   )
   .post(productController.createProduct)
   .patch(
-    authController.protect,
-    authController.restrictTo("admin", "manager"),
+    // authController.protect,
+    // authController.restrictTo("admin", "manager"),
     productController.updateProduct
   )
   .delete(
-    authController.protect,
-    authController.restrictTo("admin", "manager"),
+    // authController.protect,
+    // authController.restrictTo("admin", "manager"),
     productController.deleteProduct
   );
 

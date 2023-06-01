@@ -1,5 +1,5 @@
 const express = require("express");
-const employeeController = require("../Controller/employeeController");
+const userController = require("../Controller/userController");
 const authController = require("../Controller/authController");
 
 const router = express.Router();
@@ -9,24 +9,24 @@ router
   .get(
     authController.protect,
     authController.restrictTo("admin", "manager"),
-    employeeController.getAllEmployee
+    userController.getAllUser
   )
-  .post(employeeController.createEmployee)
+  .post(userController.createUser)
   .patch(
     authController.protect,
     authController.restrictTo("admin", "manager"),
-    employeeController.updateEmployee
+    userController.updateUser
   )
   .delete(
     authController.protect,
     authController.restrictTo("admin", "manager"),
-    employeeController.deleteEmployee
+    userController.deleteUser
   );
 
 router
   .route("/Me")
-  .get(authController.protect, employeeController.getMe)
-  .patch(authController.protect, employeeController.updateMe);
+  .get(authController.protect, userController.getMe)
+  .patch(authController.protect, userController.updateMe);
 
 router.route("/login").post(authController.login);
 
@@ -35,7 +35,7 @@ router
   .get(
     authController.protect,
     authController.restrictTo("admin", "manager"),
-    employeeController.getEmployee
+    userController.getUser
   );
 
 module.exports = router;

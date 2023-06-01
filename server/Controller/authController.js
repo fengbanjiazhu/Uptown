@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const catchAsync = require("../Utils/catchAsync");
-const Employee = require("../Model/employeeModel");
 
 // sign json web token function
 const signToken = (id) => {
