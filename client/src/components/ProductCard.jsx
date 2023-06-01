@@ -16,18 +16,13 @@ const ProductCard = (props) => {
 
   return (
     <div className="product-card">
-      <Link to={`/catalog/${props.slug}`}>
+      <Link to={`/catalog/${props.id}`}>
         <div className="product-card__image">
-          <img src={props.img01} alt="" />
-          <img src={props.img02} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/images/products/${props.img01}`} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/images/products/${props.img02}`} alt="" />
         </div>
         <h3 className="product-card__name">{props.name}</h3>
-        <div className="product-card__price">
-          ${numberWithCommas(props.price)}
-          {/* <span className="product-card__price__old">
-            <del>{numberWithCommas(399000)}</del>
-          </span> */}
-        </div>
+        <div className="product-card__price">${numberWithCommas(props.price)}</div>
       </Link>
       <div className="product-card__btn">
         <Button

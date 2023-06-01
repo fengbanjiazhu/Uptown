@@ -2,4 +2,7 @@
 /client/node_modules
 /client/build
 
+/client-side/node_modules
+/client-side/build
+
 /server/config.env

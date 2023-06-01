@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import Helmet from "../components/Helmet";
 import Section, { SectionBody, SectionTitle } from "../components/Section";
@@ -9,16 +11,24 @@ import ProductView from "../components/ProductView";
 import productData from "../assets/fake-data/products";
 
 const Product = (props) => {
-  const product = productData.getProductBySlug(props.match.params.slug);
+  const products = useSelector((state) => state.productModal.value);
+  const [product, setProduct] = useState();
+  const id = useParams();
 
-  const relatedProducts = productData.getProducts(8);
+  useEffect(() => {
+    console.log(products);
+    const data = products.find((product) => product._id === id.slug);
+    setProduct(data);
+  }, [id, products]);
+
+  const relatedProducts = productData.getProducts(products, 8);
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [product]);
 
   return (
-    <Helmet title={product.title}>
+    <Helmet title="Product">
       <Section>
         <SectionBody>
           <ProductView product={product} />
@@ -31,6 +41,7 @@ const Product = (props) => {
             {relatedProducts.map((item, index) => (
               <ProductCard
                 key={index}
+                id={item._id}
                 img01={item.img01}
                 img02={item.img02}
                 name={item.title}

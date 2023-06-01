@@ -57,6 +57,7 @@ const InfinityList = (props) => {
         {data.map((item, index) => (
           <ProductCard
             key={index}
+            id={item._id}
             img01={item.img01}
             img02={item.img02}
             name={item.title}

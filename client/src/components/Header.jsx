@@ -1,5 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { set } from "../redux/product-modal/productModalSlice";
 
 import logo from "../assets/images/Logo-2.png";
 
@@ -25,8 +27,8 @@ const mainNav = [
 const Header = () => {
   const { pathname } = useLocation();
   const activeNav = mainNav.findIndex((e) => e.path === pathname);
-
   const headerRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -39,6 +41,15 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll");
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("http://localhost:4000/api/products");
+      const data = await res.json();
+      dispatch(set(data.datas));
+    };
+    fetchData();
   }, []);
 
   const menuLeft = useRef(null);

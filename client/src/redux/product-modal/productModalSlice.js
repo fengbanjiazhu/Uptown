@@ -1,23 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    value: null,
-}
+  value: [],
+};
 
 export const productModalSlice = createSlice({
-    name: 'productModal',
-    initialState,
-    reducers: {
-        set: (state, action) => {
-            state.value = action.payload
-        },
-        remove: (state) => {
-            state.value = null
-        },
+  name: "productModal",
+  initialState,
+  reducers: {
+    set: (state, action) => {
+      state.value = action.payload;
     },
-})
+    // remove: (state) => {
+    //   state.value = [];
+    // },
+  },
+});
 
-// Action creators are generated for each case reducer function
-export const { set, remove } = productModalSlice.actions
+export const { set } = productModalSlice.actions;
 
-export default productModalSlice.reducer
+export default productModalSlice.reducer;

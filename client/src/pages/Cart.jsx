@@ -12,6 +12,7 @@ import numberWithCommas from "../utils/numberWithCommas";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value);
+  console.log(cartItems);
 
   const [cartProducts, setCartProducts] = useState(productData.getCartItemsInfo(cartItems));
 

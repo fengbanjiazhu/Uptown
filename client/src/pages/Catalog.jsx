@@ -1,26 +1,25 @@
 import React, { useCallback, useState, useEffect, useRef } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+
 import Helmet from "../components/Helmet";
 import CheckBox from "../components/CheckBox";
 
-import productData from "../assets/fake-data/products";
 import category from "../assets/fake-data/category";
 import colors from "../assets/fake-data/product-color";
 import size from "../assets/fake-data/product-size";
 import Button from "../components/Button";
 import InfinityList from "../components/InfinityList";
 
+const initFilter = {
+  category: [],
+  color: [],
+  size: [],
+};
+
 const Catalog = () => {
-  const initFilter = {
-    category: [],
-    color: [],
-    size: [],
-  };
-
-  const productList = productData.getAllProducts();
-
-  const [products, setProducts] = useState(productList);
-
+  const productRedux = useSelector((state) => state.productModal.value);
+  const [products, setProducts] = useState(productRedux);
   const [filter, setFilter] = useState(initFilter);
 
   const filterSelect = (type, checked, item) => {
@@ -59,7 +58,7 @@ const Catalog = () => {
   const clearFilter = () => setFilter(initFilter);
 
   const updateProducts = useCallback(() => {
-    let temp = productList;
+    let temp = products;
 
     if (filter.category.length > 0) {
       temp = temp.filter((e) => filter.category.includes(e.categorySlug));
@@ -80,7 +79,7 @@ const Catalog = () => {
     }
 
     setProducts(temp);
-  }, [filter, productList]);
+  }, [filter, products]);
 
   useEffect(() => {
     updateProducts();

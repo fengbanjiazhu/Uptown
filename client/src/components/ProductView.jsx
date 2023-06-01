@@ -6,7 +6,6 @@ import { withRouter } from "react-router";
 import { useDispatch } from "react-redux";
 
 import { addItem } from "../redux/shopping-cart/cartItemsSlide";
-import { remove } from "../redux/product-modal/productModalSlice";
 
 import Button from "./Button";
 import numberWithCommas from "../utils/numberWithCommas";
@@ -86,21 +85,21 @@ const ProductView = (props) => {
   };
 
   const goToCart = () => {
-    if (check()) {
-      let newItem = {
-        slug: product.slug,
-        color: color,
-        size: size,
-        price: product.price,
-        quantity: quantity,
-      };
-      if (dispatch(addItem(newItem))) {
-        dispatch(remove());
-        props.history.push("/cart");
-      } else {
-        alert("Fail");
-      }
-    }
+    // if (check()) {
+    //   let newItem = {
+    //     slug: product.slug,
+    //     color: color,
+    //     size: size,
+    //     price: product.price,
+    //     quantity: quantity,
+    //   };
+    //   if (dispatch(addItem(newItem))) {
+    //     dispatch(remove());
+    //     props.history.push("/cart");
+    //   } else {
+    //     alert("Fail");
+    //   }
+    // }
   };
 
   return (
@@ -108,14 +107,14 @@ const ProductView = (props) => {
       <div className="product__images">
         <div className="product__images__list">
           <div className="product__images__list__item" onClick={() => setPreviewImg(product.img01)}>
-            <img src={product.img01} alt="" />
+            <img src={`${process.env.PUBLIC_URL}/images/products/${product.img01}`} alt="" />
           </div>
           <div className="product__images__list__item" onClick={() => setPreviewImg(product.img02)}>
-            <img src={product.img02} alt="" />
+            <img src={`${process.env.PUBLIC_URL}/images/products/${product.img02}`} alt="" />
           </div>
         </div>
         <div className="product__images__main">
-          <img src={previewImg} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/images/products/${previewImg}`} alt="" />
         </div>
         <div className={`product-description ${descriptionExpand ? "expand" : ""}`}>
           <div className="product-description__title">Product details</div>

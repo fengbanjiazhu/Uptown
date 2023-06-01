@@ -23,7 +23,7 @@ export const cartItemsSlice = createSlice({
         state.value = [
           ...state.value,
           {
-            id: duplicate[0].id,
+            id: newItem._id,
             slug: newItem.slug,
             color: newItem.color,
             size: newItem.size,

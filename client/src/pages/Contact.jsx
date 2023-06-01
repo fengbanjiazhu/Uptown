@@ -1,5 +1,6 @@
 import Helmet from "../components/Helmet";
 import { Button, Form, Input } from "antd";
+
 const layout = {
   labelCol: {
     span: 8,
@@ -30,7 +31,7 @@ const Contact = () => {
         onFinish={onFinish}
         style={{
           maxWidth: 600,
-          margin: "10rem 5rem 0",
+          margin: "10rem auto 0",
         }}
         validateMessages={validateMessages}
       >
@@ -72,6 +73,7 @@ const Contact = () => {
           </Button>
         </Form.Item>
       </Form>
+      <div>{/* <img src={`${process.env.PUBLIC_URL}/images/products/${imgStr}`}></img> */}</div>
     </Helmet>
   );
 };

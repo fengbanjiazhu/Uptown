@@ -1,10 +1,5 @@
 import React, { Fragment, useEffect, useRef } from "react";
 
-import video from "../assets/images/banner/Uptown-banner.mp4";
-import topLeft from "../assets/images/banner/left-top.png";
-import topRight from "../assets/images/banner/right-top.png";
-import bottomImg from "../assets/images/banner/bottom.png";
-
 export default function VideoBanner() {
   const divRef = useRef(null);
   const videoRef = useRef(null);
@@ -38,11 +33,29 @@ export default function VideoBanner() {
     <Fragment>
       <div ref={divRef} className="videoBanner">
         <video ref={videoRef} autoPlay muted loop id="myVideo">
-          <source src={video} type="video/mp4" />
+          <source
+            src={`${process.env.PUBLIC_URL}/images/banner/Uptown-banner.mp4`}
+            type="video/mp4"
+          />
         </video>
-        <img className="bannerImg" id="topLeftImg" src={topLeft} alt="" />
-        <img className="bannerImg" id="topRightImg" src={topRight} alt="" />
-        <img className="bannerImg" id="bottomImg" src={bottomImg} alt="" />
+        <img
+          className="bannerImg"
+          id="topLeftImg"
+          src={`${process.env.PUBLIC_URL}/images/banner/left-top.png`}
+          alt=""
+        />
+        <img
+          className="bannerImg"
+          id="topRightImg"
+          src={`${process.env.PUBLIC_URL}/images/banner/right-top.png`}
+          alt=""
+        />
+        <img
+          className="bannerImg"
+          id="bottomImg"
+          src={`${process.env.PUBLIC_URL}/images/banner/bottom.png`}
+          alt=""
+        />
       </div>
     </Fragment>
   );
