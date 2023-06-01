@@ -1,0 +1,200 @@
+[
+  {
+    "title": "T-shirt Dinosaur 01",
+    "price": "189",
+    "img01": "product-01 (1).jpg",
+    "img02": "product-01 (2).jpg",
+    "categorySlug": "T-shirt",
+    "colors": ["white", "red", "orange"],
+    "slug": "t-shirt-dinosaur-01",
+    "size": ["s", "m", "l", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "T-shirt Dinosaur 02",
+    "price": "159",
+    "img01": "product-02 (1).jpg",
+    "img02": "product-02 (2).jpg",
+    "categorySlug": "T-shirt",
+    "colors": ["white", "red", "blue"],
+    "slug": "t-shirt-dinosaur-02",
+    "size": ["s", "m"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "T-shirt Dinosaur 03",
+    "price": "190",
+    "img01": "product-03 (1).jpg",
+    "img02": "product-03 (2).jpg",
+    "categorySlug": "T-shirt",
+    "colors": ["white", "red", "orange", "yellow"],
+    "slug": "t-shirt-dinosaur-03",
+    "size": ["m"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "T-shirt Polo 04",
+    "price": "194",
+    "img01": "product-04 (1).jpg",
+    "img02": "product-04 (2).jpg",
+    "categorySlug": "T-shirt",
+    "colors": ["white", "orange", "blue"],
+    "slug": "t-shirt-polo-04",
+    "size": ["xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "T-shirt Polo 05",
+    "price": "194",
+    "img01": "product-05 (1).jpg",
+    "img02": "product-05 (2).jpg",
+    "categorySlug": "T-shirt",
+    "colors": ["white", "pink"],
+    "slug": "t-shirt-polo-05",
+    "size": ["xxl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "T-shirt 06",
+    "price": "194",
+    "img01": "product-06 (1).jpg",
+    "img02": "product-06 (2).jpg",
+    "categorySlug": "T-shirt",
+    "colors": ["black"],
+    "slug": "t-shirt-06",
+    "size": ["s", "m", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "Shirt 07",
+    "price": "194",
+    "img01": "product-07 (1).jpg",
+    "img02": "product-07 (2).jpg",
+    "categorySlug": "shirt",
+    "colors": ["white", "red", "orange", "blue"],
+    "slug": "shirt-07",
+    "size": ["l", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "Shirt 08",
+    "price": "194",
+    "img01": "product-08 (1).jpg",
+    "img02": "product-08 (2).jpg",
+    "categorySlug": "shirt",
+    "colors": ["white", "red", "black"],
+    "slug": "shirt-08",
+    "size": ["s", "m", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "Shirt 09",
+    "price": "194",
+    "img01": "product-09 (1).jpg",
+    "img02": "product-09 (2).jpg",
+    "categorySlug": "shirt",
+    "colors": ["white", "blue"],
+    "slug": "shirt-09",
+    "size": ["m"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "jean 10",
+    "price": "194",
+    "img01": "product-10 (1).jpg",
+    "img02": "product-10 (2).jpg",
+    "categorySlug": "jean",
+    "colors": ["blue", "black"],
+    "slug": "jean-10",
+    "size": ["l"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "jean 11",
+    "price": "194",
+    "img01": "product-11 (1).jpg",
+    "img02": "product-11 (2).jpg",
+    "categorySlug": "jean",
+    "colors": ["blue", "black"],
+    "slug": "jean-11",
+    "size": ["s", "m", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "jean 12",
+    "price": "194",
+    "img01": "product-12 (1).jpg",
+    "img02": "product-12 (2).jpg",
+    "categorySlug": "jean",
+    "colors": ["blue"],
+    "slug": "jean-12",
+    "size": ["s", "m", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "T-shirt Dinosaur 13",
+    "price": "189",
+    "img01": "product-01 (1).jpg",
+    "img02": "product-01 (2).jpg",
+    "categorySlug": "T-shirt",
+    "colors": ["white", "red"],
+    "slug": "t-shirt-dinosaur-13",
+    "size": ["s", "m", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "T-shirt Dinosaur 14",
+    "price": "159",
+    "img01": "product-02 (1).jpg",
+    "img02": "product-02 (2).jpg",
+    "categorySlug": "T-shirt",
+    "colors": ["white", "blue"],
+    "slug": "t-shirt-dinosaur-14",
+    "size": ["s", "m"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "T-shirt Dinosaur 15",
+    "price": "190",
+    "img01": "product-03 (1).jpg",
+    "img02": "product-03 (2).jpg",
+    "categorySlug": "T-shirt",
+    "colors": ["red", "blue"],
+    "slug": "t-shirt-dinosaur-15",
+    "size": ["xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "Shirt 16",
+    "price": "194",
+    "img01": "product-08 (1).jpg",
+    "img02": "product-08 (2).jpg",
+    "categorySlug": "shirt",
+    "colors": ["blue", "black"],
+    "slug": "shirt-16",
+    "size": ["m", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "Shirt 17",
+    "price": "194",
+    "img01": "product-09 (1).jpg",
+    "img02": "product-09 (2).jpg",
+    "categorySlug": "shirt",
+    "colors": ["white", "blue"],
+    "slug": "shirt-17",
+    "size": ["s", "l", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  {
+    "title": "jean 18",
+    "price": "194",
+    "img01": "product-10 (1).jpg",
+    "img02": "product-10 (2).jpg",
+    "categorySlug": "jean",
+    "colors": ["blue", "black"],
+    "slug": "jean-18",
+    "size": ["s", "m", "l", "xl"],
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  }
+]
