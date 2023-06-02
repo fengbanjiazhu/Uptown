@@ -6,16 +6,22 @@ exports.getAllUser = centralController.getAll(User);
 exports.getUser = centralController.getOne(User);
 
 exports.createUser = catchAsync(async (req, res, next) => {
+  if (!req.body.agreement) return;
+  // console.log(req.body);
   const dataFilter = {
-    ...req.body,
+    name: req.body.fullName,
+    email: req.body.email,
+    password: req.body.password,
+    passwordConfirm: req.body.confirm,
     role: "user",
+    phone: req.body.phone,
   };
 
-  const user = await User.create(dataFilter);
+  // const user = await User.create(dataFilter);
 
   res.status(200).json({
     status: "success",
-    user,
+    // user,
   });
 });
 

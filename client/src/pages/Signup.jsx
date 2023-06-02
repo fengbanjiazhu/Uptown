@@ -49,8 +49,17 @@ const tailFormItemLayout = {
 
 const Signup = () => {
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const onFinish = async (values) => {
+    const dataString = JSON.stringify(values);
+    const res = await fetch("http://localhost:4000/api/user/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: dataString,
+    });
+    const data = await res.json();
+    console.log(data);
   };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>

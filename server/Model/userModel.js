@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
+// email: "562475805@qq.com"
+// fullName: "Feixiang Ren"
+// password: "111111"
+// confirm:"111111"
+// phone: "424658982"
+
 const userSchema = new mongoose.Schema({
   photo: { type: String, default: "default.jpg" },
   role: {
@@ -11,6 +17,7 @@ const userSchema = new mongoose.Schema({
     default: "user",
   },
   name: {
+    required: [true, "Please insert user's name"],
     type: String,
   },
   email: {
