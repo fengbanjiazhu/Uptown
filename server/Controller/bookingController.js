@@ -1,27 +1,29 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-// const Tour = require("../models/tourModel");
 const Booking = require("../Model/bookingModel");
 const catchAsync = require("../Utils/catchAsync");
-// const factory = require("./handlerFactory");
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
+  console.log(process.env.STRIPE_SECRET_KEY);
   const cartItem = req.body;
   const { items, total } = req.body;
+  const imgSample = items[0].product.img01;
   const itemName = items.map((el) => el.slug).join(",");
-  console.log(itemName);
+  // const userEmail = req.body.email || req.user.email;
 
   // create session
-  const product = await stripe.products.create({
-    name: `${itemName}`,
-    description: "",
-    images: [`https://www.natours.dev/img/tours/${tour.imageCover}`],
-  });
-  console.log("Product ID:", product.id);
+  // const product = await stripe.products.create({
+  //   name: `${itemName}`,
+  //   description: "Your purchase from Uptown Fashion",
+  //   images: [
+  //     `https://github.com/fengbanjiazhu/Uptown/blob/main/client/public/images/products/${imgSample}`,
+  //   ],
+  // });
+  // // console.log("Product ID:", product.id);
 
   // const price = await stripe.prices.create({
   //   product: `${product.id}`,
-  //   unit_amount: tour.price * 100,
-  //   currency: "usd",
+  //   unit_amount: total * 100,
+  //   currency: "aud",
   // });
   // console.log('Price ID:', price.id);
 

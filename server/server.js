@@ -53,13 +53,13 @@ app.use(function (req, res, next) {
   next();
 });
 
+dotenv.config({ path: "./server/config.env" });
+
 app.use("/api/products", productRoute);
 // app.use("/api/order", orderRoute);
 // app.use("/api/cart", cartRoute);
 app.use("/api/user", userRoute);
 app.use("/api/booking", bookingRoute);
-
-dotenv.config({ path: "./server/config.env" });
 
 const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD);
 

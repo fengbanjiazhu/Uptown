@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import button from "./Button";
 
 import Grid from "./Grid";
 
@@ -61,6 +62,9 @@ const Footer = () => {
                 Email <strong>uptown@gmail.com</strong>
               </p>
             </div>
+            <div>
+              <input></input> <button className="subscribeBtn">Subscribe</button>
+            </div>
           </div>
           <div>
             <div className="footer__title">Terms</div>
@@ -92,7 +96,6 @@ const Footer = () => {
               Uptown, founded in 2015 by Pierre and Mia, is a pioneering fashion brand that creates
               stylish designs using re-used materials. With a focus on sustainability, Uptown
               revolutionizes the industry by reducing waste and minimizing environmental impact.
-              Join their transformative journey towards a more sustainable and stylish world.
             </p>
           </div>
         </Grid>
