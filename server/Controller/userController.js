@@ -17,11 +17,11 @@ exports.createUser = catchAsync(async (req, res, next) => {
     phone: req.body.phone,
   };
 
-  // const user = await User.create(dataFilter);
+  const user = await User.create(dataFilter);
 
   res.status(200).json({
     status: "success",
-    // user,
+    user,
   });
 });
 

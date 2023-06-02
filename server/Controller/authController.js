@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const catchAsync = require("../Utils/catchAsync");
+const User = require("../Model/userModel");
 
 // sign json web token function
 const signToken = (id) => {
@@ -24,18 +25,18 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.login = catchAsync(async (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username || !password) {
-    return next(new Error("please provide username and password", 400));
+  if (!email || !password) {
+    return next(new Error("please provide email and password", 400));
   }
 
   // check if user exists && password is correct
-  const user = await Employee.findOne({ username }).select("+password");
+  const user = await User.findOne({ email }).select("+password");
   const correct = await user?.correctPassword(password, user.password);
 
   if (!user || !correct) {
-    return next(new Error("incorrect username or password", 401));
+    return next(new Error("incorrect email or password", 401));
   }
 
   // if all correct, send token back to user
@@ -50,7 +51,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   token = token.split(" ")[1];
 
   const result = await jwt.verify(token, process.env.JWT_SECRET);
-  const currentUser = await Employee.findById(result.id);
+  const currentUser = await User.findById(result.id);
   if (!currentUser) {
     return next(new Error("The user no longer exist", 401));
   }

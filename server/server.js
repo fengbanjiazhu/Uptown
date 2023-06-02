@@ -3,6 +3,9 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const cors = require("cors");
 
+const appErr = require("./Utils/appError");
+const globalErrHandler = require("./Controller/errorController");
+
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
@@ -60,6 +63,8 @@ app.use("/api/products", productRoute);
 // app.use("/api/cart", cartRoute);
 app.use("/api/user", userRoute);
 app.use("/api/booking", bookingRoute);
+
+app.use(globalErrHandler);
 
 const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD);
 

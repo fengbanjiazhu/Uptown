@@ -1,18 +1,7 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-import {
-  AutoComplete,
-  Button,
-  Cascader,
-  Checkbox,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
-} from "antd";
-import { useState } from "react";
+import { Button, Checkbox, Form, Input, Select, Alert } from "antd";
 const { Option } = Select;
 
 const formItemLayout = {
@@ -48,19 +37,28 @@ const tailFormItemLayout = {
 };
 
 const Signup = () => {
+  const history = useHistory();
   const [form] = Form.useForm();
+
   const onFinish = async (values) => {
-    const dataString = JSON.stringify(values);
-    const res = await fetch("http://localhost:4000/api/user/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: dataString,
-    });
-    const data = await res.json();
-    console.log(data);
+    try {
+      const dataString = JSON.stringify(values);
+      const res = await fetch("http://localhost:4000/api/user/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: dataString,
+      });
+      const data = await res.json();
+      if (data.status === "error") throw new Error(data.message);
+      alert("Sign-up successful! You will be transfer into login page shortly...");
+      history.push("/login");
+    } catch (error) {
+      alert(error.message);
+    }
   };
+
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
@@ -109,11 +107,25 @@ const Signup = () => {
       <Form.Item
         name="password"
         label="Password"
+        tooltip="Please include 1 uppercase, 1 number, and larger than 8 characters"
         rules={[
           {
             required: true,
             message: "Please input your password!",
           },
+          ({}) => ({
+            validator(_, value) {
+              const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+              if (regex.test(value)) {
+                return Promise.resolve();
+              }
+              return Promise.reject(
+                new Error(
+                  "Minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number"
+                )
+              );
+            },
+          }),
         ]}
         hasFeedback
       >
@@ -187,7 +199,10 @@ const Signup = () => {
         {...tailFormItemLayout}
       >
         <Checkbox>
-          I have read the <a href="">agreement</a>
+          I have read the{" "}
+          <a className="black" href="">
+            agreement
+          </a>
         </Checkbox>
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
