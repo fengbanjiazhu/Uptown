@@ -38,7 +38,7 @@ const Cart = () => {
     );
 
     setTotalProducts(cartItems.reduce((total, item) => total + Number(item.quantity), 0));
-  }, []);
+  }, [cartItems]);
 
   const checkOut = () => {
     console.log(totalPrice);

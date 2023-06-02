@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-
-import { withRouter } from "react-router";
-
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
 import { addItem } from "../redux/shopping-cart/cartItemsSlide";
 
 import Button from "./Button";
 import numberWithCommas from "../utils/numberWithCommas";
 
 const ProductView = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   let product = props.product;
@@ -85,21 +85,7 @@ const ProductView = (props) => {
   };
 
   const goToCart = () => {
-    // if (check()) {
-    //   let newItem = {
-    //     slug: product.slug,
-    //     color: color,
-    //     size: size,
-    //     price: product.price,
-    //     quantity: quantity,
-    //   };
-    //   if (dispatch(addItem(newItem))) {
-    //     dispatch(remove());
-    //     props.history.push("/cart");
-    //   } else {
-    //     alert("Fail");
-    //   }
-    // }
+    history.push("/cart");
   };
 
   return (
