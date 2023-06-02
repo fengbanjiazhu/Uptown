@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateItem, removeItem } from "../redux/shopping-cart/cartItemsSlide";
 
 import numberWithCommas from "../utils/numberWithCommas";
@@ -9,11 +9,15 @@ import { Link } from "react-router-dom";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
+  // const cartData = useSelector((state) => state.cartItems.value);
 
   const itemRef = useRef(null);
 
   const [item, setItem] = useState(props.item);
   const [quantity, setQuantity] = useState(props.item.quantity);
+  // console.log("props:", item);
+  // console.log("props:", quantity);
+  // console.log("redux:", cartData);
 
   useEffect(() => {
     setItem(props.item);
@@ -27,10 +31,6 @@ const CartItem = (props) => {
     if (opt === "-") {
       dispatch(updateItem({ ...item, quantity: quantity - 1 === 0 ? 1 : quantity - 1 }));
     }
-  };
-
-  const updateCartItem = () => {
-    dispatch(updateItem({ ...item, quantity: quantity }));
   };
 
   const removeCartItem = () => {

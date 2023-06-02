@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Helmet from "../components/Helmet";
@@ -11,7 +11,7 @@ import numberWithCommas from "../utils/numberWithCommas";
 
 const getCartItemsInfo = (products, cartItems) => {
   let res = [];
-  if (cartItems.length > 0) {
+  if (cartItems.length > 0 && products.length > 0) {
     cartItems.forEach((item) => {
       let product = products.find((product) => product.slug === item.slug);
       res.push({
@@ -24,21 +24,24 @@ const getCartItemsInfo = (products, cartItems) => {
 };
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cartItems.value);
   const products = useSelector((state) => state.productModal.value);
+  const cartItems = useSelector((state) => state.cartItems.value);
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(products, cartItems));
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
+  // console.log(token);
 
   useEffect(() => {
     setCartProducts(getCartItemsInfo(products, cartItems));
+  }, [products]);
 
+  useEffect(() => {
     setTotalPrice(
       cartItems.reduce((total, item) => total + Number(item.quantity) * Number(item.price), 0)
     );
 
     setTotalProducts(cartItems.reduce((total, item) => total + Number(item.quantity), 0));
-  }, [cartItems]);
+  }, [cartProducts, cartItems]);
 
   const sendOrder = async (cartData) => {
     const res = await fetch("http://localhost:4000/api/booking/checkout-session/", {
@@ -82,9 +85,7 @@ const Cart = () => {
           </div>
         </div>
         <div className="cart__list">
-          {cartProducts.map((item, index) => (
-            <CartItem item={item} key={index} />
-          ))}
+          {cartProducts && cartProducts.map((item, index) => <CartItem item={item} key={index} />)}
         </div>
       </div>
     </Helmet>

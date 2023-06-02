@@ -3,7 +3,7 @@ const Booking = require("../Model/bookingModel");
 const catchAsync = require("../Utils/catchAsync");
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
-  console.log(process.env.STRIPE_SECRET_KEY);
+  // console.log(process.env.STRIPE_SECRET_KEY);
   const cartItem = req.body;
   const { items, total } = req.body;
   const imgSample = items[0].product.img01;
