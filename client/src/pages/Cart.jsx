@@ -40,9 +40,26 @@ const Cart = () => {
     setTotalProducts(cartItems.reduce((total, item) => total + Number(item.quantity), 0));
   }, [cartItems]);
 
+  const sendOrder = async (cartData) => {
+    const res = await fetch("http://localhost:4000/api/booking/checkout-session/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: cartData,
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
   const checkOut = () => {
-    console.log(totalPrice);
-    console.log(cartProducts);
+    const cartData = {
+      total: totalPrice,
+      items: cartProducts,
+    };
+    // console.log(cartData);
+    const dataString = JSON.stringify(cartData);
+    sendOrder(dataString);
   };
 
   return (
