@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { userAction } from "../redux/user/userInfoSlice";
 
 const Login = () => {
@@ -22,13 +22,13 @@ const Login = () => {
       const data = await res.json();
       if (data.status === "error") throw new Error(data.message);
       alert("Login successful!");
-      console.log();
-      console.log();
+
       const userData = {
-        user: data.data.user,
+        name: data.data.user.name,
+        _id: data.data.user._id,
         token: data.token,
       };
-
+      localStorage.setItem("jwtToken", data.token);
       dispatch(userAction.setUser(userData));
 
       history.push("/");
@@ -75,7 +75,7 @@ const Login = () => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <a className="login-form-forgot" href="">
+        <a className="login-form-forgot blue" href="">
           Forgot password
         </a>
       </Form.Item>
@@ -85,9 +85,11 @@ const Login = () => {
           Log in
         </Button>{" "}
         Or{" "}
-        <a className="black" href="">
-          register now!
-        </a>
+        <Link to="/signup">
+          <a className="blue" href="">
+            register now!
+          </a>
+        </Link>
       </Form.Item>
     </Form>
   );

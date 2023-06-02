@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import { Button, Checkbox, Form, Input, Select, Alert } from "antd";
 const { Option } = Select;
@@ -208,7 +208,13 @@ const Signup = () => {
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
           Register
-        </Button>
+        </Button>{" "}
+        Already have an account?{" "}
+        <Link to="/login">
+          <a className="blue" href="">
+            login
+          </a>
+        </Link>
       </Form.Item>
     </Form>
   );
