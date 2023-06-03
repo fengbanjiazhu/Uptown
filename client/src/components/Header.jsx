@@ -3,6 +3,7 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../redux/product-modal/productModalSlice";
 import { userAction } from "../redux/user/userInfoSlice";
+import useLogout from "../hooks/useLogout";
 
 import logo from "../assets/images/Logo-2.png";
 
@@ -32,6 +33,7 @@ const Header = () => {
   const headerRef = useRef(null);
   const dispatch = useDispatch();
   const history = useHistory();
+  const logout = useLogout();
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
@@ -61,13 +63,6 @@ const Header = () => {
   const menuLeft = useRef(null);
 
   const menuToggle = () => menuLeft.current.classList.toggle("active");
-
-  const logout = () => {
-    console.log("logout!");
-    localStorage.removeItem("jwtToken");
-    dispatch(userAction.removeUser());
-    history.push("/");
-  };
 
   return (
     <div className="header" ref={headerRef}>
@@ -123,18 +118,20 @@ const Header = () => {
               </Fragment>
             )}
             {token && (
-              <div
-                className="header__menu__item header__menu__right__item pointer"
-                onClick={logout}
-              >
-                <i className="bx bx-log-out"></i>
-              </div>
+              <Fragment>
+                <div
+                  className="header__menu__item header__menu__right__item pointer"
+                  onClick={logout}
+                >
+                  <i className="bx bx-log-out"></i>
+                </div>
+                <div className="header__menu__item header__menu__right__item">
+                  <Link to="/me">
+                    <i className="bx bx-user"></i>
+                  </Link>
+                </div>
+              </Fragment>
             )}
-            <div className="header__menu__item header__menu__right__item">
-              <Link to="/me">
-                <i className="bx bx-user"></i>
-              </Link>
-            </div>
           </div>
         </div>
       </div>

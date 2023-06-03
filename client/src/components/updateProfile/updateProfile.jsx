@@ -1,12 +1,27 @@
 import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import { UserOutlined, MailOutlined, PhoneOutlined, HomeOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
 
 function UpdateProfile(props) {
-  console.log(props);
+  const userToken = useSelector((state) => state.userInfo.value.token);
   const { currentUser } = props;
+
   const onFinish = async (values) => {
-    console.log(values);
+    try {
+      const updateData = JSON.stringify(values);
+      const res = await fetch("http://localhost:4000/api/user/Me", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${userToken}` },
+        body: updateData,
+      });
+      const data = await res.json();
+      if (data.status === 400) throw new Error(data.message);
+
+      alert("Update successful!");
+    } catch (error) {
+      alert(error.message);
+    }
   };
   return (
     <Fragment>

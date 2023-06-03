@@ -4,9 +4,6 @@ import UpdateProfile from "./updateProfile/updateProfile";
 import UpdatePassword from "./updateProfile/updatePassword";
 
 const Profile = (props) => {
-  // const currentUser = ;
-  // console.log(currentUser);
-
   return (
     <div className="user-view__form-container">
       <UpdateProfile currentUser={props.user}></UpdateProfile>

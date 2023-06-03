@@ -1,10 +1,28 @@
 import React, { Fragment } from "react";
-
+import { useSelector } from "react-redux";
 import { Button, Form, Input } from "antd";
+import useLogout from "../../hooks/useLogout";
 
 const UpdatePassword = () => {
+  const userToken = useSelector((state) => state.userInfo.value.token);
+  const logout = useLogout();
+
   const onUpdatePassword = async (values) => {
-    console.log(values);
+    try {
+      const updateData = JSON.stringify(values);
+      const res = await fetch("http://localhost:4000/api/user/updateMyPassword", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${userToken}` },
+        body: updateData,
+      });
+      const data = await res.json();
+      if (data.status === 400) throw new Error(data.message);
+
+      alert("Update successful!");
+      logout();
+    } catch (error) {
+      alert(error.message);
+    }
   };
   return (
     <Fragment>
