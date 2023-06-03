@@ -16,11 +16,15 @@
   border-radius: 0.5rem;
 }
 
-.ant-layout-sider-has-trigger {
+.ant-layout-sider {
+  background-color: white !important;
+}
+.ant-layout-has-sider {
   margin-top: 1rem !important;
   border-radius: 1rem !important;
+  // background-color: white !important;
 }
 
-.ant-layout-sider-trigger {
-  position: relative !important;
-}
+// .ant-layout-sider-trigger {
+//   position: relative !important;
+// }

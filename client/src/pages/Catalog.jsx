@@ -55,7 +55,10 @@ const Catalog = () => {
     }
   };
 
-  const clearFilter = () => setFilter(initFilter);
+  const clearFilter = () => {
+    setFilter(initFilter);
+    setProducts(productRedux);
+  };
 
   const updateProducts = useCallback(() => {
     let temp = products;
@@ -79,7 +82,11 @@ const Catalog = () => {
     }
 
     setProducts(temp);
-  }, [filter, products]);
+  }, [filter]);
+
+  useEffect(() => {
+    setProducts(productRedux);
+  }, [productRedux]);
 
   useEffect(() => {
     updateProducts();

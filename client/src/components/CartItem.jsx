@@ -1,23 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
-
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { updateItem, removeItem } from "../redux/shopping-cart/cartItemsSlide";
 
+import PropTypes from "prop-types";
 import numberWithCommas from "../utils/numberWithCommas";
-import { Link } from "react-router-dom";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
-  // const cartData = useSelector((state) => state.cartItems.value);
-
   const itemRef = useRef(null);
-
   const [item, setItem] = useState(props.item);
   const [quantity, setQuantity] = useState(props.item.quantity);
-  // console.log("props:", item);
-  // console.log("props:", quantity);
-  // console.log("redux:", cartData);
 
   useEffect(() => {
     setItem(props.item);

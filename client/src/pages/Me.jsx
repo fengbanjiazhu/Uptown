@@ -1,13 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 
-import {
-  FileOutlined,
-  PieChartOutlined,
-  UserOutlined,
-  DesktopOutlined,
-  TeamOutlined,
-  SnippetsOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, SnippetsOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 const { Content, Sider } = Layout;
 const { Item } = Menu;
@@ -20,18 +13,6 @@ export default function Me() {
   const [component, setComponent] = useState("profile");
   const [userData, setUserData] = useState(null);
   const [collapsed, setCollapsed] = useState(false);
-
-  // const items = [
-  //   getItem("Profile 1", "1", <UserOutlined />),
-  //   getItem("Option 2", "2", <DesktopOutlined />),
-  //   // getItem("User", "sub1", <UserOutlined />, [
-  //   //   getItem("Tom", "3"),
-  //   //   getItem("Bill", "4"),
-  //   //   getItem("Alex", "5"),
-  //   // ]),
-  //   getItem("Team", "sub2", <TeamOutlined />, [getItem("Team 1", "6"), getItem("Team 2", "8")]),
-  //   getItem("Files", "9", <FileOutlined />),
-  // ];
 
   useEffect(() => {
     if (!userToken) return;
@@ -59,9 +40,9 @@ export default function Me() {
         minHeight: "50vh",
       }}
     >
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+      <Sider collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+        <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
           <Item key={"profile"} onClick={setProfile}>
             <UserOutlined /> Profile
           </Item>
@@ -87,6 +68,11 @@ export default function Me() {
             }}
           >
             {component === "profile" && userData && <Profile user={userData}></Profile>}
+            {component === "order" && userData && (
+              <div>
+                <h1>No Orders yet</h1>
+              </div>
+            )}
           </div>
         </Content>
       </Layout>

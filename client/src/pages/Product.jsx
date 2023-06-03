@@ -16,7 +16,6 @@ const Product = (props) => {
   const id = useParams();
 
   useEffect(() => {
-    console.log(products);
     const data = products.find((product) => product._id === id.slug);
     setProduct(data);
   }, [id, products]);

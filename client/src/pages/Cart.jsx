@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-
-import { useSelector, useDispatch } from "react-redux";
+import { Modal, Input } from "antd";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Helmet from "../components/Helmet";
@@ -26,14 +26,16 @@ const getCartItemsInfo = (products, cartItems) => {
 const Cart = () => {
   const products = useSelector((state) => state.productModal.value);
   const cartItems = useSelector((state) => state.cartItems.value);
+
+  const [open, setOpen] = useState(false);
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(products, cartItems));
   const [totalPrice, setTotalPrice] = useState(0);
+  const [address, setAddress] = useState(null);
   const [totalProducts, setTotalProducts] = useState(0);
-  // console.log(token);
 
   useEffect(() => {
     setCartProducts(getCartItemsInfo(products, cartItems));
-  }, [products]);
+  }, [products, cartItems]);
 
   useEffect(() => {
     setTotalPrice(
@@ -41,28 +43,54 @@ const Cart = () => {
     );
 
     setTotalProducts(cartItems.reduce((total, item) => total + Number(item.quantity), 0));
-  }, [cartProducts, cartItems]);
+    console.log(cartProducts);
+  }, [cartProducts, cartItems, totalProducts]);
 
   const sendOrder = async (cartData) => {
-    const res = await fetch("http://localhost:4000/api/booking/checkout-session/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: cartData,
-    });
-    const data = await res.json();
-    console.log(data);
+    try {
+      const res = await fetch("http://localhost:4000/api/booking/checkout-session/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: cartData,
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {}
+  };
+
+  const showModal = () => {
+    setOpen(true);
   };
 
   const checkOut = () => {
-    const cartData = {
-      total: totalPrice,
-      items: cartProducts,
-    };
-    // console.log(cartData);
-    const dataString = JSON.stringify(cartData);
-    sendOrder(dataString);
+    try {
+      if (!address || totalProducts === 0) throw new Error("address or cart can not be empty");
+      const cartData = {
+        total: totalPrice,
+        items: cartProducts,
+        address,
+      };
+      const dataString = JSON.stringify(cartData);
+      sendOrder(dataString);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleCancel = () => {
+    console.log("Clicked cancel button");
+    setOpen(false);
+  };
+
+  const handleOk = () => {
+    showModal();
+  };
+
+  const handleInputChange = (e) => {
+    const address = e.target.value.trim();
+    setAddress(address);
   };
 
   return (
@@ -75,8 +103,16 @@ const Cart = () => {
               <span>Total Price:</span> <span>{numberWithCommas(Number(totalPrice))}</span>
             </div>
           </div>
+          <Modal
+            title="Please enter your Address"
+            open={open}
+            onOk={checkOut}
+            onCancel={handleCancel}
+          >
+            <Input onChange={handleInputChange} />
+          </Modal>
           <div className="cart__info__btn">
-            <Button onClick={checkOut} size="block">
+            <Button onClick={handleOk} size="block">
               Place order
             </Button>
             <Link to="/catalog">
