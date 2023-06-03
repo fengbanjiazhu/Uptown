@@ -76,6 +76,10 @@
       height: 100%;
     }
 
+    .pointer:hover {
+      cursor: pointer;
+    }
+
     &__right {
       font-size: 2.25rem;
 

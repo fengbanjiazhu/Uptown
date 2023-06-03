@@ -10,6 +10,8 @@ const Login = () => {
   const history = useHistory();
 
   const onFinish = async (values) => {
+    console.log(values);
+    console.log(typeof values.remember);
     try {
       const dataString = JSON.stringify(values);
       const res = await fetch("http://localhost:4000/api/user/login", {
@@ -26,9 +28,10 @@ const Login = () => {
       const userData = {
         name: data.data.user.name,
         _id: data.data.user._id,
+        role: data.data.user.role,
         token: data.token,
       };
-      localStorage.setItem("jwtToken", data.token);
+      if (values.remember) localStorage.setItem("jwtToken", data.token);
       dispatch(userAction.setUser(userData));
 
       history.push("/");
