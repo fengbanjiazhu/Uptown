@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, Fragment } from "react";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../redux/product-modal/productModalSlice";
 import { userAction } from "../redux/user/userInfoSlice";
@@ -32,7 +32,6 @@ const Header = () => {
   const activeNav = mainNav.findIndex((e) => e.path === pathname);
   const headerRef = useRef(null);
   const dispatch = useDispatch();
-  const history = useHistory();
   const logout = useLogout();
 
   useEffect(() => {

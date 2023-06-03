@@ -11,7 +11,27 @@ const orderSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
-    required: [true, "order must belong to a User!"],
+    required: function () {
+      return !this.email;
+    },
+  },
+  email: {
+    type: String,
+    required: function () {
+      return !this.user;
+    },
+  },
+  address: {
+    type: String,
+    required: function () {
+      return !this.user;
+    },
+  },
+  name: {
+    type: String,
+    required: function () {
+      return !this.user;
+    },
   },
   price: {
     type: Number,
@@ -20,10 +40,6 @@ const orderSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
-  },
-  paid: {
-    type: Boolean,
-    default: true,
   },
 });
 

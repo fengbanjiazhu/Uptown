@@ -33,7 +33,7 @@ const Login = () => {
       };
       if (values.remember) localStorage.setItem("jwtToken", data.token);
       dispatch(userAction.setUser(userData));
-
+      console.log("user:", data.data);
       history.push("/");
     } catch (error) {
       alert(error.message);
@@ -84,9 +84,9 @@ const Login = () => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <a className="login-form-forgot blue" href="">
+        {/* <a className="login-form-forgot blue" href="">
           Forgot password
-        </a>
+        </a> */}
       </Form.Item>
 
       <Form.Item>

@@ -5,43 +5,42 @@ const catchAsync = require("../Utils/catchAsync");
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // console.log(process.env.STRIPE_SECRET_KEY);
   const cartItem = req.body;
-  const { items, total } = req.body;
+  const { items, total, name, email, address } = req.body;
   const imgSample = items[0].product.img01;
   const itemName = items.map((el) => el.slug).join(",");
-  // const userEmail = req.body.email || req.user.email;
 
   // create session
-  // const product = await stripe.products.create({
-  //   name: `${itemName}`,
-  //   description: "Your purchase from Uptown Fashion",
-  //   images: [
-  //     `https://github.com/fengbanjiazhu/Uptown/blob/main/client/public/images/products/${imgSample}`,
-  //   ],
-  // });
-  // // console.log("Product ID:", product.id);
+  const product = await stripe.products.create({
+    name: `${itemName}`,
+    description: "Your purchase from Uptown Fashion",
+    images: [
+      `https://github.com/fengbanjiazhu/Uptown/blob/main/client/public/images/products/${imgSample}`,
+    ],
+  });
+  // console.log("Product ID:", product.id);
 
-  // const price = await stripe.prices.create({
-  //   product: `${product.id}`,
-  //   unit_amount: total * 100,
-  //   currency: "aud",
-  // });
-  // console.log('Price ID:', price.id);
+  const price = await stripe.prices.create({
+    product: `${product.id}`,
+    unit_amount: total * 100,
+    currency: "aud",
+  });
+  console.log("Price ID:", price.id);
 
-  // const session = await stripe.checkout.sessions.create({
-  //   line_items: [
-  //     {
-  //       price: `${price.id}`,
-  //       quantity: 1,
-  //     },
-  //   ],
-  //   mode: "payment",
-  //   success_url: `${req.protocol}://${req.get("host")}/?tour=${req.params.tourId}&user=${
-  //     req.user.id
-  //   }&price=${tour.price}`,
-  //   cancel_url: `${req.protocol}://${req.get("host")}/tour/${tour.slug}`,
-  //   client_reference_id: req.params.tourId,
-  //   customer_email: req.user.email,
-  // });
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price: `${price.id}`,
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+    success_url: `${req.protocol}://${req.get("host")}/?tour=${req.params.tourId}&user=${
+      req.user.id
+    }&price=${tour.price}`,
+    cancel_url: `${req.protocol}://${req.get("host")}/tour/${tour.slug}`,
+    client_reference_id: req.params.tourId,
+    customer_email: req.user.email,
+  });
 
   // send to client
   res.status(200).json({

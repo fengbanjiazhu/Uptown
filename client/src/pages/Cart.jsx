@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Input } from "antd";
+import { Modal, Input, Form } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { clearCart } from "../redux/shopping-cart/cartItemsSlide";
@@ -25,14 +25,17 @@ const getCartItemsInfo = (products, cartItems) => {
 
 const Cart = () => {
   const products = useSelector((state) => state.productModal.value);
+  const { _id } = useSelector((state) => state.userInfo.value);
   const cartItems = useSelector((state) => state.cartItems.value);
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(products, cartItems));
   const [totalPrice, setTotalPrice] = useState(0);
-  const [address, setAddress] = useState(null);
   const [totalProducts, setTotalProducts] = useState(0);
+  const [email, setEmail] = useState(null);
+  const [name, setName] = useState(null);
+  const [address, setAddress] = useState(null);
 
   useEffect(() => {
     setCartProducts(getCartItemsInfo(products, cartItems));
@@ -56,11 +59,10 @@ const Cart = () => {
         body: cartData,
       });
       const data = await res.json();
-      if (data.status !== 200) throw new Error(data.message);
       console.log(data);
-      dispatch(clearCart());
+      if (data.status !== "success") throw new Error(data.message);
+      alert("Successful!");
       setOpen(false);
-      alert("Success!");
     } catch (error) {
       alert(error.message);
     }
@@ -71,13 +73,19 @@ const Cart = () => {
   };
 
   const checkOut = () => {
-    if (!address || totalProducts === 0) return alert("address or cart can not be empty");
+    if (!name || !email || !address || totalProducts === 0)
+      return alert("detail or cart can not be empty");
 
     const cartData = {
       total: totalPrice,
       items: cartProducts,
+      name,
+      email,
       address,
     };
+    if (_id) {
+      cartData.userId = _id;
+    }
     const dataString = JSON.stringify(cartData);
     sendOrder(dataString);
   };
@@ -91,9 +99,27 @@ const Cart = () => {
     showModal();
   };
 
-  const handleInputChange = (e) => {
-    const address = e.target.value.trim();
+  const checkLength = (data) => {
+    const input = data.trim();
+    if (input.length < 1) {
+      return undefined;
+    } else {
+      return input;
+    }
+  };
+
+  const handleAddress = (e) => {
+    const address = checkLength(e.target.value);
     setAddress(address);
+  };
+
+  const handleEmail = (e) => {
+    const email = checkLength(e.target.value);
+    setEmail(email);
+  };
+  const handleName = (e) => {
+    const name = checkLength(e.target.value);
+    setName(name);
   };
 
   return (
@@ -106,14 +132,26 @@ const Cart = () => {
               <span>Total Price:</span> <span>{numberWithCommas(Number(totalPrice))}</span>
             </div>
           </div>
+
           <Modal
             title="Please enter your Address"
             open={open}
             onOk={checkOut}
             onCancel={handleCancel}
           >
-            <Input onChange={handleInputChange} />
+            <Form layout="horizontal">
+              <Form.Item name="name" label="Name">
+                <Input onChange={handleName} placeholder="enter Name" />
+              </Form.Item>
+              <Form.Item name="email" label="Email">
+                <Input onChange={handleEmail} type="email" placeholder="enter Email" />
+              </Form.Item>
+              <Form.Item name="address" label="Address">
+                <Input onChange={handleAddress} placeholder="Enter Address" />
+              </Form.Item>
+            </Form>
           </Modal>
+
           <div className="cart__info__btn">
             <Button onClick={handleOk} size="block">
               Place order
