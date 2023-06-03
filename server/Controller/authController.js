@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const catchAsync = require("../Utils/catchAsync");
 const User = require("../Model/userModel");
+const AppError = require("../Utils/appError");
 
 // sign json web token function
 const signToken = (id) => {
@@ -69,3 +70,22 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
+
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  // 1 get user from collection
+  const user = await User.findById(req.user.id).select("+password");
+
+  // 2 check input password is correct
+  const currentPassword = req.body.passwordCurrent;
+  if (!(await user.correctPassword(currentPassword, user.password))) {
+    return next(new AppError("your current password is wrong", 401));
+  }
+
+  // 3 if its correct, update password
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  await user.save();
+
+  // 4 log user in, send JWT
+  createSendToken(user, 200, res);
+});

@@ -30,6 +30,8 @@ router
 
 router.route("/login").post(authController.login);
 
+router.route("/updateMyPassword").patch(authController.protect, authController.updatePassword);
+
 router
   .route("/:id")
   .get(
