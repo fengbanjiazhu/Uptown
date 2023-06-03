@@ -41,6 +41,10 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  paid: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // orderSchema.pre(/^find/, function (next) {
