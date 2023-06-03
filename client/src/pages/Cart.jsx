@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Input } from "antd";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { clearCart } from "../redux/shopping-cart/cartItemsSlide";
 import Helmet from "../components/Helmet";
 import CartItem from "../components/CartItem";
 import Button from "../components/Button";
@@ -26,6 +26,7 @@ const getCartItemsInfo = (products, cartItems) => {
 const Cart = () => {
   const products = useSelector((state) => state.productModal.value);
   const cartItems = useSelector((state) => state.cartItems.value);
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(products, cartItems));
@@ -43,7 +44,6 @@ const Cart = () => {
     );
 
     setTotalProducts(cartItems.reduce((total, item) => total + Number(item.quantity), 0));
-    console.log(cartProducts);
   }, [cartProducts, cartItems, totalProducts]);
 
   const sendOrder = async (cartData) => {
@@ -56,8 +56,14 @@ const Cart = () => {
         body: cartData,
       });
       const data = await res.json();
+      if (data.status !== 200) throw new Error(data.message);
       console.log(data);
-    } catch (error) {}
+      dispatch(clearCart());
+      setOpen(false);
+      alert("Success!");
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   const showModal = () => {
@@ -65,18 +71,15 @@ const Cart = () => {
   };
 
   const checkOut = () => {
-    try {
-      if (!address || totalProducts === 0) throw new Error("address or cart can not be empty");
-      const cartData = {
-        total: totalPrice,
-        items: cartProducts,
-        address,
-      };
-      const dataString = JSON.stringify(cartData);
-      sendOrder(dataString);
-    } catch (error) {
-      alert(error.message);
-    }
+    if (!address || totalProducts === 0) return alert("address or cart can not be empty");
+
+    const cartData = {
+      total: totalPrice,
+      items: cartProducts,
+      address,
+    };
+    const dataString = JSON.stringify(cartData);
+    sendOrder(dataString);
   };
 
   const handleCancel = () => {

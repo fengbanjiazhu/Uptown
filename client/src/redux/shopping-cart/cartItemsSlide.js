@@ -71,10 +71,13 @@ export const cartItemsSlice = createSlice({
         JSON.stringify(state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0)))
       );
     },
+    clearCart: (state, action) => {
+      state.value = [];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addItem, removeItem, updateItem } = cartItemsSlice.actions;
+export const { addItem, removeItem, updateItem, clearCart } = cartItemsSlice.actions;
 
 export default cartItemsSlice.reducer;
