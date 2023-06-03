@@ -33,6 +33,7 @@ function UpdateProfile(props) {
           email: currentUser.email,
           name: currentUser.name,
           phone: currentUser.phone,
+          address: currentUser.address ? currentUser.address : "",
         }}
         onFinish={onFinish}
         style={{

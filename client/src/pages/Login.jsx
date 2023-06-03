@@ -10,8 +10,8 @@ const Login = () => {
   const history = useHistory();
 
   const onFinish = async (values) => {
-    console.log(values);
-    console.log(typeof values.remember);
+    // console.log(values);
+    // console.log(typeof values.remember);
     try {
       const dataString = JSON.stringify(values);
       const res = await fetch("http://localhost:4000/api/user/login", {
@@ -53,6 +53,7 @@ const Login = () => {
     >
       <Form.Item
         name="email"
+        label="Email"
         rules={[
           {
             type: "email",
@@ -63,16 +64,19 @@ const Login = () => {
       >
         <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
       </Form.Item>
-
       <Form.Item
         name="password"
-        rules={[{ required: true, message: "Please input your Password!" }]}
+        label="Password"
+        tooltip="Password include at least 1 uppercase, 1 number, and larger than 8 characters"
+        rules={[
+          {
+            required: true,
+            message: "Please input your password!",
+          },
+        ]}
+        hasFeedback
       >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
+        <Input.Password />
       </Form.Item>
 
       <Form.Item>

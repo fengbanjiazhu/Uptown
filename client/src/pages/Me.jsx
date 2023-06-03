@@ -1,9 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Profile from "../components/Profile";
-
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
-import { userAction } from "../redux/user/userInfoSlice";
+import { useSelector } from "react-redux";
 
 export default function Me() {
   const userToken = useSelector((state) => state.userInfo.value.token);

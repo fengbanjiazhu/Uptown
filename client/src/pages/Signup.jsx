@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
 
-import { Button, Checkbox, Form, Input, Select, Alert } from "antd";
+import { Button, Checkbox, Form, Input, Select } from "antd";
 const { Option } = Select;
 
 const formItemLayout = {
