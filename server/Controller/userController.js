@@ -1,6 +1,7 @@
 const User = require("../Model/userModel");
 const catchAsync = require("../Utils/catchAsync");
 const centralController = require("./centreController");
+const Email = require("../Utils/Email");
 
 exports.getAllUser = centralController.getAll(User);
 exports.getUser = centralController.getOne(User);
@@ -18,6 +19,9 @@ exports.createUser = catchAsync(async (req, res, next) => {
   };
 
   const user = await User.create(dataFilter);
+
+  const url = "http://localhost:3000/login";
+  await new Email(user, url).sendWelcome();
 
   res.status(200).json({
     status: "success",

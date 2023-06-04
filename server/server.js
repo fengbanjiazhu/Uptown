@@ -2,12 +2,11 @@ const express = require("express");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const cors = require("cors");
-
-const appErr = require("./Utils/appError");
 const globalErrHandler = require("./Controller/errorController");
 
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const path = require("path");
 
 const app = express();
 
@@ -16,6 +15,8 @@ const orderRoute = require("./Routes/orderRoutes");
 // const cartRoute = require("./Routes/cartRoutes");
 const userRoute = require("./Routes/userRoutes");
 const bookingRoute = require("./Routes/bookingRoutes");
+
+app.use(express.static(path.join(__dirname, "Utils")));
 
 // solving CORS issue
 app.use(

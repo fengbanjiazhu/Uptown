@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 function Completion() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [status, setStatus] = useState("Updating");
+  const history = useHistory();
 
   const queryParams = {};
   for (const [key, value] of searchParams.entries()) {
@@ -28,13 +29,15 @@ function Completion() {
         if (data.status !== "success") throw new Error(data.message);
 
         setStatus("Complete");
+        setTimeout(() => {
+          history.push("/");
+        }, 8000);
       } catch (error) {
         alert(error.message);
       }
     };
 
     updatePayment();
-    console.log("Fetch!");
   }, [queryParams]);
 
   console.log(queryParams);
@@ -46,7 +49,8 @@ function Completion() {
       )}
       {status === "Complete" && (
         <div>
-          <h1 className="order-status-hint">Order completed! You will receive an email soon</h1>
+          <h1 className="order-status-hint">Order completed! You will be direct to home page</h1>
+          <p className="order-status-hint">You will receive an email about the order soon</p>
           <img src={`${process.env.PUBLIC_URL}/images/Thankyou.jpg`} alt="Thankyou image" />
         </div>
       )}

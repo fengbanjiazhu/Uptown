@@ -61,8 +61,7 @@ const Cart = () => {
       });
       const data = await res.json();
       if (data.status !== "success") throw new Error(data.message);
-      console.log(data.clientSecret);
-      // dispatch(clearCart())
+      dispatch(clearCart());
       history.push(`/payment/${data.clientSecret}`);
     } catch (error) {
       alert(error.message);

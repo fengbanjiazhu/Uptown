@@ -1,0 +1,21 @@
+extends baseEmail
+
+block content
+    p Dear #{firstName},
+    p Thank you for choosing Uptown! 🎉 We appreciate your recent purchase and wanted to express our gratitude for your support. 
+    p At Uptown, we are passionate about providing high-quality, upcycled clothing that is both fashionable and sustainable. Your purchase not only adds a stylish addition to your wardrobe but also contributes to our mission of reducing waste and promoting eco-friendly practices.
+    table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+      tbody
+          tr
+            td(align='left')
+              table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+                tbody
+                  tr
+                    td
+                      p Your order number: #{url}
+    p If you need any help with anything, please don't hesitate to contact me!
+    p Thank you again for shopping with Uptown. We look forward to serving you again soon.
+    p - Mia | Pierre  - Uptown
+
+
+    

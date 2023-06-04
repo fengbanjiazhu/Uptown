@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const catchAsync = require("../Utils/catchAsync");
 const User = require("../Model/userModel");
 const AppError = require("../Utils/appError");
+const Email = require("../Utils/Email");
 
 // sign json web token function
 const signToken = (id) => {
