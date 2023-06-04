@@ -4,11 +4,9 @@ const bookingController = require("../Controller/bookingController");
 
 const router = express.Router();
 
-// router.use(authController.protect);
-
-router.post("/checkout-session/", bookingController.getCheckoutSession);
 router.post("/checkout-intent/", bookingController.getCheckoutIntent);
 
+// router.use(authController.protect);
 // router.use(authController.restrictTo('lead-guide', 'admin'));
 
 // router.route("/").get(bookingController.getAllBooking).post(bookingController.createBooking);

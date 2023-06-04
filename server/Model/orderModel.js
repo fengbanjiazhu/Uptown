@@ -44,6 +44,13 @@ const orderSchema = new mongoose.Schema({
   paid: {
     type: Boolean,
     default: false,
+    required: [true],
+  },
+  payment_intent_client_secret: {
+    type: String,
+  },
+  payment_intent: {
+    type: String,
   },
 });
 

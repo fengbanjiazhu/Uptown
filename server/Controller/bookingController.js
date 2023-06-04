@@ -1,55 +1,15 @@
 const Stripe = require("stripe");
 const Booking = require("../Model/bookingModel");
+const Order = require("../Model/orderModel");
 
 const catchAsync = require("../Utils/catchAsync");
-
-exports.getCheckoutSession = catchAsync(async (req, res, next) => {
-  const cartDetails = req.body;
-  const { items, total, name, email, address } = cartDetails;
-  const product = items.map((item) => item.product._id);
-  const itemName = items.map((el) => el.slug).join(",");
-
-  // create session
-  // const product = await stripe.products.create({
-  //   name: `${itemName}`,
-  //   description: "Your purchase from Uptown Fashion",
-  //   images: ["https://github.com/fengbanjiazhu/Uptown/blob/main/client/public/images/Uptown.jpg"],
-  // });
-
-  // const price = await stripe.prices.create({
-  //   product: `${product.id}`,
-  //   unit_amount: total * 100,
-  //   currency: "aud",
-  // });
-
-  // const session = await stripe.checkout.sessions.create({
-  //   line_items: [
-  //     {
-  //       price: `${price.id}`,
-  //       quantity: 1,
-  //     },
-  //   ],
-  //   mode: "payment",
-  //   success_url: "",
-  //   cancel_url: "",
-  //   client_reference_id: req.params.tourId,
-  //   customer_email: email,
-  // });
-
-  // send to client
-  res.status(200).json({
-    status: "success",
-    // session,
-    cartDetails,
-  });
-});
 
 exports.getCheckoutIntent = catchAsync(async (req, res, next) => {
   const cartDetails = req.body;
   const { items, total, name, email, address } = cartDetails;
+  const product = items.map((item) => item.product._id);
+
   const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-  // const product = items.map((item) => item.product._id);
-  // const itemName = items.map((el) => el.slug).join(",");
   amount = total * 100;
 
   const paymentIntent = await stripe.paymentIntents.create({
@@ -58,7 +18,16 @@ exports.getCheckoutIntent = catchAsync(async (req, res, next) => {
     automatic_payment_methods: { enabled: true },
   });
 
-  // Send publishable key and PaymentIntent details to client
+  await Order.create({
+    product,
+    name,
+    email,
+    address,
+    price: total,
+    paid: false,
+    payment_intent_client_secret: paymentIntent.client_secret,
+  });
+
   res.status(200).json({
     status: "success",
     clientSecret: paymentIntent.client_secret,
