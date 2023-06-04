@@ -31,7 +31,7 @@ const Login = () => {
       };
       if (values.remember) localStorage.setItem("jwtToken", data.token);
       dispatch(userAction.setUser(userData));
-      console.log("user:", data.data);
+      // console.log("user:", data.data);
       history.push("/");
     } catch (error) {
       alert(error.message);

@@ -1,8 +1,8 @@
-const AppError = require('../utils/appError');
+const AppError = require("../Utils/appError");
 
 const sendErrorDev = (err, req, res) => {
   // API
-  if (req.originalUrl.startsWith('/api')) {
+  if (req.originalUrl.startsWith("/api")) {
     res.status(err.statusCode).json({
       status: err.status,
       error: err,
@@ -12,16 +12,16 @@ const sendErrorDev = (err, req, res) => {
   }
 
   // render website
-  console.error('ERROR!', err);
-  res.status(err.statusCode).render('error', {
-    title: 'Something went wrong',
+  console.error("ERROR!", err);
+  res.status(err.statusCode).render("error", {
+    title: "Something went wrong",
     msg: err.message,
   });
 };
 
 const senErrorProd = (err, req, res) => {
   // API
-  if (req.originalUrl.startsWith('/api')) {
+  if (req.originalUrl.startsWith("/api")) {
     // Operational, trusted error: send a message to client
     if (err.isOperational) {
       res.status(err.statusCode).json({
@@ -31,24 +31,24 @@ const senErrorProd = (err, req, res) => {
     }
 
     // Programming or other unknown error: don't show error details
-    console.error('ERROR!', err);
+    console.error("ERROR!", err);
     res.status(500).json({
-      status: 'error',
-      msg: 'something went very wrong!',
+      status: "error",
+      msg: "something went very wrong!",
     });
   }
 
   // render website
   if (err.isOperational) {
-    res.status(err.statusCode).render('error', {
-      title: 'Something went wrong',
+    res.status(err.statusCode).render("error", {
+      title: "Something went wrong",
       msg: err.message,
     });
   }
 
-  res.status(err.statusCode).render('error', {
-    title: 'Something went wrong!',
-    msg: 'Please try again later.',
+  res.status(err.statusCode).render("error", {
+    title: "Something went wrong!",
+    msg: "Please try again later.",
   });
 };
 
@@ -66,28 +66,27 @@ const handleDuplicateFieldDB = (err) => {
 const handleValidationErrorDB = (err) => {
   const errors = Object.values(err.errors).map((el) => el.message);
 
-  const message = `Invalid input data: ${errors.join('. ')}`;
+  const message = `Invalid input data: ${errors.join(". ")}`;
   return new AppError(message, 400);
 };
 
 const handleJWTExpireError = (err) => {
-  return new AppError('Your token has expired! Please Login again');
+  return new AppError("Your token has expired! Please Login again");
 };
 
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  err.status = err.status || "error";
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, req, res);
-  } else if (process.env.NODE_ENV === 'production') {
+  } else if (process.env.NODE_ENV === "production") {
     let error = { ...err, message: err.message };
 
-    if (error.name === 'CastError') error = handleCastErrorDB(error);
+    if (error.name === "CastError") error = handleCastErrorDB(error);
     if (error.code === 11000) error = handleDuplicateFieldDB(error);
-    if (error._message === 'Validation failed')
-      error = handleValidationErrorDB(error);
-    if (error.name === 'TokenExpiredError') error = handleJWTExpireError(error);
+    if (error._message === "Validation failed") error = handleValidationErrorDB(error);
+    if (error.name === "TokenExpiredError") error = handleJWTExpireError(error);
 
     senErrorProd(error, req, res);
   }

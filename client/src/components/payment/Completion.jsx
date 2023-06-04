@@ -7,7 +7,8 @@ function Completion() {
   const [status, setStatus] = useState("Updating");
   const history = useHistory();
 
-  const queryParams = {};
+  let queryParams = {};
+
   for (const [key, value] of searchParams.entries()) {
     queryParams[key] = value;
   }
@@ -29,18 +30,19 @@ function Completion() {
         if (data.status !== "success") throw new Error(data.message);
 
         setStatus("Complete");
+        queryParams = {};
         setTimeout(() => {
           history.push("/");
-        }, 8000);
+        }, 5000);
       } catch (error) {
-        alert(error.message);
+        console.log(error);
       }
     };
 
     updatePayment();
   }, [queryParams]);
 
-  console.log(queryParams);
+  // console.log(queryParams);
 
   return (
     <Fragment>
