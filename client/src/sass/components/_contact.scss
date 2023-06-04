@@ -1,0 +1,22 @@
+.functionalContainer {
+  display: flex;
+  padding: 2rem;
+
+  .contactTitle {
+    margin-left: 10rem;
+    width: 100%;
+  }
+
+  .ant-card-meta-title {
+    margin-bottom: 0;
+  }
+
+  .ant-card-meta-description {
+    margin-bottom: 1rem;
+  }
+
+  #nest-messages {
+    width: 45rem;
+    padding: 1rem;
+  }
+}

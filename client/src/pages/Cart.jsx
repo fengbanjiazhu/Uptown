@@ -63,6 +63,7 @@ const Cart = () => {
       if (data.status !== "success") throw new Error(data.message);
       dispatch(clearCart());
       setCartProducts(null);
+      localStorage.removeItem("cartItems");
       history.push(`/payment/${data.clientSecret}`);
     } catch (error) {
       alert(error.message);
