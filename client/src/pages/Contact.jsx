@@ -30,7 +30,6 @@ const Contact = () => {
       session: "query",
     };
     const dataString = JSON.stringify(query);
-
     try {
       const res = await fetch("http://localhost:4000/api/booking/", {
         method: "POST",

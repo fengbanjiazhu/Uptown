@@ -1,19 +1,19 @@
 .videoBanner {
   margin-bottom: 2rem;
   position: relative;
-  // height: 800px;
   min-height: 70vw;
 
   #myVideo {
     position: absolute;
     left: -3rem;
-    width: 110vw;
+    width: 100vw;
     @include tablet {
-      left: -2.5rem;
+      // left: -2.5rem;
     }
 
     @include mobile {
-      left: -1.5rem;
+      left: -0.5rem;
+      max-width: 100vw;
     }
   }
 
@@ -30,14 +30,14 @@
   }
   #topRightImg {
     position: absolute;
-    right: 10rem;
+    // right: 10rem;
 
     @include tablet {
       right: 0rem;
     }
 
     @include mobile {
-      right: -0.5rem;
+      right: 0.5rem;
     }
   }
   #bottomImg {

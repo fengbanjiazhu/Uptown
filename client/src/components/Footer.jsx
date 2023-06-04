@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
-import button from "./Button";
-
+import { Link, useHistory } from "react-router-dom";
+import { Input, Button, Space } from "antd";
 import Grid from "./Grid";
-
 import logo from "../assets/images/Logo-2.png";
 
 const footerAboutLinks = [
@@ -45,6 +43,32 @@ const footerCustomerLinks = [
   },
 ];
 const Footer = () => {
+  const [subscribeEmail, setSubscribeEmail] = useState("");
+  const history = useHistory();
+
+  const handleSetSubscribeEmail = (e) => {
+    const email = e.target.value;
+    setSubscribeEmail(email);
+  };
+
+  const handleSubscribe = async () => {
+    console.log(subscribeEmail);
+    try {
+      const res = await fetch("http://localhost:4000/api/subscribe/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: subscribeEmail }),
+      });
+      const data = await res.json();
+      if (data.status === "error") throw new Error(data.message);
+      alert("Subscribe successful!🥳");
+      history.push("/");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <footer className="footer">
       <div className="container">
@@ -63,7 +87,23 @@ const Footer = () => {
               </p>
             </div>
             <div>
-              <input></input> <button className="subscribeBtn">Subscribe</button>
+              <Space.Compact size="small">
+                <Input
+                  type="email"
+                  name="email"
+                  onChange={handleSetSubscribeEmail}
+                  placeholder="Email address"
+                />
+                <Button
+                  style={{
+                    color: "#d9bca3",
+                  }}
+                  ghost
+                  onClick={handleSubscribe}
+                >
+                  Subscribe
+                </Button>
+              </Space.Compact>
             </div>
           </div>
           <div>
