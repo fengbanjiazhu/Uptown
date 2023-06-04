@@ -52,7 +52,7 @@ const Cart = () => {
 
   const sendOrder = async (cartData) => {
     try {
-      const res = await fetch("http://localhost:4000/api/booking/checkout-intent/", {
+      const res = await fetch("http://localhost:4000/api/order/checkout-intent/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

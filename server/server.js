@@ -12,7 +12,7 @@ const dotenv = require("dotenv");
 const app = express();
 
 const productRoute = require("./Routes/productRoutes");
-// const orderRoute = require("./Routes/orderRoutes");
+const orderRoute = require("./Routes/orderRoutes");
 // const cartRoute = require("./Routes/cartRoutes");
 const userRoute = require("./Routes/userRoutes");
 const bookingRoute = require("./Routes/bookingRoutes");
@@ -59,7 +59,7 @@ app.use(function (req, res, next) {
 dotenv.config({ path: "./server/config.env" });
 
 app.use("/api/products", productRoute);
-// app.use("/api/order", orderRoute);
+app.use("/api/order", orderRoute);
 // app.use("/api/cart", cartRoute);
 app.use("/api/user", userRoute);
 app.use("/api/booking", bookingRoute);
