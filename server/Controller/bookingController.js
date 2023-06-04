@@ -1,14 +1,9 @@
 const Booking = require("../Model/bookingModel");
+const centralController = require("./centreController");
 const catchAsync = require("../Utils/catchAsync");
 
-exports.updateOrder = catchAsync(async (req, res, next) => {
-  // this is only temporary, unsecure
-
-  res.redirect(req.originalUrl.split("?")[0]);
-});
-
-// exports.createBooking = factory.createOne(Booking);
-// exports.getBooking = factory.getOne(Booking);
-// exports.getAllBooking = factory.getAll(Booking);
-// exports.updateBooking = factory.updateOne(Booking);
-// exports.deleteBooking = factory.deleteOne(Booking);
+exports.createBooking = centralController.createData(Booking);
+exports.getBooking = centralController.getOne(Booking);
+exports.getAllBooking = centralController.getAll(Booking);
+exports.updateBooking = centralController.updateData(Booking);
+exports.deleteBooking = centralController.deleteData(Booking);

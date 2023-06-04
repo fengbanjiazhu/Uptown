@@ -62,6 +62,8 @@ const orderSchema = new mongoose.Schema({
 //   next();
 // });
 
+orderSchema.index({ payment_intent: 1 });
+
 const order = mongoose.model("order", orderSchema);
 
 module.exports = order;

@@ -1,0 +1,22 @@
+extends baseEmail
+
+block content
+    p Hi #{firstName},
+    p Thank you for subscribing to our email updates. Get ready to discover sustainable and upcycled fashion that combines style and eco-consciousness.
+    p Stay tuned for the latest collections, exclusive offers, and exciting promotions straight to your inbox. We're passionate about transforming fashion and reducing waste, and we're thrilled to have you join us on this journey.
+    table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+      tbody
+          tr
+            td(align='left')
+              table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+                tbody
+                  tr
+                    td
+                      a(href=`${url}`, target='_blank') Shop with us 
+    p Thank you for choosing Uptown as your fashion destination. Let's make a positive impact together!
+
+    p If you need any help with anything, please don't hesitate to contact me!
+    p - Mia | Pierre  - Uptown
+
+
+    

@@ -4,15 +4,47 @@ const bookingSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
-    required: [true, "Booking must belong to a user!"],
+    required: function () {
+      return !this.email;
+    },
+  },
+  email: {
+    type: String,
+    required: function () {
+      return !this.user;
+    },
+  },
+  name: {
+    type: String,
+    required: function () {
+      return !this.user;
+    },
+  },
+  session: {
+    type: String,
+    required: [true, "A booking must have a type"],
+    enum: ["query", "fitting"],
   },
   time: {
     type: Date,
-    required: [true, "Booking must have a time!"],
+    required: function () {
+      return this.session === "fitting";
+    },
+  },
+  message: {
+    type: String,
+    required: function () {
+      return this.session === "query";
+    },
+  },
+  bookingStatus: {
+    type: Boolean,
+    default: false,
   },
   createdAt: {
     type: Date,
     default: Date.now(),
+    expires: "2m",
   },
 });
 

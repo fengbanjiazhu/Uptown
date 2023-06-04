@@ -53,4 +53,12 @@ module.exports = class Email {
   async sendOrder() {
     await this.send("OrderInfo", "Thank you for shopping with Uptown!");
   }
+
+  async sendReply() {
+    await this.send("reply", "Thank you for reaching out to Uptown!");
+  }
+
+  async sendSubscribe(title) {
+    await this.send("subscribe", `${title}`);
+  }
 };

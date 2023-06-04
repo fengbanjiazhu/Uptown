@@ -15,6 +15,7 @@ const orderRoute = require("./Routes/orderRoutes");
 // const cartRoute = require("./Routes/cartRoutes");
 const userRoute = require("./Routes/userRoutes");
 const bookingRoute = require("./Routes/bookingRoutes");
+const subscribeRoute = require("./Routes/subscribeRoutes");
 
 app.use(express.static(path.join(__dirname, "Utils")));
 
@@ -64,6 +65,7 @@ app.use("/api/order", orderRoute);
 // app.use("/api/cart", cartRoute);
 app.use("/api/user", userRoute);
 app.use("/api/booking", bookingRoute);
+app.use("/api/subscribe", subscribeRoute);
 
 app.use(globalErrHandler);
 

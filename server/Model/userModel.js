@@ -45,6 +45,8 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+userSchema.index({ email: 1 });
+
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   // hash the password with cost of 12
