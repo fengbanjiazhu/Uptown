@@ -1,4 +1,5 @@
 import Helmet from "../components/Helmet";
+import { useHistory } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import ContactMap from "../components/contact/ContactMap";
 import ContactCard from "../components/contact/ContactCard";
@@ -20,11 +21,33 @@ const validateMessages = {
   },
 };
 
-const onFinish = (values) => {
-  console.log(values);
-};
-
 const Contact = () => {
+  const history = useHistory();
+
+  const onFinish = async (values) => {
+    const query = {
+      ...values,
+      session: "query",
+    };
+    const dataString = JSON.stringify(query);
+
+    try {
+      const res = await fetch("http://localhost:4000/api/booking/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: dataString,
+      });
+      const data = await res.json();
+      if (data.status === "error") throw new Error(data.message);
+      alert("Successful send query! We will contact you soon😊");
+      history.push("/");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <Helmet title="Uptown | Contact">
       <div className="mapContainer">
@@ -70,7 +93,15 @@ const Contact = () => {
             <Input />
           </Form.Item>
 
-          <Form.Item name={"Message"} label="Message">
+          <Form.Item
+            name={"message"}
+            label="Message"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
             <Input.TextArea />
           </Form.Item>
           <Form.Item

@@ -44,7 +44,8 @@ const bookingSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
-    expires: "2m",
+    // 2 month
+    expires: 2 * 30 * 24 * 60 * 60,
   },
 });
 
