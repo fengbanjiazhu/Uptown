@@ -10,6 +10,8 @@ import Contact from "../pages/Contact";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Me from "../pages/Me";
+import Payment from "../components/payment/Payment";
+import Completion from "../components/payment/Completion";
 
 const Routes = () => {
   return (
@@ -22,6 +24,8 @@ const Routes = () => {
       <Route path="/login" component={Login} />
       <Route path="/contact" component={Contact} />
       <Route path="/me" component={Me} />
+      <Route path="/payment/:clientSecret" component={Payment} />
+      <Route path="/completion" component={Completion} />
     </Switch>
   );
 };

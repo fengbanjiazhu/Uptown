@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Input, Form } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { clearCart } from "../redux/shopping-cart/cartItemsSlide";
 import Helmet from "../components/Helmet";
 import CartItem from "../components/CartItem";
@@ -28,6 +28,7 @@ const Cart = () => {
   const { _id } = useSelector((state) => state.userInfo.value);
   const cartItems = useSelector((state) => state.cartItems.value);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [open, setOpen] = useState(false);
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(products, cartItems));
@@ -51,7 +52,7 @@ const Cart = () => {
 
   const sendOrder = async (cartData) => {
     try {
-      const res = await fetch("http://localhost:4000/api/booking/checkout-session/", {
+      const res = await fetch("http://localhost:4000/api/booking/checkout-intent/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,10 +60,10 @@ const Cart = () => {
         body: cartData,
       });
       const data = await res.json();
-      console.log(data);
       if (data.status !== "success") throw new Error(data.message);
-      alert("Successful!");
-      setOpen(false);
+      console.log(data.clientSecret);
+      // dispatch(clearCart())
+      history.push(`/payment/${data.clientSecret}`);
     } catch (error) {
       alert(error.message);
     }

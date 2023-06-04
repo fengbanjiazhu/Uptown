@@ -113,3 +113,21 @@ img {
 .grid {
   display: grid;
 }
+
+.user-view__form-container {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 8rem;
+}
+
+.heading-secondary {
+  font-size: 2.25rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right, #52515d, #191726);
+  color: #d9bca3;
+  letter-spacing: 0.1rem;
+  line-height: 1.3;
+  display: inline-block;
+  border-radius: 0.5rem;
+}

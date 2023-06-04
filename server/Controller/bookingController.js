@@ -1,4 +1,4 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const Stripe = require("stripe");
 const Booking = require("../Model/bookingModel");
 
 const catchAsync = require("../Utils/catchAsync");
@@ -41,6 +41,27 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     status: "success",
     // session,
     cartDetails,
+  });
+});
+
+exports.getCheckoutIntent = catchAsync(async (req, res, next) => {
+  const cartDetails = req.body;
+  const { items, total, name, email, address } = cartDetails;
+  const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+  // const product = items.map((item) => item.product._id);
+  // const itemName = items.map((el) => el.slug).join(",");
+  amount = total * 100;
+
+  const paymentIntent = await stripe.paymentIntents.create({
+    currency: "AUD",
+    amount,
+    automatic_payment_methods: { enabled: true },
+  });
+
+  // Send publishable key and PaymentIntent details to client
+  res.status(200).json({
+    status: "success",
+    clientSecret: paymentIntent.client_secret,
   });
 });
 

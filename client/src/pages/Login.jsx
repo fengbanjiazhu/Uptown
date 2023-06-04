@@ -10,8 +10,6 @@ const Login = () => {
   const history = useHistory();
 
   const onFinish = async (values) => {
-    // console.log(values);
-    // console.log(typeof values.remember);
     try {
       const dataString = JSON.stringify(values);
       const res = await fetch("http://localhost:4000/api/user/login", {
