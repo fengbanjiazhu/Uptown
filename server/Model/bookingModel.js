@@ -23,12 +23,18 @@ const bookingSchema = new mongoose.Schema({
   session: {
     type: String,
     required: [true, "A booking must have a type"],
-    enum: ["query", "fitting"],
+    enum: ["query", "measuring"],
   },
-  time: {
+  date: {
     type: Date,
     required: function () {
-      return this.session === "fitting";
+      return this.session === "measuring";
+    },
+  },
+  time: {
+    type: String,
+    required: function () {
+      return this.session === "measuring";
     },
   },
   message: {
