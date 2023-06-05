@@ -28,15 +28,29 @@ exports.getCheckoutIntent = catchAsync(async (req, res, next) => {
     automatic_payment_methods: { enabled: true },
   });
 
-  await Order.create({
-    product,
-    name,
-    email,
-    address,
-    price: total,
-    paid: false,
-    payment_intent_client_secret: paymentIntent.client_secret,
-  });
+  const { user } = req.body;
+  if (user) {
+    await Order.create({
+      user,
+      product,
+      name,
+      email,
+      address,
+      price: total,
+      paid: false,
+      payment_intent_client_secret: paymentIntent.client_secret,
+    });
+  } else {
+    await Order.create({
+      product,
+      name,
+      email,
+      address,
+      price: total,
+      paid: false,
+      payment_intent_client_secret: paymentIntent.client_secret,
+    });
+  }
 
   res.status(200).json({
     status: "success",

@@ -38,22 +38,19 @@ function Booking() {
   };
 
   const bookMeasure = async () => {
-    const bookingInfo = {
-      email,
-      name,
-      session: "measuring",
-      date: selectedDate,
-      time: selectedTime,
-    };
-    const res = await sendJsonData("http://127.0.0.1:4000/api/booking", bookingInfo);
-    if (res.status === "success") {
-      setEmail(null);
-      setName(null);
-      setOpen(false);
-      setSelectedDate(dates[0]);
+    try {
+      const bookingInfo = {
+        email,
+        name,
+        session: "measuring",
+        date: selectedDate,
+        time: selectedTime,
+      };
+      const data = await sendJsonData("http://127.0.0.1:4000/api/booking", bookingInfo);
+      if (data.status !== "success") throw new Error();
       alert("Successful book a session!");
       history.push("/");
-    } else {
+    } catch (error) {
       alert("Looks like someone else got the session first, please try another time");
     }
   };

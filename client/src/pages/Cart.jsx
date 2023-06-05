@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Input, Form } from "antd";
+import { Modal, Input, Form, Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { clearCart } from "../redux/shopping-cart/cartItemsSlide";
 import Helmet from "../components/Helmet";
 import CartItem from "../components/CartItem";
-import Button from "../components/Button";
 import checkLength from "../utils/checkLength";
+import sendJsonData from "../utils/sendJsonData";
 
 import numberWithCommas from "../utils/numberWithCommas";
 
@@ -53,14 +53,7 @@ const Cart = () => {
 
   const sendOrder = async (cartData) => {
     try {
-      const res = await fetch("http://localhost:4000/api/order/checkout-intent/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: cartData,
-      });
-      const data = await res.json();
+      const data = await sendJsonData("http://localhost:4000/api/order/checkout-intent/", cartData);
       if (data.status !== "success") throw new Error(data.message);
       dispatch(clearCart());
       setCartProducts(null);
@@ -87,10 +80,9 @@ const Cart = () => {
       address,
     };
     if (_id) {
-      cartData.userId = _id;
+      cartData.user = _id;
     }
-    const dataString = JSON.stringify(cartData);
-    sendOrder(dataString);
+    sendOrder(cartData);
   };
 
   const handleCancel = () => {
@@ -147,11 +139,19 @@ const Cart = () => {
           </Modal>
 
           <div className="cart__info__btn">
-            <Button onClick={handleOk} size="block">
-              Place order
+            <Button
+              onClick={handleOk}
+              size="large"
+              type="primary"
+              block
+              disabled={Boolean(totalProducts === 0)}
+            >
+              PLACE ORDER
             </Button>
             <Link to="/catalog">
-              <Button size="block">Continue shopping</Button>
+              <Button block size="large" type="primary">
+                CONTINUE SHOPPING
+              </Button>
             </Link>
           </div>
         </div>
