@@ -200,7 +200,7 @@ const Signup = () => {
       >
         <Checkbox>
           I have read the{" "}
-          <a className="black" href="">
+          <a className="black" href="#">
             agreement
           </a>
         </Checkbox>
