@@ -13,6 +13,7 @@ const app = express();
 const productRoute = require("./Routes/productRoutes");
 const orderRoute = require("./Routes/orderRoutes");
 // const cartRoute = require("./Routes/cartRoutes");
+const measuringRoute = require("./Routes/MeasuringRoute");
 const userRoute = require("./Routes/userRoutes");
 const bookingRoute = require("./Routes/bookingRoutes");
 const subscribeRoute = require("./Routes/subscribeRoutes");
@@ -62,7 +63,7 @@ dotenv.config({ path: "./server/config.env" });
 
 app.use("/api/products", productRoute);
 app.use("/api/order", orderRoute);
-// app.use("/api/cart", cartRoute);
+app.use("/api/measuring", measuringRoute);
 app.use("/api/user", userRoute);
 app.use("/api/booking", bookingRoute);
 app.use("/api/subscribe", subscribeRoute);

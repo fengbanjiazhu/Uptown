@@ -9,7 +9,6 @@ const bookMeasureSchema = new mongoose.Schema({
     {
       type: String,
       required: [true, "Booking measuring must have a time"],
-      unique: true,
     },
   ],
   createdAt: {

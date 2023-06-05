@@ -6,6 +6,7 @@ import { clearCart } from "../redux/shopping-cart/cartItemsSlide";
 import Helmet from "../components/Helmet";
 import CartItem from "../components/CartItem";
 import Button from "../components/Button";
+import checkLength from "../utils/checkLength";
 
 import numberWithCommas from "../utils/numberWithCommas";
 
@@ -99,15 +100,6 @@ const Cart = () => {
 
   const handleOk = () => {
     showModal();
-  };
-
-  const checkLength = (data) => {
-    const input = data.trim();
-    if (input.length < 1) {
-      return undefined;
-    } else {
-      return input;
-    }
   };
 
   const handleAddress = (e) => {
