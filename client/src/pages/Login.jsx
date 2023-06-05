@@ -1,9 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useHistory, Link } from "react-router-dom";
 import { userAction } from "../redux/user/userInfoSlice";
+import sendJsonData from "../utils/sendJsonData";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -11,16 +12,8 @@ const Login = () => {
 
   const onFinish = async (values) => {
     try {
-      const dataString = JSON.stringify(values);
-      const res = await fetch("http://localhost:4000/api/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: dataString,
-      });
-      const data = await res.json();
-      if (data.status === "error") throw new Error(data.message);
+      const data = await sendJsonData("http://localhost:4000/api/user/login", values);
+      if (data.status !== "success") throw new Error(data.message);
       alert("Login successful!");
 
       const userData = {
@@ -31,7 +24,6 @@ const Login = () => {
       };
       if (values.remember) localStorage.setItem("jwtToken", data.token);
       dispatch(userAction.setUser(userData));
-      // console.log("user:", data.data);
       history.push("/");
     } catch (error) {
       alert(error.message);

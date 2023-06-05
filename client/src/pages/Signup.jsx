@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
-
 import { Button, Checkbox, Form, Input, Select } from "antd";
+import sendJsonData from "../utils/sendJsonData";
+
 const { Option } = Select;
 
 const formItemLayout = {
@@ -42,17 +43,9 @@ const Signup = () => {
 
   const onFinish = async (values) => {
     try {
-      const dataString = JSON.stringify(values);
-      const res = await fetch("http://localhost:4000/api/user/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: dataString,
-      });
-      const data = await res.json();
-      if (data.status === "error") throw new Error(data.message);
-      alert("Sign-up successful! You will be transfer into login page shortly...");
+      const data = await sendJsonData("http://localhost:4000/api/user/", values);
+      if (data.status !== "success") throw new Error(data.message);
+      alert("Sign-up successful! You will be transfer into login page");
       history.push("/login");
     } catch (error) {
       alert(error.message);

@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import ContactMap from "../components/contact/ContactMap";
 import ContactCard from "../components/contact/ContactCard";
+import sendJsonData from "../utils/sendJsonData";
 
 const layout = {
   labelCol: {
@@ -29,17 +30,9 @@ const Contact = () => {
       ...values,
       session: "query",
     };
-    const dataString = JSON.stringify(query);
     try {
-      const res = await fetch("http://localhost:4000/api/booking/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: dataString,
-      });
-      const data = await res.json();
-      if (data.status === "error") throw new Error(data.message);
+      const data = await sendJsonData("http://localhost:4000/api/booking/", query);
+      if (data.status !== "success") throw new Error(data.message);
       alert("Successful send query! We will contact you soon😊");
       history.push("/");
     } catch (error) {

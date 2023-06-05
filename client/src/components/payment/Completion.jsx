@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
+import sendJsonData from "../../utils/sendJsonData";
 
 function Completion() {
   const location = useLocation();
@@ -15,20 +16,15 @@ function Completion() {
 
   useEffect(() => {
     const result = JSON.stringify(queryParams);
-    if (result === "{}") return;
+    if (result === "{}") return history.push("/");
 
     const updatePayment = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/order/update-order-status/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: result,
-        });
-        const data = await res.json();
+        const data = await sendJsonData(
+          "http://localhost:4000/api/order/update-order-status/",
+          queryParams
+        );
         if (data.status !== "success") throw new Error(data.message);
-
         setStatus("Complete");
         queryParams = {};
         setTimeout(() => {

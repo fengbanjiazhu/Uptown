@@ -8,7 +8,7 @@
     left: -3rem;
     width: 100vw;
     @include tablet {
-      // left: -2.5rem;
+      left: -1rem;
     }
 
     @include mobile {
@@ -43,5 +43,10 @@
   #bottomImg {
     position: absolute;
     left: -4rem;
+    @include tablet {
+      max-width: 102%;
+      bottom: 2.5rem;
+      left: -2rem;
+    }
   }
 }
