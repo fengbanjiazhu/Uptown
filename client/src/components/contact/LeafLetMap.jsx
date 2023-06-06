@@ -16,7 +16,7 @@ function LeafLetMap() {
   return (
     <MapContainer
       center={[-33.88071693135796, 151.21478717372344]}
-      zoom={18}
+      zoom={17}
       scrollWheelZoom={false}
       style={{ height: "100%", zIndex: 90 }}
     >

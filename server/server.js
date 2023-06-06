@@ -17,6 +17,7 @@ const measuringRoute = require("./Routes/MeasuringRoute");
 const userRoute = require("./Routes/userRoutes");
 const bookingRoute = require("./Routes/bookingRoutes");
 const subscribeRoute = require("./Routes/subscribeRoutes");
+const chatbotRoute = require("./Routes/chatbotRoute");
 
 app.use(express.static(path.join(__dirname, "Utils")));
 
@@ -28,9 +29,16 @@ app.use(express.static(path.join(__dirname, "Utils")));
 //   })
 // );
 
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+//   next();
+// });
+
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://34c4-1-145-14-101.ngrok-free.app/"],
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
@@ -62,13 +70,14 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(function (req, res, next) {
   console.log("Query:", req.query);
   console.log("Params:", req.params);
-  console.log("Body:", req.body);
+  // console.log("Body:", req.body);
   next();
 });
 
 dotenv.config({ path: "./server/config.env" });
 
 app.use("/api/products", productRoute);
+app.use("/api/chatbot", chatbotRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/measuring", measuringRoute);
 app.use("/api/user", userRoute);
