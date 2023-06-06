@@ -21,9 +21,16 @@ const subscribeRoute = require("./Routes/subscribeRoutes");
 app.use(express.static(path.join(__dirname, "Utils")));
 
 // solving CORS issue
+// app.use(
+//   cors({
+//     origin: "https://34c4-1-145-14-101.ngrok-free.app",
+//     credentials: true,
+//   })
+// );
+
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://34c4-1-145-14-101.ngrok-free.app/"],
     credentials: true,
   })
 );

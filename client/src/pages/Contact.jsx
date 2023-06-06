@@ -1,9 +1,9 @@
 import Helmet from "../components/Helmet";
 import { useHistory } from "react-router-dom";
 import { Button, Form, Input } from "antd";
-import ContactMap from "../components/contact/ContactMap";
 import ContactCard from "../components/contact/ContactCard";
 import sendJsonData from "../utils/sendJsonData";
+import LeafLetMap from "../components/contact/LeafLetMap";
 
 const layout = {
   labelCol: {
@@ -42,8 +42,8 @@ const Contact = () => {
 
   return (
     <Helmet title="Uptown | Contact">
-      <div className="mapContainer">
-        <ContactMap></ContactMap>
+      <div id="map">
+        <LeafLetMap></LeafLetMap>
       </div>
       <div className="functionalContainer">
         <ContactCard></ContactCard>

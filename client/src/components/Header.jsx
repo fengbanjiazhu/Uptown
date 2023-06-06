@@ -49,10 +49,12 @@ const Header = () => {
     //   window.removeEventListener("scroll");
     // };
   }, []);
-
+  // https://87cc-218-214-158-99.ngrok-free.app
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("http://localhost:4000/api/products");
+      // const res = await fetch("https://87cc-218-214-158-99.ngrok-free.app/api/products");
+      console.log(res);
       const data = await res.json();
       dispatch(set(data.datas));
     };
