@@ -10,7 +10,7 @@ const text = `
 
 function PoliciesInfo() {
   const onChange = (key) => {
-    console.log(key);
+    // console.log(key);
   };
   return (
     <Collapse defaultActiveKey={["1"]} onChange={onChange}>
@@ -21,6 +21,24 @@ function PoliciesInfo() {
         <p>{text}</p>
       </Panel>
       <Panel header="This is panel header 3" key="3">
+        <p>{text}</p>
+      </Panel>
+      <Panel header="This is panel header 3" key="4">
+        <p>{text}</p>
+      </Panel>
+      <Panel header="This is panel header 3" key="5">
+        <p>{text}</p>
+      </Panel>
+      <Panel header="This is panel header 3" key="6">
+        <p>{text}</p>
+      </Panel>
+      <Panel header="This is panel header 3" key="7">
+        <p>{text}</p>
+      </Panel>
+      <Panel header="This is panel header 3" key="8">
+        <p>{text}</p>
+      </Panel>
+      <Panel header="This is panel header 3" key="9">
         <p>{text}</p>
       </Panel>
     </Collapse>

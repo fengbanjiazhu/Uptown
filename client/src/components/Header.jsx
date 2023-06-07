@@ -99,6 +99,11 @@ const Header = () => {
               <i className="bx bx-search"></i>
             </div> */}
             <div className="header__menu__item header__menu__right__item pointer">
+              <Link to="/about">
+                <i className="bx bx-info-circle"></i>
+              </Link>
+            </div>
+            <div className="header__menu__item header__menu__right__item pointer">
               <Link to="/booking">
                 <i className="bx bx-calendar"></i>
               </Link>

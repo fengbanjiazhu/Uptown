@@ -12,23 +12,25 @@ import VideoBanner from "../components/videoBanner";
 
 const Home = () => {
   return (
-    <Helmet title="Home">
-      <VideoBanner />
+    <div style={{ overflowX: "hidden" }} id="homeContainer">
+      <Helmet title="Home">
+        <VideoBanner />
 
-      {/* policy section */}
-      <Section>
-        <SectionBody>
-          <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {policy.map((item, index) => (
-              <Link key={index} to="/policy">
-                <PolicyCard name={item.name} description={item.description} icon={item.icon} />
-              </Link>
-            ))}
-          </Grid>
-        </SectionBody>
-      </Section>
-      {/* end policy section */}
-    </Helmet>
+        {/* policy section */}
+        <Section>
+          <SectionBody>
+            <Grid col={4} mdCol={2} smCol={1} gap={20}>
+              {policy.map((item, index) => (
+                <Link key={index} to="/policy">
+                  <PolicyCard name={item.name} description={item.description} icon={item.icon} />
+                </Link>
+              ))}
+            </Grid>
+          </SectionBody>
+        </Section>
+        {/* end policy section */}
+      </Helmet>
+    </div>
   );
 };
 

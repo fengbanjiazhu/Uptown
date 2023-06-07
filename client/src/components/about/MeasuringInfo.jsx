@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const { Meta } = Card;
 
-// const containerStyle = { display: "flex", maxWidth: "100%" };
 const cardStyle = { width: 320, marginBottom: "1rem" };
 
 const measureData = [

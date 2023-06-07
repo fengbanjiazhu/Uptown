@@ -6,17 +6,16 @@ import { Breadcrumb, Menu, Button, Modal, Layout } from "antd";
 import StoryInfo from "../components/about/StoryInfo";
 import MeasuringInfo from "../components/about/MeasuringInfo";
 import PoliciesInfo from "../components/about/PoliciesInfo";
+import ShippingInfo from "../components/about/ShippingInfo";
 
 const { Content, Sider } = Layout;
 const navs = ["Story", "Policies", "Shipping", "Measuring"];
 
 function About() {
   const [session, setSession] = useState("Story");
-  const history = useHistory();
 
   const handleMenuClick = (nav) => {
     setSession(nav);
-    console.log(session);
   };
 
   return (
@@ -63,6 +62,7 @@ function About() {
           <Content>{session === "Story" && <StoryInfo></StoryInfo>}</Content>
           <Content>{session === "Measuring" && <MeasuringInfo></MeasuringInfo>}</Content>
           <Content>{session === "Policies" && <PoliciesInfo></PoliciesInfo>}</Content>
+          <Content>{session === "Shipping" && <ShippingInfo></ShippingInfo>}</Content>
         </Layout>
       </Layout>
     </Helmet>
