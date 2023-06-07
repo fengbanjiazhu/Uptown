@@ -39,7 +39,7 @@ const footerCustomerLinks = [
   },
   {
     display: "Blog & News",
-    path: "/about",
+    path: "/blog",
   },
 ];
 const Footer = () => {

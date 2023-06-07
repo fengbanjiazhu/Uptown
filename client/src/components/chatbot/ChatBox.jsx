@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import sendJsonData from "../../utils/sendJsonData";
 
 import { Widget, addResponseMessage, addLinkSnippet } from "react-chat-widget";
@@ -10,7 +10,6 @@ function ChatBox() {
   }, []);
 
   const handleNewUserMessage = async (newMessage) => {
-    // console.log(`New message incoming! ${newMessage}`);
     const res = await sendJsonData("http://localhost:4000/api/chatbot", { text: newMessage });
     if (!res || res.status === "error") {
       return addResponseMessage("Sorry, something went wrong, please try again later");
