@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import Helmet from "../components/Helmet";
 import { useHistory, Link } from "react-router-dom";
 import { Breadcrumb, Menu, Button, Modal, Layout } from "antd";
-const { Content, Sider } = Layout;
+import StoryInfo from "../components/about/StoryInfo";
 
+const { Content, Sider } = Layout;
 const navs = ["Story", "Privacy", "Shipping", "Return", "Measuring"];
 
 function About() {
@@ -56,7 +57,7 @@ function About() {
             backgroundColor: "white",
           }}
         >
-          <Content>Test -- components</Content>
+          <Content>{session === "Story" && <StoryInfo></StoryInfo>}</Content>
         </Layout>
       </Layout>
     </Helmet>
