@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import Helmet from "../components/Helmet";
 import { useHistory, Link } from "react-router-dom";
 import { Breadcrumb, Menu, Button, Modal, Layout } from "antd";
+
 import StoryInfo from "../components/about/StoryInfo";
+import MeasuringInfo from "../components/about/MeasuringInfo";
 
 const { Content, Sider } = Layout;
 const navs = ["Story", "Privacy", "Shipping", "Return", "Measuring"];
@@ -58,6 +60,7 @@ function About() {
           }}
         >
           <Content>{session === "Story" && <StoryInfo></StoryInfo>}</Content>
+          <Content>{session === "Measuring" && <MeasuringInfo></MeasuringInfo>}</Content>
         </Layout>
       </Layout>
     </Helmet>

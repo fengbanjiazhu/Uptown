@@ -5,9 +5,9 @@ import { Widget, addResponseMessage, addLinkSnippet } from "react-chat-widget";
 import "react-chat-widget/lib/styles.css";
 
 function ChatBox() {
-  useEffect(() => {
-    addResponseMessage("Hi there, what can I help you today? 😊");
-  }, []);
+  // useEffect(() => {
+  //   addResponseMessage("Hi there, what can I help you today? 😊");
+  // }, []);
 
   const handleNewUserMessage = async (newMessage) => {
     const res = await sendJsonData("http://localhost:4000/api/chatbot", { text: newMessage });
@@ -30,7 +30,7 @@ function ChatBox() {
   return (
     <Widget
       title="Welcome to Uptown"
-      subtitle="I am here to help"
+      subtitle="I am here to help 😊"
       handleNewUserMessage={handleNewUserMessage}
     />
   );
