@@ -3,6 +3,7 @@ import sendJsonData from "../../utils/sendJsonData";
 
 import { Widget, addResponseMessage, addLinkSnippet } from "react-chat-widget";
 import "react-chat-widget/lib/styles.css";
+import avatar from "../../assets/avatar.png";
 
 function ChatBox() {
   // useEffect(() => {
@@ -31,6 +32,7 @@ function ChatBox() {
     <Widget
       title="Welcome to Uptown"
       subtitle="I am here to help 😊"
+      profileAvatar={avatar}
       handleNewUserMessage={handleNewUserMessage}
     />
   );

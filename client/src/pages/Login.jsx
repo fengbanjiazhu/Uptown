@@ -11,8 +11,10 @@ const Login = () => {
   const history = useHistory();
 
   const onFinish = async (values) => {
+    console.log(values);
     try {
       const data = await sendJsonData("http://localhost:4000/api/user/login", values);
+      console.log(data);
       if (data.status !== "success") throw new Error(data.message);
       alert("Login successful!");
 

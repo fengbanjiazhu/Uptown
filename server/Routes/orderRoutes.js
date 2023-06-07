@@ -20,6 +20,10 @@ router
   );
 
 router
+  .route("/myOrder")
+  .get(authController.protect, orderController.getAllMyOrder, orderController.getAllOrder);
+
+router
   .route("/:id")
   .get(
     authController.protect,

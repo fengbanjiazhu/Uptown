@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { UserOutlined, SnippetsOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
@@ -6,7 +7,7 @@ const { Content, Sider } = Layout;
 const { Item } = Menu;
 
 import Profile from "../components/Profile";
-import { useSelector } from "react-redux";
+import MyOrders from "../components/updateProfile/MyOrders";
 
 export default function Me() {
   const userToken = useSelector((state) => state.userInfo.value.token);
@@ -26,12 +27,8 @@ export default function Me() {
     fetchUser();
   }, [userToken]);
 
-  const setProfile = () => {
-    setComponent("profile");
-  };
-
-  const setOrder = () => {
-    setComponent("order");
+  const handleClick = (component) => {
+    setComponent(component);
   };
 
   return (
@@ -43,10 +40,20 @@ export default function Me() {
       <Sider collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
         <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
-          <Item key={"profile"} onClick={setProfile}>
+          <Item
+            key={"profile"}
+            onClick={() => {
+              handleClick("profile");
+            }}
+          >
             <UserOutlined /> Profile
           </Item>
-          <Item key={"order"} onClick={setOrder}>
+          <Item
+            key={"order"}
+            onClick={() => {
+              handleClick("order");
+            }}
+          >
             <SnippetsOutlined /> Orders
           </Item>
           {/* <Item key={"update"}>1</Item> */}
@@ -68,11 +75,7 @@ export default function Me() {
             }}
           >
             {component === "profile" && userData && <Profile user={userData}></Profile>}
-            {component === "order" && userData && (
-              <div>
-                <h1>No Orders yet</h1>
-              </div>
-            )}
+            {component === "order" && userData && <MyOrders></MyOrders>}
           </div>
         </Content>
       </Layout>

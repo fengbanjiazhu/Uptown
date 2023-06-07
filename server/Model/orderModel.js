@@ -54,13 +54,13 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-// orderSchema.pre(/^find/, function (next) {
-//   this.populate("user").populate({
-//     path: "product",
-//     select: "name",
-//   });
-//   next();
-// });
+orderSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "product",
+    select: "title price",
+  });
+  next();
+});
 
 orderSchema.index({ payment_intent: 1 });
 

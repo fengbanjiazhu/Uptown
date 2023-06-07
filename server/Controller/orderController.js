@@ -11,6 +11,11 @@ exports.createOrder = centralController.createData(Order);
 exports.updateOrder = centralController.updateData(Order);
 exports.deleteOrder = centralController.deleteData(Order);
 
+exports.getAllMyOrder = (req, res, next) => {
+  req.query = { email: req.user.email };
+  next();
+};
+
 exports.getCheckoutIntent = catchAsync(async (req, res, next) => {
   const cartDetails = req.body;
   const { items, total, name, email, address } = cartDetails;

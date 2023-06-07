@@ -12,7 +12,7 @@ const sendJsonData = async (url, inputData) => {
     if (data.status !== "success") throw new Error(data.message);
     return data;
   } catch (error) {
-    return undefined;
+    return error;
     console.log(error.message);
   }
 };
