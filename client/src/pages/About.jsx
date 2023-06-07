@@ -5,9 +5,10 @@ import { Breadcrumb, Menu, Button, Modal, Layout } from "antd";
 
 import StoryInfo from "../components/about/StoryInfo";
 import MeasuringInfo from "../components/about/MeasuringInfo";
+import PoliciesInfo from "../components/about/PoliciesInfo";
 
 const { Content, Sider } = Layout;
-const navs = ["Story", "Privacy", "Shipping", "Return", "Measuring"];
+const navs = ["Story", "Policies", "Shipping", "Measuring"];
 
 function About() {
   const [session, setSession] = useState("Story");
@@ -61,6 +62,7 @@ function About() {
         >
           <Content>{session === "Story" && <StoryInfo></StoryInfo>}</Content>
           <Content>{session === "Measuring" && <MeasuringInfo></MeasuringInfo>}</Content>
+          <Content>{session === "Policies" && <PoliciesInfo></PoliciesInfo>}</Content>
         </Layout>
       </Layout>
     </Helmet>
