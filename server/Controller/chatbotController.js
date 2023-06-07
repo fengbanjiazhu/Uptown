@@ -2,6 +2,7 @@ const dialogflow = require("@google-cloud/dialogflow");
 const fs = require("fs");
 const path = require("path");
 const catchAsync = require("../Utils/catchAsync");
+const appErr = require("../Utils/appError");
 const { v4: uuidv4 } = require("uuid");
 
 const filePath = path.join(__dirname, "../uptown-572a8-6e247701ed02.json");
@@ -48,26 +49,24 @@ exports.createRes = catchAsync(async (req, res, next) => {
   const uuid = uuidv4();
   let context = "";
 
-  try {
-    let intentData = await detectIntent(uuid, text, context, "en-US");
-    const { fulfillmentMessages: customRespone } = intentData.queryResult;
+  let intentData = await detectIntent(uuid, text, context, "en-US");
 
-    const responseData = customRespone[0];
-    console.log(responseData);
+  if (!intentData) return next(new appErr("Chatbot is having problem. Try again later", 404));
 
-    if (responseData.payload) {
-      return res.status(200).json({
-        status: "success",
-        response: JSON.stringify(responseData.payload.fields),
-      });
-    }
+  const { fulfillmentMessages: customRespone } = intentData.queryResult;
 
-    res.status(200).json({
+  const responseData = customRespone[0];
+  console.log(responseData);
+
+  if (responseData.payload) {
+    return res.status(200).json({
       status: "success",
-      response: responseData.text.text[0],
+      response: JSON.stringify(responseData.payload.fields),
     });
-  } catch (error) {
-    console.log(error);
-    res.send("Chatbot is having problem. Try again after sometime.");
   }
+
+  res.status(200).json({
+    status: "success",
+    text: responseData.text.text[0],
+  });
 });
