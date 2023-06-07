@@ -2,6 +2,7 @@ const dialogflow = require("@google-cloud/dialogflow");
 const fs = require("fs");
 const path = require("path");
 const catchAsync = require("../Utils/catchAsync");
+const { v4: uuidv4 } = require("uuid");
 
 const filePath = path.join(__dirname, "../uptown-572a8-6e247701ed02.json");
 const CREDENTIALS = JSON.parse(fs.readFileSync(filePath, "utf-8"));
@@ -17,10 +18,12 @@ const CONFIGURATION = {
 
 const sessionClient = new dialogflow.SessionsClient(CONFIGURATION);
 
-const detectIntent = async (languageCode, queryText, sessionId) => {
-  let sessionPath = sessionClient.projectAgentSessionPath(PROJECID, sessionId);
+const detectIntent = async function (sessionId, queryText, contexts, languageCode) {
+  // The path to identify the agent that owns the created intent.
+  const sessionPath = sessionClient.projectAgentSessionPath(PROJECID, sessionId);
 
-  let request = {
+  // The text query request.
+  const request = {
     session: sessionPath,
     queryInput: {
       text: {
@@ -29,43 +32,42 @@ const detectIntent = async (languageCode, queryText, sessionId) => {
       },
     },
   };
-  console.log("This is", request);
 
-  try {
-    const responses = await sessionClient.detectIntent(request);
-    // console.log("This is response:", responses);
-    const result = responses[0].queryResult;
-    return {
-      status: 1,
-      text: result.fulfillmentText,
-    };
-  } catch (error) {
-    console.log(`Error at dialogflow-api.js detectIntent --> ${error}`);
-    return {
-      status: 0,
-      text: "Error at dialogflow detect intent.",
+  if (contexts && contexts.length > 0) {
+    request.queryParams = {
+      contexts: contexts,
     };
   }
+
+  const responses = await sessionClient.detectIntent(request);
+  return responses[0];
 };
 
 exports.createRes = catchAsync(async (req, res, next) => {
   let text = req.body.text;
-  let sessionId = req.body.mySession;
+  const uuid = uuidv4();
+  let context = "";
 
-  // console.log("A request came.");
-  // console.log(`Query text --> ${text}`);
-  // console.log(`Session id --> ${sessionId}`);
+  try {
+    let intentData = await detectIntent(uuid, text, context, "en-US");
+    const { fulfillmentMessages: customRespone } = intentData.queryResult;
 
-  let intentData = await detectIntent("en", text, sessionId);
+    const responseData = customRespone[0];
+    console.log(responseData);
 
-  res.setHeader("Access-Control-Allow-Origin", "*");
+    if (responseData.payload) {
+      return res.status(200).json({
+        status: "success",
+        response: JSON.stringify(responseData.payload.fields),
+      });
+    }
 
-  if (intentData.status == 1) {
     res.status(200).json({
       status: "success",
-      text: intentData.text,
+      response: responseData.text.text[0],
     });
-  } else {
+  } catch (error) {
+    console.log(error);
     res.send("Chatbot is having problem. Try again after sometime.");
   }
 });

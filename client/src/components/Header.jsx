@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { set } from "../redux/product-modal/productModalSlice";
 import { userAction } from "../redux/user/userInfoSlice";
 import useLogout from "../hooks/useLogout";
+import ChatBox from "./chatbot/ChatBox";
 
 import logo from "../assets/images/Logo-2.png";
 
@@ -53,13 +54,6 @@ const Header = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("http://localhost:4000/api/products");
-      // const res = await fetch("https://0ff7-218-214-158-99.ngrok-free.app/api/products", {
-      //   headers: {
-      //     "ngrok-skip-browser-warning": true,
-      //   },
-      // });
-
-      // console.log(res);
       const data = await res.json();
       dispatch(set(data.datas));
     };

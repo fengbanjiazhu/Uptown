@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
+import ChatBox from "./chatbot/ChatBox";
 
 const Helmet = (props) => {
   document.title = props.title;
@@ -8,7 +9,12 @@ const Helmet = (props) => {
     window.scrollTo(0, 0);
   }, []);
 
-  return <div>{props.children}</div>;
+  return (
+    <Fragment>
+      <div>{props.children}</div>
+      <ChatBox></ChatBox>
+    </Fragment>
+  );
 };
 
 Helmet.propTypes = {

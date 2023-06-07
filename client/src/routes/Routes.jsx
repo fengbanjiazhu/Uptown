@@ -14,7 +14,7 @@ import Payment from "../components/payment/Payment";
 import Completion from "../components/payment/Completion";
 import About from "../pages/About";
 import Booking from "../pages/Booking";
-import ChatBox from "../components/chatbot/ChatBox";
+import Blog from "../pages/Blog";
 
 const Routes = () => {
   return (
@@ -31,7 +31,7 @@ const Routes = () => {
       <Route path="/booking" component={Booking} />
       <Route path="/payment/:clientSecret" component={Payment} />
       <Route path="/completion" component={Completion} />
-      <Route path="/chat" component={ChatBox} />
+      <Route path="/blog" component={Blog} />
     </Switch>
   );
 };
