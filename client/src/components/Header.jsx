@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { set } from "../redux/product-modal/productModalSlice";
 import { userAction } from "../redux/user/userInfoSlice";
 import useLogout from "../hooks/useLogout";
-import ChatBox from "./chatbot/ChatBox";
 
 import logo from "../assets/images/Logo-2.png";
 
@@ -14,7 +13,7 @@ const mainNav = [
     path: "/",
   },
   {
-    display: "Product",
+    display: "Collections",
     path: "/catalog",
   },
   {

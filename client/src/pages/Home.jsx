@@ -21,7 +21,7 @@ const Home = () => {
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
               {policy.map((item, index) => (
-                <Link key={index} to="/policy">
+                <Link key={index} to="/about">
                   <PolicyCard name={item.name} description={item.description} icon={item.icon} />
                 </Link>
               ))}
