@@ -3,7 +3,6 @@ import { Descriptions, Card } from "antd";
 import timeStrTransfer from "../../utils/timeStrToyTime";
 
 function OrderCard(prop) {
-  console.log(prop);
   const {
     address,
     createdAt,
@@ -12,8 +11,10 @@ function OrderCard(prop) {
     payment_intent: paymentNo,
     price,
     product,
+    email,
     _id: orderId,
   } = prop.order;
+  const { showEmail } = prop;
   const orderTime = timeStrTransfer(createdAt);
 
   return (
@@ -29,6 +30,11 @@ function OrderCard(prop) {
       <Descriptions.Item label="Order Number" span={2}>
         {orderId}
       </Descriptions.Item>
+      {showEmail && (
+        <Descriptions.Item label="Email Address" span={3}>
+          {email}
+        </Descriptions.Item>
+      )}
       <Descriptions.Item label="Shipping Address" span={3}>
         {address}
       </Descriptions.Item>

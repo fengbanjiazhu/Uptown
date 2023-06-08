@@ -10,7 +10,11 @@ router.post("/update-order-status/", orderController.updateOrderStatus);
 
 router
   .route("/")
-  .get(authController.protect, orderController.getAllOrder)
+  .get(
+    authController.protect,
+    authController.restrictTo("admin", "manager"),
+    orderController.getAllOrder
+  )
   .post(orderController.createOrder)
   .patch(authController.protect, orderController.updateOrder)
   .delete(

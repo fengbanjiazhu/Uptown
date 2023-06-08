@@ -1,18 +1,20 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { UserOutlined, SnippetsOutlined } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Divider } from "antd";
 const { Content, Sider } = Layout;
 const { Item } = Menu;
 
 import Profile from "../components/Profile";
 import MyOrders from "../components/updateProfile/MyOrders";
+import AllOrders from "../components/updateProfile/AllOrder";
 
 export default function Me() {
   const userToken = useSelector((state) => state.userInfo.value.token);
   const [component, setComponent] = useState("profile");
   const [userData, setUserData] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
@@ -22,6 +24,10 @@ export default function Me() {
         headers: { Authorization: `Bearer ${userToken}` },
       });
       const data = await res.json();
+      if (data.currentUser.role === "admin") {
+        setIsAdmin(true);
+      }
+
       setUserData(data.currentUser);
     };
     fetchUser();
@@ -40,24 +46,48 @@ export default function Me() {
       <Sider collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
         <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
+          <Divider orientation="left">Member</Divider>
           <Item
-            key={"profile"}
+            key={1}
             onClick={() => {
               handleClick("profile");
             }}
           >
-            <UserOutlined /> Profile
+            <UserOutlined />
+            My Profile
           </Item>
           <Item
-            key={"order"}
+            key={2}
             onClick={() => {
               handleClick("order");
             }}
           >
-            <SnippetsOutlined /> Orders
+            <SnippetsOutlined />
+            My Orders
           </Item>
-          {/* <Item key={"update"}>1</Item> */}
-          {/* <Item key={"update"}>1</Item> */}
+          {isAdmin && (
+            <>
+              <Divider orientation="left">Admin area</Divider>
+              <Item
+                key={3}
+                onClick={() => {
+                  handleClick("allOrder");
+                }}
+              >
+                <SnippetsOutlined />
+                All Orders
+              </Item>
+            </>
+          )}
+          {/* <Item
+                key={3}
+                onClick={() => {
+                  handleClick("booking");
+                }}
+              >
+                <SnippetsOutlined />
+                All Orders
+              </Item> */}
         </Menu>
       </Sider>
 
@@ -76,6 +106,7 @@ export default function Me() {
           >
             {component === "profile" && userData && <Profile user={userData}></Profile>}
             {component === "order" && userData && <MyOrders></MyOrders>}
+            {component === "allOrder" && isAdmin && <AllOrders></AllOrders>}
           </div>
         </Content>
       </Layout>
