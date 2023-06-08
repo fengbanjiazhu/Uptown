@@ -19,10 +19,6 @@ const footerAboutLinks = [
     path: "/about",
   },
   {
-    display: "Returns & Exchanges",
-    path: "/about",
-  },
-  {
     display: "Privacy Policy",
     path: "/about",
   },
@@ -134,9 +130,10 @@ const Footer = () => {
             </p>
             <p>
               Uptown, founded in 2015 by Pierre and Mia, is a pioneering fashion brand that creates
-              stylish designs using re-used materials. With a focus on sustainability, Uptown
-              revolutionizes the industry by reducing waste and minimizing environmental impact.
+              stylish designs using re-used materials with a focus on sustainability.
             </p>
+            <br></br>
+            <p>{/* <i> &copy; Jeffrey & team members</i> */}</p>
           </div>
         </Grid>
       </div>

@@ -12,7 +12,7 @@ const ContactCard = () => (
 
     <Meta title="Phone" description="02 0000 0000" />
 
-    <Meta title="Email" description="uptown@gmail.com" />
+    <Meta title="Opening Hour" description="7 days 10am - 6pm" />
   </Card>
 );
 export default ContactCard;
