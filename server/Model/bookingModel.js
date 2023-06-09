@@ -55,6 +55,11 @@ const bookingSchema = new mongoose.Schema({
   },
 });
 
+bookingSchema.pre(/^find/, function (next) {
+  this.sort({ date: 1 }); // 按照name字段进行升序排序
+  next();
+});
+
 const Booking = mongoose.model("Booking", bookingSchema);
 
 module.exports = Booking;
