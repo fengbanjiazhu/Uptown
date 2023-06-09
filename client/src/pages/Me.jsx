@@ -9,6 +9,7 @@ const { Item } = Menu;
 import Profile from "../components/Profile";
 import MyOrders from "../components/updateProfile/MyOrders";
 import AllOrders from "../components/updateProfile/AllOrder";
+import AllBooking from "../components/updateProfile/AllBooking";
 
 export default function Me() {
   const userToken = useSelector((state) => state.userInfo.value.token);
@@ -77,17 +78,17 @@ export default function Me() {
                 <SnippetsOutlined />
                 All Orders
               </Item>
-            </>
-          )}
-          {/* <Item
-                key={3}
+              <Item
+                key={4}
                 onClick={() => {
-                  handleClick("booking");
+                  handleClick("allBookings");
                 }}
               >
                 <SnippetsOutlined />
-                All Orders
-              </Item> */}
+                All Bookings
+              </Item>
+            </>
+          )}
         </Menu>
       </Sider>
 
@@ -107,6 +108,7 @@ export default function Me() {
             {component === "profile" && userData && <Profile user={userData}></Profile>}
             {component === "order" && userData && <MyOrders></MyOrders>}
             {component === "allOrder" && isAdmin && <AllOrders></AllOrders>}
+            {component === "allBookings" && isAdmin && <AllBooking></AllBooking>}
           </div>
         </Content>
       </Layout>
