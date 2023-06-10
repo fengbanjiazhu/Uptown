@@ -4,16 +4,21 @@ import timeStrTransfer from "../../utils/timeStrToyTime";
 import sendJsonData from "../../utils/sendJsonData";
 
 const QueryCard = (prop) => {
-  // email,name,message,time,status
   const [showForm, setShowForm] = useState(false);
-  const [queryId, setQueryId] = useState(null);
   const [reply, setReply] = useState(null);
-  const { TextArea } = Input;
+  const { _id: id, email, name, message, createdAt: queryTime, bookingStatus: status } = prop.query;
 
-  const time = timeStrTransfer("2023-06-06T05:54:09.005Z");
+  const time = timeStrTransfer(queryTime);
+  const title = `Query${prop.index + 1} -- ${!status ? "Pending" : "Completed"} `;
 
-  const handleOk = (e) => {
-    console.log(e);
+  const handleOk = async () => {
+    const replyData = {
+      reply,
+      name,
+      email,
+    };
+    const res = await sendJsonData(`http://localhost:4000/api/booking/${id}`, replyData);
+    console.log(res);
     setShowForm(false);
   };
 
@@ -22,8 +27,7 @@ const QueryCard = (prop) => {
     setShowForm(false);
   };
 
-  const handleBtnClick = (id) => {
-    setQueryId(id);
+  const handleBtnClick = () => {
     setShowForm(true);
   };
 
@@ -39,12 +43,13 @@ const QueryCard = (prop) => {
 
       <Descriptions
         bordered
-        title="Custom Size"
+        title={title}
         size={"small"}
+        style={{ marginBottom: "1rem" }}
         extra={
           <Button
             onClick={() => {
-              handleBtnClick(1);
+              handleBtnClick();
             }}
             type="primary"
           >
@@ -52,10 +57,17 @@ const QueryCard = (prop) => {
           </Button>
         }
       >
-        <Descriptions.Item label="Name">show Oiwa</Descriptions.Item>
-        <Descriptions.Item label="Email">1234@gmail.com</Descriptions.Item>
-        <Descriptions.Item label="time">{time}</Descriptions.Item>
-        <Descriptions.Item label="Query Content">Hi I need help</Descriptions.Item>
+        <Descriptions.Item label="Name">{name}</Descriptions.Item>
+        <Descriptions.Item label="Email" span={2}>
+          {email}
+        </Descriptions.Item>
+        <Descriptions.Item label="Time">{time}</Descriptions.Item>
+        <Descriptions.Item label="Status" span={2}>
+          {!status ? "Waiting Reply" : "Replied"}
+        </Descriptions.Item>
+        <Descriptions.Item label="Query Content" span={3}>
+          {message}
+        </Descriptions.Item>
       </Descriptions>
     </>
   );

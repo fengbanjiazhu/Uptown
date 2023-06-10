@@ -15,7 +15,6 @@ function AllOrders() {
         },
       });
       const data = await res.json();
-      console.log(data.datas);
       setOrders(data.datas);
     };
     fetchData();
@@ -25,7 +24,7 @@ function AllOrders() {
     <Fragment>
       {orders &&
         orders.map((order, index) => (
-          <OrderCard index={index} order={order} showEmail={true}>
+          <OrderCard key={index} index={index} order={order} showEmail={true}>
             Got order
           </OrderCard>
         ))}

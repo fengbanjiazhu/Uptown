@@ -15,7 +15,6 @@ function AllBooking() {
         },
       });
       const data = await res.json();
-      console.log(data.datas);
       setBookings(data.datas);
     };
     fetchData();
@@ -24,7 +23,9 @@ function AllBooking() {
   return (
     <Fragment>
       {bookings &&
-        bookings.map((booking, index) => <BookCard index={index} measure={booking}></BookCard>)}
+        bookings.map((booking, index) => (
+          <BookCard key={index} index={index} measure={booking}></BookCard>
+        ))}
       {!bookings && <h2>There are no bookings</h2>}
     </Fragment>
   );

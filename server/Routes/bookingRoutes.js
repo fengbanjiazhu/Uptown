@@ -1,6 +1,5 @@
 const express = require("express");
 const bookingController = require("../Controller/bookingController");
-// const measuringController = require("../Controller/measuringController");
 const authController = require("../Controller/authController");
 
 const router = express.Router();

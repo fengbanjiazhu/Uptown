@@ -15,11 +15,9 @@ function MyOrders() {
         },
       });
       const data = await res.json();
-      console.log(data.datas);
       setOrders(data.datas);
     };
     fetchData();
-    console.log(orders);
   }, [token]);
 
   return (
@@ -27,7 +25,7 @@ function MyOrders() {
       {/* {orders && <OrderCard order={orders[0]}>Got order</OrderCard>} */}
       {orders &&
         orders.map((order, index) => (
-          <OrderCard index={index} order={order}>
+          <OrderCard key={index} index={index} order={order}>
             Got order
           </OrderCard>
         ))}

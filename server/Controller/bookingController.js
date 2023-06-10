@@ -30,22 +30,25 @@ exports.createBooking = catchAsync(async (req, res, next) => {
 });
 
 exports.sendReplyAndUpdate = catchAsync(async (req, res, next) => {
-  const { email, name, reply, time } = req.body;
+  const { email, name, reply } = req.body;
 
   const data = await Booking.findByIdAndUpdate(
     { _id: req.params.id },
     { $set: { bookingStatus: true } }
   );
 
-  // const replyData = {
-  //   email,
-  //   name,
-  // };
-  // await new Email(subscribeData, "http://localhost:3000/catalog").sendReply(reply)
+  const replyData = {
+    email,
+    name,
+  };
+
+  // await new Email(replyData, reply).sendReply()
 
   res.status(200).json({
     status: "success",
-    data,
+    message: `Reply sent to ${name} through Email: ${email}!`,
+    reply,
+    // data,
   });
 });
 
