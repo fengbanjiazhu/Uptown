@@ -14,6 +14,6 @@ router
   )
   .post(bookingController.createBooking);
 
-router.route("/:id").get(bookingController.getBooking);
+router.route("/:id").get(bookingController.getBooking).post(bookingController.sendReplyAndUpdate);
 
 module.exports = router;
