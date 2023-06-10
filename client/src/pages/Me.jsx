@@ -10,6 +10,7 @@ import Profile from "../components/Profile";
 import MyOrders from "../components/updateProfile/MyOrders";
 import AllOrders from "../components/updateProfile/AllOrder";
 import AllBooking from "../components/updateProfile/AllBooking";
+import AllQuery from "../components/updateProfile/AllQuery";
 
 export default function Me() {
   const userToken = useSelector((state) => state.userInfo.value.token);
@@ -87,6 +88,15 @@ export default function Me() {
                 <SnippetsOutlined />
                 All Bookings
               </Item>
+              <Item
+                key={5}
+                onClick={() => {
+                  handleClick("allQueries");
+                }}
+              >
+                <SnippetsOutlined />
+                All Queries
+              </Item>
             </>
           )}
         </Menu>
@@ -107,8 +117,10 @@ export default function Me() {
           >
             {component === "profile" && userData && <Profile user={userData}></Profile>}
             {component === "order" && userData && <MyOrders></MyOrders>}
+
             {component === "allOrder" && isAdmin && <AllOrders></AllOrders>}
             {component === "allBookings" && isAdmin && <AllBooking></AllBooking>}
+            {component === "allQueries" && isAdmin && <AllQuery></AllQuery>}
           </div>
         </Content>
       </Layout>
