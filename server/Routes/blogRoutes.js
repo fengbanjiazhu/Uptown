@@ -4,7 +4,7 @@ const blogController = require("../Controller/blogController");
 
 const router = express.Router();
 
-application.use(authController.protect, authController.restrictTo("admin"));
+router.use(authController.protect, authController.restrictTo("admin"));
 
 router
   .route("/")

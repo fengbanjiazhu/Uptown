@@ -11,6 +11,12 @@ const blogSchema = new mongoose.Schema({
       required: [true, "Blog must have content"],
     },
   ],
+  image: [
+    {
+      type: String,
+      required: [true, "Blog must have images"],
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now(),
