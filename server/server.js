@@ -18,6 +18,7 @@ const userRoute = require("./Routes/userRoutes");
 const bookingRoute = require("./Routes/bookingRoutes");
 const subscribeRoute = require("./Routes/subscribeRoutes");
 const chatbotRoute = require("./Routes/chatbotRoute");
+const blogRoute = require("./Routes/blogRoutes");
 
 app.use(express.static(path.join(__dirname, "Utils")));
 
@@ -83,6 +84,7 @@ app.use("/api/measuring", measuringRoute);
 app.use("/api/user", userRoute);
 app.use("/api/booking", bookingRoute);
 app.use("/api/subscribe", subscribeRoute);
+app.use("/api/blog", blogRoute);
 
 app.use(globalErrHandler);
 
