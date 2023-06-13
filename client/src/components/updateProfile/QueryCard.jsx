@@ -46,6 +46,7 @@ const QueryCard = (prop) => {
         title={title}
         size={"small"}
         style={{ marginBottom: "1rem" }}
+        contentStyle={status ? { color: "grey" } : {}}
         extra={
           <Button
             onClick={() => {
