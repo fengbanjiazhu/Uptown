@@ -4,18 +4,9 @@ import timeStrTransfer from "../../utils/timeStrToyTime";
 import sendJsonData from "../../utils/sendJsonData";
 
 const QueryCard = (prop) => {
-  console.log(prop);
   const [showForm, setShowForm] = useState(false);
   const [reply, setReply] = useState(null);
-  const {
-    _id: id,
-    email,
-    name,
-    message,
-    createdAt: queryTime,
-    bookingStatus: status,
-    session,
-  } = prop.query;
+  const { _id: id, email, name, message, createdAt: queryTime, bookingStatus: status } = prop.query;
   const { showBtn } = prop;
 
   const time = timeStrTransfer(queryTime);

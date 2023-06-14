@@ -8,14 +8,14 @@ function MyBookings() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/api/getMyBooking/?session=measuring", {
+      const res = await fetch("http://localhost:4000/api/booking/getMyBooking?session=measuring", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       const data = await res.json();
-      setBookings(data.datas);
+      setBookings(data.bookings);
     };
     fetchData();
   }, [token]);
