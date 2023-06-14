@@ -13,6 +13,8 @@ router
   )
   .post(bookingController.createBooking);
 
+router.route("/getMyBooking").get(authController.protect, bookingController.getMyBooking);
+
 router.route("/:id").get(bookingController.getBooking).post(bookingController.sendReplyAndUpdate);
 
 module.exports = router;

@@ -52,6 +52,17 @@ exports.sendReplyAndUpdate = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getMyBooking = catchAsync(async (req, res, next) => {
+  const { email } = req.user;
+
+  const bookings = await Booking.find({ $and: [{ email }, req.query] });
+
+  res.status(200).json({
+    status: "success",
+    bookings,
+  });
+});
+
 exports.getBooking = centralController.getOne(Booking);
 exports.getAllBooking = centralController.getAll(Booking);
 exports.updateBooking = centralController.updateData(Booking);

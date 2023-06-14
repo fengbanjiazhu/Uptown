@@ -1,21 +1,21 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import QueryCard from "./QueryCard";
 
-const AllQuery = (prop) => {
-  const [queries, setQueries] = useState(undefined);
+function MyQueries() {
+  const [queries, setQueries] = useState(null);
   const { token } = useSelector((state) => state.userInfo.value);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/api/booking/?session=query", {
+      const res = await fetch("http://localhost:4000/api/booking/getMyBooking?session=query", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       const data = await res.json();
-      setQueries(data.datas);
+      setQueries(data.bookings);
     };
     fetchData();
   }, [token]);
@@ -24,10 +24,11 @@ const AllQuery = (prop) => {
     <Fragment>
       {queries &&
         queries.map((query, index) => (
-          <QueryCard key={index} index={index} query={query} showBtn={true}></QueryCard>
+          <QueryCard key={index} index={index} query={query} showBtn={false}></QueryCard>
         ))}
-      {!queries && <h2>There are no Queries</h2>}
+      {!queries && <h2>You have no Query</h2>}
     </Fragment>
   );
-};
-export default AllQuery;
+}
+
+export default MyQueries;

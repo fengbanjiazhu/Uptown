@@ -8,6 +8,9 @@ const { Item } = Menu;
 
 import Profile from "../components/Profile";
 import MyOrders from "../components/updateProfile/MyOrders";
+import MyQueries from "../components/updateProfile/MyQueries";
+import MyBookings from "../components/updateProfile/MyBookings";
+
 import AllOrders from "../components/updateProfile/AllOrder";
 import AllBooking from "../components/updateProfile/AllBooking";
 import AllQuery from "../components/updateProfile/AllQuery";
@@ -67,11 +70,31 @@ export default function Me() {
             <SnippetsOutlined />
             My Orders
           </Item>
+          <Item
+            key={3}
+            onClick={() => {
+              handleClick("queries");
+            }}
+          >
+            <SnippetsOutlined />
+            My Queries
+          </Item>
+          <Item
+            key={4}
+            onClick={() => {
+              handleClick("bookings");
+            }}
+          >
+            <SnippetsOutlined />
+            My Bookings
+          </Item>
+
+          {/* Admin area */}
           {isAdmin && (
             <>
               <Divider orientation="left">Admin area</Divider>
               <Item
-                key={3}
+                key={30}
                 onClick={() => {
                   handleClick("allOrder");
                 }}
@@ -80,7 +103,7 @@ export default function Me() {
                 All Orders
               </Item>
               <Item
-                key={4}
+                key={31}
                 onClick={() => {
                   handleClick("allBookings");
                 }}
@@ -89,7 +112,7 @@ export default function Me() {
                 All Bookings
               </Item>
               <Item
-                key={5}
+                key={32}
                 onClick={() => {
                   handleClick("allQueries");
                 }}
@@ -117,6 +140,8 @@ export default function Me() {
           >
             {component === "profile" && userData && <Profile user={userData}></Profile>}
             {component === "order" && userData && <MyOrders></MyOrders>}
+            {component === "queries" && userData && <MyQueries></MyQueries>}
+            {component === "bookings" && userData && <MyBookings></MyBookings>}
 
             {component === "allOrder" && isAdmin && <AllOrders></AllOrders>}
             {component === "allBookings" && isAdmin && <AllBooking></AllBooking>}

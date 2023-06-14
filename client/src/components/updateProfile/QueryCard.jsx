@@ -4,9 +4,19 @@ import timeStrTransfer from "../../utils/timeStrToyTime";
 import sendJsonData from "../../utils/sendJsonData";
 
 const QueryCard = (prop) => {
+  console.log(prop);
   const [showForm, setShowForm] = useState(false);
   const [reply, setReply] = useState(null);
-  const { _id: id, email, name, message, createdAt: queryTime, bookingStatus: status } = prop.query;
+  const {
+    _id: id,
+    email,
+    name,
+    message,
+    createdAt: queryTime,
+    bookingStatus: status,
+    session,
+  } = prop.query;
+  const { showBtn } = prop;
 
   const time = timeStrTransfer(queryTime);
   const title = `Query${prop.index + 1} -- ${!status ? "Pending" : "Completed"} `;
@@ -48,14 +58,16 @@ const QueryCard = (prop) => {
         style={{ marginBottom: "1rem" }}
         contentStyle={status ? { color: "grey" } : {}}
         extra={
-          <Button
-            onClick={() => {
-              handleBtnClick();
-            }}
-            type="primary"
-          >
-            Reply
-          </Button>
+          showBtn && (
+            <Button
+              onClick={() => {
+                handleBtnClick();
+              }}
+              type="primary"
+            >
+              Reply
+            </Button>
+          )
         }
       >
         <Descriptions.Item label="Name">{name}</Descriptions.Item>
