@@ -120,6 +120,17 @@ const Footer = () => {
                   <Link to={item.path}>{item.display}</Link>
                 </p>
               ))}
+              <div className="outsideLinks">
+                <a href="https://www.instagram.com/">
+                  <i className="bx bxl-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/">
+                  <i className="bx bxl-facebook-circle"></i>
+                </a>
+                <a href="https://twitter.com/">
+                  <i className="bx bxl-twitter"></i>
+                </a>
+              </div>
             </div>
           </div>
           <div className="footer__about">
@@ -132,7 +143,7 @@ const Footer = () => {
               Uptown, founded in 2015 by Pierre and Mia, is a pioneering fashion brand that creates
               stylish designs using re-used materials with a focus on sustainability.
             </p>
-            <br></br>
+
             <p>{/* <i> &copy; Jeffrey & team members</i> */}</p>
           </div>
         </Grid>
