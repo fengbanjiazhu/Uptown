@@ -38,9 +38,18 @@ app.use(express.static(path.join(__dirname, "Utils")));
 // });
 
 app.use(
+  // cors({
+  //   origin: "http://localhost:3000",
+  //   credentials: true,
+  // })
   cors({
-    origin: "http://localhost:3000",
-    credentials: true,
+    origin: "*",
+  })
+);
+
+app.use(
+  cors({
+    origin: "*",
   })
 );
 

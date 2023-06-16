@@ -43,6 +43,10 @@ const Login = () => {
         margin: "10rem auto",
       }}
     >
+      <Form.Item>
+        <h1 style={{ textAlign: "center" }}>Login</h1>
+      </Form.Item>
+
       <Form.Item
         name="email"
         label="Email"

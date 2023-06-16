@@ -80,6 +80,10 @@ const Signup = () => {
       }}
       scrollToFirstError
     >
+      <Form.Item>
+        <h1 style={{ textAlign: "right" }}>Sign up with us</h1>
+      </Form.Item>
+
       <Form.Item
         name="email"
         label="E-mail"

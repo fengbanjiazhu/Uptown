@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require("uuid");
 const filePath = path.join(__dirname, "../uptown-572a8-6e247701ed02.json");
 const CREDENTIALS = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
-const PROJECID = CREDENTIALS.project_id;
+const PROJECTID = CREDENTIALS.project_id;
 
 const CONFIGURATION = {
   credentials: {
@@ -16,12 +16,23 @@ const CONFIGURATION = {
     client_email: CREDENTIALS.client_email,
   },
 };
+require("dotenv").config();
+
+// console.log("test:", process.env.PROJECT_ID);
+
+// const PROJECTID = JSON.parse(process.env.PROJECT_ID);
+// const CONFIGURATION = {
+//   credentials: {
+//     private_key: `${process.env.PRIVATE_KEY}`,
+//     client_email: process.env.CLIENT_EMAIL,
+//   },
+// };
 
 const sessionClient = new dialogflow.SessionsClient(CONFIGURATION);
 
 const detectIntent = async function (sessionId, queryText, contexts, languageCode) {
   // The path to identify the agent that owns the created intent.
-  const sessionPath = sessionClient.projectAgentSessionPath(PROJECID, sessionId);
+  const sessionPath = sessionClient.projectAgentSessionPath(PROJECTID, sessionId);
 
   // The text query request.
   const request = {
@@ -56,7 +67,7 @@ exports.createRes = catchAsync(async (req, res, next) => {
   const { fulfillmentMessages: customRespone } = intentData.queryResult;
 
   const responseData = customRespone[0];
-  console.log(responseData);
+  // console.log(responseData);
 
   if (responseData.payload) {
     return res.status(200).json({

@@ -42,13 +42,13 @@ exports.sendReplyAndUpdate = catchAsync(async (req, res, next) => {
     name,
   };
 
-  // await new Email(replyData, reply).sendReply()
+  await new Email(replyData, reply).sendReply();
 
   res.status(200).json({
     status: "success",
     message: `Reply sent to ${name} through Email: ${email}!`,
     reply,
-    // data,
+    data,
   });
 });
 
