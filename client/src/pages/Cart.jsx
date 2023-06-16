@@ -111,11 +111,15 @@ const Cart = () => {
   return (
     <Helmet title="Uptown | Cart">
       <div className="cart">
+        <div className="cart__list">
+          {cartProducts && cartProducts.map((item, index) => <CartItem item={item} key={index} />)}
+        </div>
+
         <div className="cart__info">
           <div className="cart__info__txt">
-            <p>You have {totalProducts} in your cart</p>
+            <h4>You have {totalProducts} in your cart</h4>
             <div className="cart__info__txt__price">
-              <span>Total Price:</span> <span>{numberWithCommas(Number(totalPrice))}</span>
+              <h2>Total Price:</h2> <span>${numberWithCommas(Number(totalPrice))}</span>
             </div>
           </div>
 
@@ -154,9 +158,6 @@ const Cart = () => {
               </Button>
             </Link>
           </div>
-        </div>
-        <div className="cart__list">
-          {cartProducts && cartProducts.map((item, index) => <CartItem item={item} key={index} />)}
         </div>
       </div>
     </Helmet>
