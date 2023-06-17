@@ -71,7 +71,7 @@ function Booking() {
   };
 
   const handleMenuClick = (date) => {
-    console.log(date);
+    // console.log(date);
     setSelectedDate(date);
   };
 

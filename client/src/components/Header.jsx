@@ -1,8 +1,12 @@
 import React, { useRef, useEffect, useState, Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import { Badge } from "antd";
+
 import { set } from "../redux/product-modal/productModalSlice";
 import { userAction } from "../redux/user/userInfoSlice";
+
 import useLogout from "../hooks/useLogout";
 
 import logo from "../assets/images/Logo-2.png";
@@ -28,7 +32,11 @@ const mainNav = [
 
 const Header = () => {
   const { pathname } = useLocation();
+  const [count, setCount] = useState(0);
+
   const { token } = useSelector((state) => state.userInfo.value);
+  const cartItems = useSelector((state) => state.cartItems.value);
+
   const activeNav = mainNav.findIndex((e) => e.path === pathname);
   const headerRef = useRef(null);
   const dispatch = useDispatch();
@@ -37,18 +45,11 @@ const Header = () => {
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
     if (token) dispatch(userAction.setUser({ token }));
-
-    // window.addEventListener("scroll", () => {
-    //   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    //     headerRef.current.classList.add("shrink");
-    //   } else {
-    //     headerRef.current.classList.remove("shrink");
-    //   }
-    // });
-    // return () => {
-    //   window.removeEventListener("scroll");
-    // };
   }, []);
+
+  useEffect(() => {
+    setCount(cartItems.reduce((total, item) => total + Number(item.quantity), 0));
+  }, [cartItems, count]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -109,9 +110,11 @@ const Header = () => {
             </div>
 
             <div className="header__menu__item header__menu__right__item">
-              <Link to="/cart">
-                <i className="bx bx-shopping-bag"></i>
-              </Link>
+              <Badge size="small" color="#d9bca3" offset={[-1, 3]} count={count}>
+                <Link to="/cart">
+                  <i style={{ fontSize: "2.25rem" }} className="bx bx-shopping-bag"></i>
+                </Link>
+              </Badge>
             </div>
             {!token && (
               <Fragment>
