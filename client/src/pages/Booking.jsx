@@ -10,7 +10,6 @@ import checkLength from "../utils/checkLength";
 import sendJsonData from "../utils/sendJsonData";
 
 const dates = getSevenDays();
-console.log(dates);
 
 function Booking() {
   const [selectedDate, setSelectedDate] = useState(dates[0]);
@@ -24,7 +23,8 @@ function Booking() {
 
   useEffect(() => {
     const getBookedTime = async () => {
-      const res = await fetch(`http://127.0.0.1:4000/api/measuring?date=${selectedDate}`);
+      const date = selectedDate.split(" ")[0];
+      const res = await fetch(`http://127.0.0.1:4000/api/measuring?date=${date}`);
       const data = await res.json();
       let times;
       times = data.datas[0] ? getAvailableTime(data.datas[0].time) : getAvailableTime([]);
@@ -45,7 +45,7 @@ function Booking() {
         email,
         name,
         session: "measuring",
-        date: selectedDate,
+        date: selectedDate.split(" ")[0],
         time: selectedTime,
       };
       const data = await sendJsonData("http://127.0.0.1:4000/api/booking", bookingInfo);
@@ -71,6 +71,7 @@ function Booking() {
   };
 
   const handleMenuClick = (date) => {
+    console.log(date);
     setSelectedDate(date);
   };
 
