@@ -48,12 +48,6 @@ app.use(
 );
 
 app.use(
-  cors({
-    origin: "*",
-  })
-);
-
-app.use(
   helmet.contentSecurityPolicy({
     useDefaults: true,
     directives: {
