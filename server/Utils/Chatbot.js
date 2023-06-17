@@ -14,7 +14,7 @@ module.exports = class Chatbot {
   detectIntent = async function (sessionId, queryText, contexts, languageCode) {
     const sessionClient = new dialogflow.SessionsClient(this.CONFIGURATION);
     // The path to identify the agent that owns the created intent.
-    const sessionPath = this.sessionClient.projectAgentSessionPath(this.projectId, sessionId);
+    const sessionPath = sessionClient.projectAgentSessionPath(this.projectId, sessionId);
 
     // The text query request.
     const request = {

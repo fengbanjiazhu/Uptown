@@ -1,6 +1,7 @@
 const getSevenDays = function () {
   const dates = [];
   const today = new Date();
+  console.log(today);
 
   for (let i = 1; i < 8; i++) {
     const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000); // 每次增加一天的时间间隔

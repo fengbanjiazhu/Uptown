@@ -10,6 +10,7 @@ import checkLength from "../utils/checkLength";
 import sendJsonData from "../utils/sendJsonData";
 
 const dates = getSevenDays();
+console.log(dates);
 
 function Booking() {
   const [selectedDate, setSelectedDate] = useState(dates[0]);
@@ -116,12 +117,20 @@ function Booking() {
       {/* hiding modal and form */}
 
       <Modal
-        title="Please enter your Detail"
+        title="Please enter your details"
         open={open}
         onOk={bookMeasure}
         onCancel={handleCancel}
+        okText={"Confirm booking"}
+        cancelText={"Choose a different time"}
       >
         <Form layout="horizontal">
+          <Form.Item>
+            You have selected:
+            <h3>
+              {selectedDate} {selectedTime}
+            </h3>
+          </Form.Item>
           <Form.Item name="name" label="Name">
             <Input onChange={handleName} placeholder="enter Name" />
           </Form.Item>
