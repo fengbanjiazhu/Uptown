@@ -8,19 +8,19 @@ import logo from "../assets/images/Logo-2.png";
 const footerAboutLinks = [
   {
     display: "Delivery",
-    path: "/about",
+    path: "/about/Shipping",
   },
   {
     display: "Measuring",
-    path: "/about",
+    path: "/about/Measuring",
   },
   {
     display: "Returns & Exchanges",
-    path: "/about",
+    path: "/about/Policies",
   },
   {
     display: "Privacy Policy",
-    path: "/about",
+    path: "/about/Policies",
   },
 ];
 

@@ -27,6 +27,7 @@ const Routes = () => {
       <Route path="/login" component={Login} />
       <Route path="/contact" component={Contact} />
       <Route path="/me" component={Me} />
+      <Route path="/about/:section" component={About} />
       <Route path="/about" component={About} />
       <Route path="/booking" component={Booking} />
       <Route path="/payment/:clientSecret" component={Payment} />

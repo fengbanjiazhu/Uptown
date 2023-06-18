@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Helmet from "../components/Helmet";
-import { useHistory, Link } from "react-router-dom";
-import { Breadcrumb, Menu, Button, Modal, Layout } from "antd";
+import { useHistory, Link, useParams } from "react-router-dom";
+import { Breadcrumb, Menu, Layout } from "antd";
 
 import StoryInfo from "../components/about/StoryInfo";
 import MeasuringInfo from "../components/about/MeasuringInfo";
@@ -12,7 +12,8 @@ const { Content, Sider } = Layout;
 const navs = ["Story", "Policies", "Shipping", "Measuring"];
 
 function About() {
-  const [session, setSession] = useState("Story");
+  const { section } = useParams();
+  const [session, setSession] = useState(section || "Story");
 
   const handleMenuClick = (nav) => {
     setSession(nav);

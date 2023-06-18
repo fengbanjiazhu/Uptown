@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-import { Card, Col, Row } from "antd";
-import { useState } from "react";
+import { Card, Col, Row, Divider } from "antd";
 
 const { Meta } = Card;
 
@@ -78,22 +77,24 @@ const measureData = [
 
 function MeasuringInfo() {
   return (
-    // <div className="measureContainer" style={containerStyle}>
-    <Row justify="space-around" align="middle">
-      {measureData.map((step, index) => (
-        <Col xs={24} sm={20} md={16} lg={12} xl={8} key={index}>
-          <Card
-            hoverable
-            style={cardStyle}
-            key={index}
-            cover={<img alt="example" src={`${step.imgSrc}`} />}
-          >
-            <Meta title={step.title} description={step.description} />
-          </Card>
-        </Col>
-      ))}
-    </Row>
-    // </div>
+    <>
+      <h2>How we measuring for customer</h2>
+      <Divider></Divider>
+      <Row justify="space-around" align="middle">
+        {measureData.map((step, index) => (
+          <Col xs={24} sm={20} md={16} lg={12} xl={8} key={index}>
+            <Card
+              hoverable
+              style={cardStyle}
+              key={index}
+              cover={<img alt="example" src={`${step.imgSrc}`} />}
+            >
+              <Meta title={step.title} description={step.description} />
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </>
   );
 }
 
