@@ -55,12 +55,12 @@ const ProductView = (props) => {
 
   const check = () => {
     if (color === undefined) {
-      alert("Please select a color!");
+      alert("Please select a color");
       return false;
     }
 
     if (size === undefined) {
-      alert("Please select a size!");
+      alert("Please select a size");
       return false;
     }
 
@@ -77,9 +77,9 @@ const ProductView = (props) => {
         quantity: quantity,
       };
       if (dispatch(addItem(newItem))) {
-        alert("Success");
+        console.log("success");
       } else {
-        alert("Fail");
+        alert("Something went wrong, please try again later");
       }
     }
   };
