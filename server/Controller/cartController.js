@@ -1,5 +1,4 @@
 const Cart = require("../Model/cartModel");
-const catchAsync = require("../Utils/catchAsync");
 const centralController = require("./centreController");
 
 exports.getAllCart = centralController.getAll(Cart);

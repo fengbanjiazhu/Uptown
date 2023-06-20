@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.post("/checkout-intent/", orderController.getCheckoutIntent);
 router.post("/update-order-status/", orderController.updateOrderStatus);
-// updateOrderStatus
 
 router
   .route("/")

@@ -49,9 +49,7 @@ userSchema.index({ email: 1 });
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  // hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);
-  // delete password confirm field
   this.passwordConfirm = undefined;
   next();
 });
