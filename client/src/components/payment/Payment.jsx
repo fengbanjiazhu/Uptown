@@ -6,9 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
 function Payment() {
-  // const [clientSecret, setClientSecret] = useState("");
   const { clientSecret } = useParams();
-  console.log(clientSecret);
 
   const stripePromise = loadStripe(
     "pk_test_51N1PBAIq5PvrzIVYO5l0JOUPBovheTfXjrwNCMtBfOVsHd0tKrTWZcvSwZzBldttQuTXrzEIUddZRyQSa1EXiD8s00iQ8im3UH"
@@ -16,7 +14,7 @@ function Payment() {
 
   return (
     <div className="user-view__form-container">
-      <h1 className="heading-secondary">React Stripe and the Payment Element</h1>
+      <h1 className="heading-secondary">Stripe Payment System</h1>
 
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>

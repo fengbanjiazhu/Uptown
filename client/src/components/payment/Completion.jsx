@@ -27,9 +27,9 @@ function Completion() {
         if (data.status !== "success") throw new Error(data.message);
         setStatus("Complete");
         queryParams = {};
-        setTimeout(() => {
-          history.push("/");
-        }, 5000);
+        // setTimeout(() => {
+        //   history.push("/");
+        // }, 5000);
       } catch (error) {
         console.log(error);
       }
