@@ -17,10 +17,14 @@ export const cartItemsSlice = createSlice({
         (e) => e.slug === newItem.slug && e.color === newItem.color && e.size === newItem.size
       );
       if (duplicate.length > 0) {
-        state.value = state.value.filter(
+        const otherData = state.value.filter(
           (e) => e.slug !== newItem.slug || e.color !== newItem.color || e.size !== newItem.size
         );
-        state.value = [...state.value];
+        const updatedItem = {
+          ...JSON.parse(JSON.stringify(duplicate))[0],
+          quantity: duplicate[0].quantity + newItem.quantity,
+        };
+        state.value = [...otherData, updatedItem];
       } else {
         state.value = [
           ...state.value,
