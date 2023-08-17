@@ -76,7 +76,9 @@ exports.updateOrderStatus = catchAsync(async (req, res, next) => {
   );
 
   if (!orderUpdated) return next(new appErr("Order not fount or already paid", 400));
-  await new Email(orderUpdated, payment_intent).sendOrder();
+
+  // send email to customer email
+  // await new Email(orderUpdated, payment_intent).sendOrder();
 
   // findOne and update
   res.status(200).json({

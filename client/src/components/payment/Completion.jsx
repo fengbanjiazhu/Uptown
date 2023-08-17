@@ -24,6 +24,7 @@ function Completion() {
           "http://localhost:4000/api/order/update-order-status/",
           queryParams
         );
+        console.log(data);
         if (data.status !== "success") throw new Error(data.message);
         setStatus("Complete");
         queryParams = {};
