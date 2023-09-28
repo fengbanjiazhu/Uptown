@@ -157,11 +157,7 @@ const Catalog = () => {
             </div>
           </div>
         </div>
-        <div className="catalog__filter__toggle">
-          <Button size="sm" onClick={() => showHideFilter()}>
-            Filters
-          </Button>
-        </div>
+
         <div className="catalog__content">
           <InfinityList data={products} />
         </div>
