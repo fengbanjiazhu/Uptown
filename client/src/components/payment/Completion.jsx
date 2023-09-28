@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import sendJsonData from "../../utils/sendJsonData";
 
 function Completion() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [status, setStatus] = useState("Updating");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   let queryParams = {};
 
@@ -16,7 +16,7 @@ function Completion() {
 
   useEffect(() => {
     const result = JSON.stringify(queryParams);
-    if (result === "{}") return history.push("/");
+    if (result === "{}") return navigate("/");
 
     const updatePayment = async () => {
       try {
@@ -24,13 +24,9 @@ function Completion() {
           "http://localhost:4000/api/order/update-order-status/",
           queryParams
         );
-        console.log(data);
         if (data.status !== "success") throw new Error(data.message);
         setStatus("Complete");
         queryParams = {};
-        // setTimeout(() => {
-        //   history.push("/");
-        // }, 5000);
       } catch (error) {
         console.log(error);
       }

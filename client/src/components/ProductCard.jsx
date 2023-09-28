@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Button from "./Button";
 
 import numberWithCommas from "../utils/numberWithCommas";
 
 const ProductCard = (props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleClick = () => {
-    history.push(`/catalog/${props.id}`);
+    navigate(`/catalog/${props.id}`);
   };
 
   return (

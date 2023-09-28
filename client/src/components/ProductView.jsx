@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
@@ -10,7 +10,7 @@ import Button from "./Button";
 import numberWithCommas from "../utils/numberWithCommas";
 
 const ProductView = (props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   let product = props.product;
@@ -85,7 +85,7 @@ const ProductView = (props) => {
   };
 
   const goToCart = () => {
-    history.push("/cart");
+    navigate("/cart");
   };
 
   return (

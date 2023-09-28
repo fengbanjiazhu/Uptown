@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input, Button, Space } from "antd";
 import Grid from "./Grid";
 import logo from "../assets/images/Logo-2.png";
@@ -40,7 +40,7 @@ const footerCustomerLinks = [
 ];
 const Footer = () => {
   const [subscribeEmail, setSubscribeEmail] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSetSubscribeEmail = (e) => {
     const email = e.target.value;
@@ -60,7 +60,7 @@ const Footer = () => {
       const data = await res.json();
       if (data.status === "error") throw new Error(data.message);
       alert("Subscribe successful!🥳");
-      history.push("/");
+      navigate("/");
     } catch (error) {
       alert(error.message);
     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Input, Form, Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/shopping-cart/cartItemsSlide";
 import Helmet from "../components/Helmet";
 import CartItem from "../components/CartItem";
@@ -29,7 +29,7 @@ const Cart = () => {
   const { _id } = useSelector((state) => state.userInfo.value);
   const cartItems = useSelector((state) => state.cartItems.value);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(products, cartItems));
@@ -58,7 +58,7 @@ const Cart = () => {
       dispatch(clearCart());
       setCartProducts(null);
       localStorage.removeItem("cartItems");
-      history.push(`/payment/${data.clientSecret}`);
+      navigate(`/payment/${data.clientSecret}`);
     } catch (error) {
       alert(error.message);
     }

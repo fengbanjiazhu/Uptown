@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Input, Select } from "antd";
 import sendJsonData from "../utils/sendJsonData";
 
@@ -38,7 +38,7 @@ const tailFormItemLayout = {
 };
 
 const Signup = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
@@ -46,7 +46,7 @@ const Signup = () => {
       const data = await sendJsonData("http://localhost:4000/api/user/", values);
       if (data.status !== "success") throw new Error(data.message);
       alert("Sign-up successful! You will be transfer into login page");
-      history.push("/login");
+      navigate("/login");
     } catch (error) {
       alert(error.message);
     }

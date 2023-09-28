@@ -1,5 +1,5 @@
 import Helmet from "../components/Helmet";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import ContactCard from "../components/contact/ContactCard";
 import sendJsonData from "../utils/sendJsonData";
@@ -23,7 +23,7 @@ const validateMessages = {
 };
 
 const Contact = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     const query = {
@@ -34,7 +34,7 @@ const Contact = () => {
       const data = await sendJsonData("http://localhost:4000/api/booking/", query);
       if (data.status !== "success") throw new Error(data.message);
       alert("Successful send query! We will contact you soon😊");
-      history.push("/");
+      navigate("/");
     } catch (error) {
       alert(error.message);
     }

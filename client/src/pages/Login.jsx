@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import { useHistory, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userAction } from "../redux/user/userInfoSlice";
 import sendJsonData from "../utils/sendJsonData";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     console.log(values);
@@ -26,7 +26,7 @@ const Login = () => {
       };
       if (values.remember) localStorage.setItem("jwtToken", data.token);
       dispatch(userAction.setUser(userData));
-      history.push("/");
+      navigate("/");
     } catch (error) {
       alert(error.message);
     }

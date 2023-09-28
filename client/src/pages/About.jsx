@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Helmet from "../components/Helmet";
-import { useHistory, Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Breadcrumb, Menu, Layout } from "antd";
 
 import StoryInfo from "../components/about/StoryInfo";

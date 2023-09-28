@@ -1,6 +1,6 @@
 import Helmet from "../components/Helmet";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Col, Divider, Row, Menu, Button, Modal, Input, Form } from "antd";
 
@@ -15,7 +15,7 @@ function Booking() {
   const [selectedDate, setSelectedDate] = useState(dates[0]);
   const [selectedTime, setSelectedTime] = useState([]);
   const [availableTime, setAvailableTime] = useState();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState(null);
   const [name, setName] = useState(null);
@@ -51,7 +51,7 @@ function Booking() {
       const data = await sendJsonData("http://127.0.0.1:4000/api/booking", bookingInfo);
       if (data.status !== "success") throw new Error();
       alert("Successful book a session!");
-      history.push("/");
+      navigate("/");
     } catch (error) {
       alert("Looks like someone else got the session first, please try another time");
     }
