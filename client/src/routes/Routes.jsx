@@ -19,20 +19,20 @@ import Blog from "../pages/Blog";
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/catalog/:slug" component={Product} />
-      <Route path="/catalog" component={Catalog} />
-      <Route path="/cart" component={Cart} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/login" component={Login} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/me" component={Me} />
-      <Route path="/about/:section" component={About} />
-      <Route path="/about" component={About} />
-      <Route path="/booking" component={Booking} />
-      <Route path="/payment/:clientSecret" component={Payment} />
-      <Route path="/completion" component={Completion} />
-      <Route path="/blog" component={Blog} />
+      <Route path="/" exact element={Home} />
+      <Route path="/catalog/:slug" element={Product} />
+      <Route path="/catalog" element={Catalog} />
+      <Route path="/cart" element={Cart} />
+      <Route path="/signup" element={Signup} />
+      <Route path="/login" element={Login} />
+      <Route path="/contact" element={Contact} />
+      <Route path="/me" element={Me} />
+      <Route path="/about/:section" element={About} />
+      <Route path="/about" element={About} />
+      <Route path="/booking" element={Booking} />
+      <Route path="/payment/:clientSecret" element={Payment} />
+      <Route path="/completion" element={Completion} />
+      <Route path="/blog" element={Blog} />
     </Switch>
   );
 };

@@ -9,7 +9,6 @@ import category from "../assets/fake-data/category";
 import colors from "../assets/fake-data/product-color";
 import size from "../assets/fake-data/product-size";
 import Button from "../components/Button";
-
 import InfinityList from "../components/InfinityList";
 
 const initFilter = {
