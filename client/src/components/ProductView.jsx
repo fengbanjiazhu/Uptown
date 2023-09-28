@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
-import { withRouter } from "react-router";
+
 import { addItem } from "../redux/shopping-cart/cartItemsSlide";
 
 import Button from "./Button";
@@ -191,4 +191,4 @@ ProductView.propTypes = {
   product: PropTypes.object,
 };
 
-export default withRouter(ProductView);
+export default ProductView;
