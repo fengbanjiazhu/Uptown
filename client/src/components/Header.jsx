@@ -6,6 +6,7 @@ import { Badge } from "antd";
 
 import { set } from "../redux/product-modal/productModalSlice";
 import { userAction } from "../redux/user/userInfoSlice";
+import { fetchAllProducts } from "../api/productAPI";
 
 import useLogout from "../hooks/useLogout";
 
@@ -52,12 +53,12 @@ const Header = () => {
   }, [cartItems, count]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/api/products");
-      const data = await res.json();
+    const fetchDataHandler = async () => {
+      const data = await fetchAllProducts();
       dispatch(set(data.datas));
     };
-    fetchData();
+
+    fetchDataHandler();
   }, []);
 
   const menuLeft = useRef(null);
