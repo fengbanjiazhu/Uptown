@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
+import React from "react";
 
 import { useSelector } from "react-redux";
 
@@ -10,20 +10,19 @@ import InfinityList from "../components/InfinityList";
 import { useSearchParams } from "react-router-dom";
 
 const Catalog = () => {
-  const productRedux = useSelector((state) => state.productModal.value);
-
+  const allProduct = useSelector((state) => state.productModal.value);
   const [searchParams] = useSearchParams();
 
   const filterCategory = searchParams.get("category") || "all";
   const filterColor = searchParams.get("color") || "all";
   const filterSize = searchParams.get("size") || "all";
 
-  const filterCate = filterStr(productRedux, filterCategory, "categorySlug");
-  const filterCo = filterArr(filterCate, filterColor, "colors");
-  const filterS = filterArr(filterCo, filterSize, "size");
+  const productAfterFilterCategory = filterStr(allProduct, filterCategory, "categorySlug");
+  const productAfterFilterColor = filterArr(productAfterFilterCategory, filterColor, "colors");
+  const productAfterFilterSize = filterArr(productAfterFilterColor, filterSize, "size");
 
   const clearFilter = () => {
-    setProducts(productRedux);
+    setProducts(allProduct);
   };
 
   return (
@@ -66,7 +65,7 @@ const Catalog = () => {
         </div>
 
         <div className="catalog__content">
-          <InfinityList data={filterS} />
+          <InfinityList data={productAfterFilterSize} />
         </div>
       </div>
     </Helmet>
