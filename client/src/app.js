@@ -29,7 +29,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/me" element={<Me />} />
-          <Route path="/about/:section" element={<About />} />
           <Route path="/about" element={<About />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/payment/:clientSecret" element={<Payment />} />

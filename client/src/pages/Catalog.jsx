@@ -19,13 +19,10 @@ const Catalog = () => {
   const filterSize = searchParams.get("size") || "all";
 
   const filterCate = filterStr(productRedux, filterCategory, "categorySlug");
-
   const filterCo = filterArr(filterCate, filterColor, "colors");
-
   const filterS = filterArr(filterCo, filterSize, "size");
 
   const clearFilter = () => {
-    setFilter(initFilter);
     setProducts(productRedux);
   };
 

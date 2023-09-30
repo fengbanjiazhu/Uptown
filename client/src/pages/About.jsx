@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Helmet from "../components/Helmet";
-import { Link, useParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Breadcrumb, Menu, Layout } from "antd";
 
 import StoryInfo from "../components/about/StoryInfo";
@@ -12,11 +12,12 @@ const { Content, Sider } = Layout;
 const navs = ["Story", "Policies", "Shipping", "Measuring"];
 
 function About() {
-  const { section } = useParams();
-  const [session, setSession] = useState(section || "Story");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentParam = searchParams.get("about") || "Story";
 
   const handleMenuClick = (nav) => {
-    setSession(nav);
+    searchParams.set("about", nav);
+    setSearchParams(searchParams);
   };
 
   return (
@@ -60,10 +61,10 @@ function About() {
             backgroundColor: "white",
           }}
         >
-          <Content>{session === "Story" && <StoryInfo></StoryInfo>}</Content>
-          <Content>{session === "Measuring" && <MeasuringInfo></MeasuringInfo>}</Content>
-          <Content>{session === "Policies" && <PoliciesInfo></PoliciesInfo>}</Content>
-          <Content>{session === "Shipping" && <ShippingInfo></ShippingInfo>}</Content>
+          <Content>{currentParam === "Story" && <StoryInfo></StoryInfo>}</Content>
+          <Content>{currentParam === "Measuring" && <MeasuringInfo></MeasuringInfo>}</Content>
+          <Content>{currentParam === "Policies" && <PoliciesInfo></PoliciesInfo>}</Content>
+          <Content>{currentParam === "Shipping" && <ShippingInfo></ShippingInfo>}</Content>
         </Layout>
       </Layout>
     </Helmet>
