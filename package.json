@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/server.js",
-    "test": "nodemon server/server.js",
+    "test": "node server/server.js",
     "frontend": "npm run front --prefix client",
-    "dev": "concurrently \"npm run test\" \"npm run start --prefix client\""
+    "dev": "concurrently \"npm run test\" \"npm run start --prefix client\"",
+    "install-all": "concurrently \"npm i\" \"npm i --prefix client\""
   },
   "author": "",
   "license": "ISC",
