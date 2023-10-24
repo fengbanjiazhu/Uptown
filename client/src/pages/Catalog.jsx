@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 import Helmet from "../components/Helmet";
 import Filter from "../components/Filter";
+import { Button } from "antd";
 import { filterArr, filterStr } from "../utils/filterHelper";
 
 import InfinityList from "../components/InfinityList";
@@ -11,7 +12,7 @@ import { useSearchParams } from "react-router-dom";
 
 const Catalog = () => {
   const allProduct = useSelector((state) => state.productModal.value);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const filterCategory = searchParams.get("category") || "all";
   const filterColor = searchParams.get("color") || "all";
@@ -22,7 +23,9 @@ const Catalog = () => {
   const productAfterFilterSize = filterArr(productAfterFilterColor, filterSize, "size");
 
   const clearFilter = () => {
-    setProducts(allProduct);
+    setSearchParams("color", "all");
+    setSearchParams("size", "all");
+    setSearchParams("category", "all");
   };
 
   return (
@@ -62,6 +65,10 @@ const Catalog = () => {
               { value: "xxl", label: "XXL" },
             ]}
           />
+
+          <div style={{ marginTop: 20 }}>
+            <Button onClick={clearFilter}>Clear filed</Button>
+          </div>
         </div>
 
         <div className="catalog__content">

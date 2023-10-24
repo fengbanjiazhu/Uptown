@@ -1,7 +1,6 @@
-import React from "react";
-import Helmet from "../components/Helmet";
+import React, { memo } from "react";
 import { Card, Space, Layout, Typography } from "antd";
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 const { Sider, Content } = Layout;
 
@@ -61,4 +60,4 @@ function Blog() {
   );
 }
 
-export default Blog;
+export default memo(Blog);

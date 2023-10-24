@@ -3,7 +3,7 @@ const catchAsync = require("../Utils/catchAsync");
 const User = require("../Model/userModel");
 
 const AppErr = require("../Utils/appError");
-const Email = require("../Utils/Email");
+// const Email = require("../Utils/Email");
 
 // sign json web token function
 const signToken = (id) => {
