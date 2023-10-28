@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import { UserOutlined, MailOutlined, PhoneOutlined, HomeOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
+import { urlUser } from "../../api";
 
 function UpdateProfile(props) {
   const userToken = useSelector((state) => state.userInfo.value.token);
@@ -10,7 +11,7 @@ function UpdateProfile(props) {
   const onFinish = async (values) => {
     try {
       const updateData = JSON.stringify(values);
-      const res = await fetch("http://localhost:4000/api/user/Me", {
+      const res = await fetch(`${urlUser}/Me`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${userToken}` },
         body: updateData,

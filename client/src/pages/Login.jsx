@@ -5,6 +5,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { userAction } from "../redux/user/userInfoSlice";
 import sendJsonData from "../utils/sendJsonData";
+import { urlUser } from "../api";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Login = () => {
   const onFinish = async (values) => {
     console.log(values);
     try {
-      const data = await sendJsonData("http://localhost:4000/api/user/login", values);
+      const data = await sendJsonData(`${urlUser}/login`, values);
       console.log(data);
       if (data.status !== "success") throw new Error(data.message);
       alert("Login successful!");

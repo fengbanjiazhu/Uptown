@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { urlSubscribe } from "../api";
 
 import { Link, useNavigate } from "react-router-dom";
 import { Input, Button, Space } from "antd";
@@ -50,7 +51,7 @@ const Footer = () => {
   const handleSubscribe = async () => {
     console.log(subscribeEmail);
     try {
-      const res = await fetch("http://localhost:4000/api/subscribe/", {
+      const res = await fetch(urlSubscribe, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

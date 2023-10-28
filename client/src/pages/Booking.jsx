@@ -1,6 +1,7 @@
 import Helmet from "../components/Helmet";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { urlMeasuring, urlBooking } from "../api";
 
 import { Col, Divider, Row, Menu, Button, Modal, Input, Form } from "antd";
 
@@ -24,7 +25,7 @@ function Booking() {
   useEffect(() => {
     const getBookedTime = async () => {
       const date = selectedDate.split(" ")[0];
-      const res = await fetch(`http://127.0.0.1:4000/api/measuring?date=${date}`);
+      const res = await fetch(`${urlMeasuring}?date=${date}`);
       const data = await res.json();
       let times;
       times = data.datas[0] ? getAvailableTime(data.datas[0].time) : getAvailableTime([]);
@@ -48,7 +49,7 @@ function Booking() {
         date: selectedDate.split(" ")[0],
         time: selectedTime,
       };
-      const data = await sendJsonData("http://127.0.0.1:4000/api/booking", bookingInfo);
+      const data = await sendJsonData(urlBooking, bookingInfo);
       if (data.status !== "success") throw new Error();
       alert("Successful book a session!");
       navigate("/");

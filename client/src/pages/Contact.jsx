@@ -4,6 +4,7 @@ import { Button, Form, Input } from "antd";
 import ContactCard from "../components/contact/ContactCard";
 import sendJsonData from "../utils/sendJsonData";
 import LeafLetMap from "../components/contact/LeafLetMap";
+import { urlBooking } from "../api";
 
 const layout = {
   labelCol: {
@@ -31,7 +32,7 @@ const Contact = () => {
       session: "query",
     };
     try {
-      const data = await sendJsonData("http://localhost:4000/api/booking/", query);
+      const data = await sendJsonData(urlBooking, query);
       if (data.status !== "success") throw new Error(data.message);
       alert("Successful send query! We will contact you soon😊");
       navigate("/");

@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import sendJsonData from "../../utils/sendJsonData";
+import { urlOrder } from "../../api";
 
 function Completion() {
   const location = useLocation();
@@ -20,10 +21,7 @@ function Completion() {
 
     const updatePayment = async () => {
       try {
-        const data = await sendJsonData(
-          "http://localhost:4000/api/order/update-order-status/",
-          queryParams
-        );
+        const data = await sendJsonData(`${urlOrder}/update-order-status/`, queryParams);
         if (data.status !== "success") throw new Error(data.message);
         setStatus("Complete");
         queryParams = {};

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Descriptions, Modal, Input } from "antd";
 import timeStrTransfer from "../../utils/timeStrToyTime";
 import sendJsonData from "../../utils/sendJsonData";
+import { urlBooking } from "../../api";
 
 const QueryCard = (prop) => {
   const [showForm, setShowForm] = useState(false);
@@ -18,7 +19,7 @@ const QueryCard = (prop) => {
       name,
       email,
     };
-    const res = await sendJsonData(`http://localhost:4000/api/booking/${id}`, replyData);
+    const res = await sendJsonData(`${urlBooking}/${id}`, replyData);
     console.log(res);
     setShowForm(false);
   };

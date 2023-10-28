@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useSelector } from "react-redux";
 import QueryCard from "./QueryCard";
+import { urlBooking } from "../../api";
 
 const AllQuery = (prop) => {
   const [queries, setQueries] = useState(undefined);
@@ -8,7 +9,7 @@ const AllQuery = (prop) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/api/booking/?session=query", {
+      const res = await fetch(`${urlBooking}/?session=query`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -11,9 +11,6 @@ import policy from "../assets/fake-data/policy";
 import VideoBanner from "../components/videoBanner";
 
 const Home = () => {
-  const currentProtocol = window.location.href;
-  console.log(currentProtocol);
-
   return (
     <div style={{ overflowX: "hidden" }} id="homeContainer">
       <Helmet title="Home">

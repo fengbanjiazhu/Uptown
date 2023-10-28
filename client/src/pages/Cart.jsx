@@ -7,6 +7,7 @@ import Helmet from "../components/Helmet";
 import CartItem from "../components/CartItem";
 import checkLength from "../utils/checkLength";
 import sendJsonData from "../utils/sendJsonData";
+import { urlOrder } from "../api";
 
 import numberWithCommas from "../utils/numberWithCommas";
 
@@ -53,7 +54,7 @@ const Cart = () => {
 
   const sendOrder = async (cartData) => {
     try {
-      const data = await sendJsonData("http://localhost:4000/api/order/checkout-intent/", cartData);
+      const data = await sendJsonData(`${urlOrder}/checkout-intent/`, cartData);
       if (data.status !== "success") throw new Error(data.message);
       dispatch(clearCart());
       setCartProducts(null);

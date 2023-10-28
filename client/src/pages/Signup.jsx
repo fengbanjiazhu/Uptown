@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Input, Select } from "antd";
 import sendJsonData from "../utils/sendJsonData";
+import { urlUser } from "../api";
 
 const { Option } = Select;
 
@@ -43,7 +44,7 @@ const Signup = () => {
 
   const onFinish = async (values) => {
     try {
-      const data = await sendJsonData("http://localhost:4000/api/user/", values);
+      const data = await sendJsonData(urlUser, values);
       if (data.status !== "success") throw new Error(data.message);
       alert("Sign-up successful! You will be transfer into login page");
       navigate("/login");

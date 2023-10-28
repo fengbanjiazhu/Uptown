@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { urlUser } from "../api";
 
 import { UserOutlined, SnippetsOutlined } from "@ant-design/icons";
 import { Layout, Menu, Divider } from "antd";
@@ -25,7 +26,7 @@ export default function Me() {
   useEffect(() => {
     if (!userToken) return;
     const fetchUser = async () => {
-      const res = await fetch("http://localhost:4000/api/user/Me", {
+      const res = await fetch(`${urlUser}/Me`, {
         headers: { Authorization: `Bearer ${userToken}` },
       });
       const data = await res.json();

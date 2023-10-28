@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Button, Form, Input } from "antd";
 import useLogout from "../../hooks/useLogout";
+import { urlUser } from "../../api";
 
 const UpdatePassword = () => {
   const userToken = useSelector((state) => state.userInfo.value.token);
@@ -10,7 +11,7 @@ const UpdatePassword = () => {
   const onUpdatePassword = async (values) => {
     try {
       const updateData = JSON.stringify(values);
-      const res = await fetch("http://localhost:4000/api/user/updateMyPassword", {
+      const res = await fetch(`${urlUser}/updateMyPassword`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${userToken}` },
         body: updateData,

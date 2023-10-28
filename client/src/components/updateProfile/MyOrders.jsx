@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import OrderCard from "./OrderCard";
+import { urlOrder } from "../../api";
 
 function MyOrders() {
   const [orders, setOrders] = useState(null);
@@ -8,7 +9,7 @@ function MyOrders() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/api/order/myOrder", {
+      const res = await fetch(`${urlOrder}/myOrder`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

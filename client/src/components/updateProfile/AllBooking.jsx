@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import BookCard from "./BookCard";
+import { urlBooking } from "../../api";
 
 function AllBooking() {
   const [bookings, setBookings] = useState(null);
@@ -8,7 +9,7 @@ function AllBooking() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:4000/api/booking/?session=measuring", {
+      const res = await fetch(`${urlBooking}/?session=measuring`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

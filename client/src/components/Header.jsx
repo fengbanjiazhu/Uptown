@@ -6,7 +6,7 @@ import { Badge } from "antd";
 
 import { set } from "../redux/product-modal/productModalSlice";
 import { userAction } from "../redux/user/userInfoSlice";
-import { fetchAllProducts } from "../api/productAPI";
+import { fetchAllProducts } from "../api";
 
 import useLogout from "../hooks/useLogout";
 
