@@ -1,5 +1,5 @@
 import Helmet from "../components/Helmet";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlMeasuring, urlBooking } from "../api";
 
