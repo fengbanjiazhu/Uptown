@@ -22,26 +22,7 @@ const blogRoute = require("./Routes/blogRoutes");
 
 app.use(express.static(path.join(__dirname, "Utils")));
 
-// solving CORS issue
-// app.use(
-//   cors({
-//     origin: "https://34c4-1-145-14-101.ngrok-free.app",
-//     credentials: true,
-//   })
-// );
-
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//   next();
-// });
-
 app.use(
-  // cors({
-  //   origin: "http://localhost:3000",
-  //   credentials: true,
-  // })
   cors({
     origin: "*",
   })

@@ -5,7 +5,7 @@ const centralController = require("./centreController");
 const catchAsync = require("../Utils/catchAsync");
 const appErr = require("../Utils/appError");
 
-const Email = require("../Utils/Email");
+// const Email = require("../Utils/Email");
 
 exports.createBooking = catchAsync(async (req, res, next) => {
   const { email, date, session, time } = req.body;
@@ -37,12 +37,12 @@ exports.sendReplyAndUpdate = catchAsync(async (req, res, next) => {
     { $set: { bookingStatus: true } }
   );
 
-  const replyData = {
-    email,
-    name,
-  };
+  // const replyData = {
+  //   email,
+  //   name,
+  // };
 
-  await new Email(replyData, reply).sendReply();
+  // await new Email(replyData, reply).sendReply();
 
   res.status(200).json({
     status: "success",

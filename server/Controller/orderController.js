@@ -3,7 +3,7 @@ const catchAsync = require("../Utils/catchAsync");
 const centralController = require("./centreController");
 const appErr = require("../Utils/appError");
 const Stripe = require("stripe");
-const Email = require("../Utils/Email");
+// const Email = require("../Utils/Email");
 
 exports.getAllOrder = centralController.getAll(Order);
 exports.getOrder = centralController.getOne(Order);
