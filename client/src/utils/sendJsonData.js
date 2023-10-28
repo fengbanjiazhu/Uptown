@@ -13,7 +13,6 @@ const sendJsonData = async (url, inputData) => {
     return data;
   } catch (error) {
     return error;
-    console.log(error.message);
   }
 };
 

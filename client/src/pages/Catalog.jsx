@@ -1,18 +1,20 @@
 import React from "react";
-
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
-import Helmet from "../components/Helmet";
-import Filter from "../components/Filter";
 import { Button } from "antd";
 import { filterArr, filterStr } from "../utils/filterHelper";
 
+import Filter from "../components/Filter";
+import Helmet from "../components/Helmet";
+import LoadingSpinner from "../components/LoadingSpinner";
 import InfinityList from "../components/InfinityList";
-import { useSearchParams } from "react-router-dom";
 
 const Catalog = () => {
   const allProduct = useSelector((state) => state.productModal.value);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const loaded = allProduct && allProduct.length > 1;
 
   const filterCategory = searchParams.get("category") || "all";
   const filterColor = searchParams.get("color") || "all";
@@ -72,7 +74,8 @@ const Catalog = () => {
         </div>
 
         <div className="catalog__content">
-          <InfinityList data={productAfterFilterSize} />
+          {!loaded && <LoadingSpinner />}
+          {loaded && <InfinityList data={productAfterFilterSize} />}
         </div>
       </div>
     </Helmet>
