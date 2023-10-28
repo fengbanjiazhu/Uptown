@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 
 import { Elements } from "@stripe/react-stripe-js";

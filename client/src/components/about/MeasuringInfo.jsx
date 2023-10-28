@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Card, Col, Row, Divider } from "antd";
 
 const { Meta } = Card;

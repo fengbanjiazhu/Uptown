@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Carousel, Timeline } from "antd";
 import { ClockCircleOutlined } from "@ant-design/icons";
 const contentStyle = {
@@ -12,7 +12,7 @@ const containerStyle = {
 
 function StoryInfo() {
   return (
-    <Fragment>
+    <>
       {/* images */}
       <Carousel style={containerStyle} autoplay>
         <div>
@@ -89,7 +89,7 @@ function StoryInfo() {
           },
         ]}
       />
-    </Fragment>
+    </>
   );
 }
 
