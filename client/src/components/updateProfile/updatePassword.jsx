@@ -3,22 +3,18 @@ import { useSelector } from "react-redux";
 import { Button, Form, Input } from "antd";
 import useLogout from "../../hooks/useLogout";
 import { urlUser } from "../../api";
+import { usePostJsonData } from "../../hooks/useFetchData";
+import { Spin } from "antd";
 
 const UpdatePassword = () => {
   const userToken = useSelector((state) => state.userInfo.value.token);
   const logout = useLogout();
+  const { isLoading, fetchPostData } = usePostJsonData();
 
   const onUpdatePassword = async (values) => {
     try {
-      const updateData = JSON.stringify(values);
-      const res = await fetch(`${urlUser}/updateMyPassword`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${userToken}` },
-        body: updateData,
-      });
-      const data = await res.json();
-      if (data.status === 400) throw new Error(data.message);
-
+      const res = await fetchPostData(`${urlUser}/updateMyPassword`, values, "PATCH", userToken);
+      if (res.status !== "success") throw new Error(res.message);
       alert("Update successful!");
       logout();
     } catch (error) {
@@ -117,8 +113,13 @@ const UpdatePassword = () => {
           <Input.Password />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            Save Change
+          <Button
+            disabled={isLoading}
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+          >
+            {isLoading ? <Spin /> : "Update Password"}
           </Button>
         </Form.Item>
       </Form>

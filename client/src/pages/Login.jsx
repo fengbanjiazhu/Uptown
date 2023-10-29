@@ -12,10 +12,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
-    console.log(values);
     try {
       const data = await sendJsonData(`${urlUser}/login`, values);
-      console.log(data);
       if (data.status !== "success") throw new Error(data.message);
       alert("Login successful!");
 
