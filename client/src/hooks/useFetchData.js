@@ -32,13 +32,6 @@ export const usePostJsonData = () => {
       if (options === "PATCH" && userToken) {
         res = await fetch(url, patchOptions(jsonData, userToken));
       }
-      // const res = await fetch(url, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: jsonData,
-      // });
       const data = await res.json();
       if (data.status !== "success") throw new Error(data.message);
       return data;
@@ -52,7 +45,7 @@ export const usePostJsonData = () => {
   return { isLoading, fetchPostData };
 };
 
-export const useGetData = (url) => {
+export const useGetData = (url, token = null) => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -60,8 +53,20 @@ export const useGetData = (url) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      let res;
+
       try {
-        const res = await fetch(url);
+        if (token) {
+          res = await fetch(url, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        } else {
+          res = await fetch(url);
+        }
+
         if (!res.ok) throw new Error(res.message);
         const data = await res.json();
 

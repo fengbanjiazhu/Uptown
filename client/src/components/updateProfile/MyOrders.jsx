@@ -1,37 +1,34 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import OrderCard from "./OrderCard";
 import { urlOrder } from "../../api";
 
-function MyOrders() {
-  const [orders, setOrders] = useState(null);
-  const { token } = useSelector((state) => state.userInfo.value);
+import { useGetData } from "../../hooks/useFetchData";
+import LoadingSpinner from "../LoadingSpinner";
+import { Alert } from "antd";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`${urlOrder}/myOrder`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      setOrders(data.datas);
-    };
-    fetchData();
-  }, [token]);
+function MyOrders() {
+  const { token } = useSelector((state) => state.userInfo.value);
+  const { data, isLoading, error } = useGetData(`${urlOrder}/myOrder`, token);
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <Alert message={error} type="error" />;
+
+  const orders = data?.datas;
+  const emptyOrders = orders?.length < 1;
 
   return (
-    <Fragment>
-      {/* {orders && <OrderCard order={orders[0]}>Got order</OrderCard>} */}
+    <>
       {orders &&
+        !emptyOrders &&
         orders.map((order, index) => (
           <OrderCard key={index} index={index} order={order}>
             Got order
           </OrderCard>
         ))}
-      {!orders && <h2>You have no orders</h2>}
-    </Fragment>
+
+      {emptyOrders && <h2>You have no orders</h2>}
+    </>
   );
 }
 

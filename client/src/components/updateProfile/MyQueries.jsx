@@ -1,34 +1,31 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import QueryCard from "./QueryCard";
 import { urlBooking } from "../../api";
+import { useGetData } from "../../hooks/useFetchData";
+import LoadingSpinner from "../LoadingSpinner";
+import { Alert } from "antd";
 
 function MyQueries() {
-  const [queries, setQueries] = useState(null);
   const { token } = useSelector((state) => state.userInfo.value);
+  const { data, isLoading, error } = useGetData(`${urlBooking}/getMyBooking?session=query`, token);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`${urlBooking}/getMyBooking?session=query`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      setQueries(data.bookings);
-    };
-    fetchData();
-  }, [token]);
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <Alert message={error} type="error" />;
+
+  const queries = data?.bookings;
+  const emptyQueries = queries?.length < 1;
 
   return (
-    <Fragment>
+    <>
       {queries &&
+        !emptyQueries &&
         queries.map((query, index) => (
           <QueryCard key={index} index={index} query={query} showBtn={false}></QueryCard>
         ))}
-      {!queries && <h2>You have no Query</h2>}
-    </Fragment>
+
+      {emptyQueries && <h2>You have no query</h2>}
+    </>
   );
 }
 
