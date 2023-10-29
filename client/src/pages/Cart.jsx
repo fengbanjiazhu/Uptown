@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Input, Form, Button } from "antd";
+import { Modal, Input, Form, Button, Spin } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/shopping-cart/cartItemsSlide";
 import Helmet from "../components/Helmet";
 import CartItem from "../components/CartItem";
 import checkLength from "../utils/checkLength";
-import sendJsonData from "../utils/sendJsonData";
 import { urlOrder } from "../api";
+import { usePostJsonData } from "../hooks/useFetchData";
 
 import numberWithCommas from "../utils/numberWithCommas";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const getCartItemsInfo = (products, cartItems) => {
   let res = [];
@@ -31,6 +32,7 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isLoading, fetchPostData } = usePostJsonData();
 
   const [open, setOpen] = useState(false);
   const [cartProducts, setCartProducts] = useState(getCartItemsInfo(products, cartItems));
@@ -52,9 +54,11 @@ const Cart = () => {
     setTotalProducts(cartItems.reduce((total, item) => total + Number(item.quantity), 0));
   }, [cartProducts, cartItems, totalProducts]);
 
+  if (products.length < 1) return <LoadingSpinner />;
+
   const sendOrder = async (cartData) => {
     try {
-      const data = await sendJsonData(`${urlOrder}/checkout-intent/`, cartData);
+      const data = await fetchPostData(`${urlOrder}/checkout-intent/`, cartData);
       if (data.status !== "success") throw new Error(data.message);
       dispatch(clearCart());
       setCartProducts(null);
@@ -87,7 +91,6 @@ const Cart = () => {
   };
 
   const handleCancel = () => {
-    console.log("Clicked cancel button");
     setOpen(false);
   };
 
@@ -130,17 +133,20 @@ const Cart = () => {
             onOk={checkOut}
             onCancel={handleCancel}
           >
-            <Form layout="horizontal">
-              <Form.Item name="name" label="Name">
-                <Input onChange={handleName} placeholder="enter Name" />
-              </Form.Item>
-              <Form.Item name="email" label="Email">
-                <Input onChange={handleEmail} type="email" placeholder="enter Email" />
-              </Form.Item>
-              <Form.Item name="address" label="Address">
-                <Input onChange={handleAddress} placeholder="Enter Address" />
-              </Form.Item>
-            </Form>
+            {isLoading && <LoadingSpinner tip="Sending" message="Sending your cart to server..." />}
+            {!isLoading && (
+              <Form layout="horizontal">
+                <Form.Item name="name" label="Name">
+                  <Input onChange={handleName} placeholder="enter Name" />
+                </Form.Item>
+                <Form.Item name="email" label="Email">
+                  <Input onChange={handleEmail} type="email" placeholder="enter Email" />
+                </Form.Item>
+                <Form.Item name="address" label="Address">
+                  <Input onChange={handleAddress} placeholder="Enter Address" />
+                </Form.Item>
+              </Form>
+            )}
           </Modal>
 
           <div className="cart__info__btn">
