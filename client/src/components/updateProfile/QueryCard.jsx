@@ -25,7 +25,6 @@ const QueryCard = (prop) => {
   };
 
   const handleCancel = (e) => {
-    console.log(e);
     setShowForm(false);
   };
 

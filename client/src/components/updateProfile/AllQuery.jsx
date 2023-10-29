@@ -1,34 +1,31 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import QueryCard from "./QueryCard";
 import { urlBooking } from "../../api";
 
-const AllQuery = (prop) => {
-  const [queries, setQueries] = useState(undefined);
-  const { token } = useSelector((state) => state.userInfo.value);
+import { useGetData } from "../../hooks/useFetchData";
+import LoadingSpinner from "../LoadingSpinner";
+import { Alert } from "antd";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`${urlBooking}/?session=query`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      setQueries(data.datas);
-    };
-    fetchData();
-  }, [token]);
+function AllQuery(prop) {
+  const { token } = useSelector((state) => state.userInfo.value);
+  const { data, isLoading, error } = useGetData(`${urlBooking}/?session=query`, token);
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <Alert message={error} type="error" />;
+
+  const queries = data?.datas;
+  const emptyQueries = queries?.length < 1;
 
   return (
-    <Fragment>
+    <>
       {queries &&
+        !emptyQueries &&
         queries.map((query, index) => (
           <QueryCard key={index} index={index} query={query} showBtn={true}></QueryCard>
         ))}
-      {!queries && <h2>There are no Queries</h2>}
-    </Fragment>
+      {emptyQueries && <h2>There are no Queries</h2>}
+    </>
   );
-};
+}
 export default AllQuery;

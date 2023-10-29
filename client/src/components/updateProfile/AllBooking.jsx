@@ -1,34 +1,31 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import BookCard from "./BookCard";
 import { urlBooking } from "../../api";
+import { useGetData } from "../../hooks/useFetchData";
+import LoadingSpinner from "../LoadingSpinner";
+import { Alert } from "antd";
 
 function AllBooking() {
-  const [bookings, setBookings] = useState(null);
   const { token } = useSelector((state) => state.userInfo.value);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`${urlBooking}/?session=measuring`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      setBookings(data.datas);
-    };
-    fetchData();
-  }, [token]);
+  const { data, isLoading, error } = useGetData(`${urlBooking}/?session=measuring`, token);
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <Alert message={error} type="error" />;
+
+  const bookings = data?.datas;
+  const emptyBookings = bookings?.length < 1;
 
   return (
-    <Fragment>
+    <>
       {bookings &&
+        !emptyBookings &&
         bookings.map((booking, index) => (
           <BookCard key={index} index={index} measure={booking}></BookCard>
         ))}
-      {!bookings && <h2>There are no bookings</h2>}
-    </Fragment>
+      {emptyBookings && <h2>There are no bookings</h2>}
+    </>
   );
 }
 

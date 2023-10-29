@@ -2,24 +2,20 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import OrderCard from "./OrderCard";
 import { urlOrder } from "../../api";
+import { useGetData } from "../../hooks/useFetchData";
+import LoadingSpinner from "../LoadingSpinner";
+import { Alert } from "antd";
 
 function AllOrders() {
-  const [orders, setOrders] = useState(null);
   const { token } = useSelector((state) => state.userInfo.value);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(urlOrder, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      setOrders(data.datas);
-    };
-    fetchData();
-  }, [token]);
+  const { data, isLoading, error } = useGetData(urlOrder, token);
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <Alert message={error} type="error" />;
+
+  const orders = data?.datas;
+  const emptyOrders = orders?.length < 1;
 
   return (
     <Fragment>
@@ -29,7 +25,7 @@ function AllOrders() {
             Got order
           </OrderCard>
         ))}
-      {!orders && <h2>There are no orders</h2>}
+      {emptyOrders && <h2>There are no orders</h2>}
     </Fragment>
   );
 }
