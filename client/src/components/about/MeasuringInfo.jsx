@@ -78,11 +78,11 @@ const measureData = [
 function MeasuringInfo() {
   return (
     <>
-      <h2>How we measuring for customer</h2>
+      <h1>How we measuring for customer</h1>
       <Divider></Divider>
       <Row justify="space-around" align="middle">
         {measureData.map((step, index) => (
-          <Col xs={24} sm={20} md={16} lg={12} xl={8} key={index}>
+          <Col sm={20} md={16} lg={12} xl={8} key={index}>
             <Card
               hoverable
               style={cardStyle}

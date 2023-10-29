@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, Fragment } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -96,9 +96,6 @@ const Header = () => {
             ))}
           </div>
           <div className="header__menu__right">
-            {/* <div className="header__menu__item header__menu__right__item pointer">
-              <i className="bx bx-search"></i>
-            </div> */}
             <div className="header__menu__item header__menu__right__item pointer">
               <Link to="/about">
                 <i className="bx bx-info-circle"></i>
@@ -111,14 +108,20 @@ const Header = () => {
             </div>
 
             <div className="header__menu__item header__menu__right__item">
-              <Badge size="small" color="#d9bca3" offset={[-1, 3]} count={count}>
+              <Badge
+                size="small"
+                style={{ paddingTop: "0.25rem" }}
+                color="#d9bca3"
+                offset={[-1, 3]}
+                count={count}
+              >
                 <Link to="/cart">
-                  <i style={{ fontSize: "2.25rem" }} className="bx bx-shopping-bag"></i>
+                  <i style={{ fontSize: "2.2rem" }} className="bx bx-shopping-bag"></i>
                 </Link>
               </Badge>
             </div>
             {!token && (
-              <Fragment>
+              <>
                 <div className="header__menu__item header__menu__right__item">
                   <Link to="/signup">
                     <i className="bx bx-edit"></i>
@@ -129,22 +132,24 @@ const Header = () => {
                     <i className="bx bx-log-in"></i>
                   </Link>
                 </div>
-              </Fragment>
+              </>
             )}
             {token && (
-              <Fragment>
+              <>
                 <div
                   className="header__menu__item header__menu__right__item pointer"
                   onClick={logout}
                 >
-                  <i className="bx bx-log-out"></i>
+                  <Link to="#">
+                    <i className="bx bx-log-out"></i>
+                  </Link>
                 </div>
                 <div className="header__menu__item header__menu__right__item">
                   <Link to="/me">
                     <i className="bx bx-user"></i>
                   </Link>
                 </div>
-              </Fragment>
+              </>
             )}
           </div>
         </div>
