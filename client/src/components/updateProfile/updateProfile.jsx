@@ -3,22 +3,18 @@ import { useSelector } from "react-redux";
 import { UserOutlined, MailOutlined, PhoneOutlined, HomeOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
 import { urlUser } from "../../api";
+import { usePostJsonData } from "../../hooks/useFetchData";
+import { Spin } from "antd";
 
 function UpdateProfile(props) {
   const userToken = useSelector((state) => state.userInfo.value.token);
   const { currentUser } = props;
+  const { isLoading, fetchPostData } = usePostJsonData();
 
   const onFinish = async (values) => {
     try {
-      const updateData = JSON.stringify(values);
-      const res = await fetch(`${urlUser}/Me`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${userToken}` },
-        body: updateData,
-      });
-      const data = await res.json();
-      if (data.status === 400) throw new Error(data.message);
-
+      const res = await fetchPostData(`${urlUser}/Me`, values, "PATCH", userToken);
+      if (res.status !== "success") throw new Error(res.message);
       alert("Update successful!");
     } catch (error) {
       alert(error.message);
@@ -86,8 +82,13 @@ function UpdateProfile(props) {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            Save Change
+          <Button
+            disabled={isLoading}
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+          >
+            {isLoading ? <Spin /> : "Update Profile"}
           </Button>
         </Form.Item>
       </Form>

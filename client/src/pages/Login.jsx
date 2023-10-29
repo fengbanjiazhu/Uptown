@@ -4,17 +4,18 @@ import { UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { userAction } from "../redux/user/userInfoSlice";
-import sendJsonData from "../utils/sendJsonData";
 import { urlUser } from "../api";
+import { usePostJsonData } from "../hooks/useFetchData";
+import { Spin } from "antd";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isLoading, fetchPostData } = usePostJsonData();
 
   const onFinish = async (values) => {
     try {
-      const data = await sendJsonData(`${urlUser}/login`, values);
-      if (data.status !== "success") throw new Error(data.message);
+      const data = await fetchPostData(`${urlUser}/login`, values);
       alert("Login successful!");
 
       const userData = {
@@ -85,8 +86,8 @@ const Login = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
+        <Button disabled={isLoading} type="primary" htmlType="submit" className="login-form-button">
+          {isLoading ? <Spin /> : "Log in"}
         </Button>{" "}
         Or{" "}
         <Link to="/signup">
