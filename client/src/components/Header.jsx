@@ -108,13 +108,7 @@ const Header = () => {
             </div>
 
             <div className="header__menu__item header__menu__right__item">
-              <Badge
-                size="small"
-                style={{ paddingTop: "0.25rem" }}
-                color="#d9bca3"
-                offset={[-1, 3]}
-                count={count}
-              >
+              <Badge size="small" color="#d9bca3" offset={[-1, 3]} count={count}>
                 <Link to="/cart">
                   <i style={{ fontSize: "2.2rem" }} className="bx bx-shopping-bag"></i>
                 </Link>
