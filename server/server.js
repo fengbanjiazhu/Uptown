@@ -3,6 +3,7 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const cors = require("cors");
 const globalErrHandler = require("./Controller/errorController");
+const xss = require("xss-clean");
 
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -12,7 +13,6 @@ const app = express();
 
 const productRoute = require("./Routes/productRoutes");
 const orderRoute = require("./Routes/orderRoutes");
-// const cartRoute = require("./Routes/cartRoutes");
 const measuringRoute = require("./Routes/MeasuringRoute");
 const userRoute = require("./Routes/userRoutes");
 const bookingRoute = require("./Routes/bookingRoutes");
@@ -46,8 +46,9 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: "Too many requests from this IP, please try again in an hour!",
 });
-// app.use("/api", limiter);
+app.use("/api", limiter);
 
+app.use(xss());
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
@@ -55,7 +56,7 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(function (req, res, next) {
   console.log("Query:", req.query);
   console.log("Params:", req.params);
-  // console.log("Body:", req.body);
+  console.log("Body:", req.body);
   next();
 });
 
