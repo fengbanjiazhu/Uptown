@@ -2,9 +2,11 @@ import Helmet from "../components/Helmet";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import ContactCard from "../components/contact/ContactCard";
-import sendJsonData from "../utils/sendJsonData";
 import LeafLetMap from "../components/contact/LeafLetMap";
 import { urlBooking } from "../api";
+import { usePostJsonData } from "../hooks/useFetchData";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const layout = {
   labelCol: {
@@ -25,6 +27,7 @@ const validateMessages = {
 
 const Contact = () => {
   const navigate = useNavigate();
+  const { isLoading, fetchPostData } = usePostJsonData();
 
   const onFinish = async (values) => {
     const query = {
@@ -32,9 +35,10 @@ const Contact = () => {
       session: "query",
     };
     try {
-      const data = await sendJsonData(urlBooking, query);
+      const data = await fetchPostData(urlBooking, query);
       if (data.status !== "success") throw new Error(data.message);
-      alert("Successful send query! We will contact you soon😊");
+
+      alert("Successful send query! We will contact you soon 😊");
       navigate("/");
     } catch (error) {
       alert(error.message);
@@ -104,7 +108,21 @@ const Contact = () => {
             }}
           >
             <Button type="primary" htmlType="submit">
-              Submit
+              {!isLoading ? (
+                <Spin
+                  indicator={
+                    <LoadingOutlined
+                      style={{
+                        fontSize: 16,
+                        color: "white",
+                      }}
+                      spin
+                    />
+                  }
+                />
+              ) : (
+                "Submit"
+              )}
             </Button>
           </Form.Item>
         </Form>
