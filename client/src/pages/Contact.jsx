@@ -108,7 +108,7 @@ const Contact = () => {
             }}
           >
             <Button type="primary" htmlType="submit">
-              {!isLoading ? (
+              {isLoading ? (
                 <Spin
                   indicator={
                     <LoadingOutlined
