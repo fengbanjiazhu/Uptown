@@ -11,12 +11,11 @@ export const productModalSlice = createSlice({
     set: (state, action) => {
       state.value = action.payload;
     },
-    // remove: (state) => {
-    //   state.value = [];
-    // },
   },
 });
 
 export const { set } = productModalSlice.actions;
 
 export default productModalSlice.reducer;
+
+export const getAllProduct = (state) => state.productModal.value;

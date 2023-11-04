@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import { getAllProduct } from "../redux/product-modal/productModalSlice";
 
 import { Button } from "antd";
 import { filterArr, filterStr } from "../utils/filterHelper";
@@ -11,7 +12,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import InfinityList from "../components/InfinityList";
 
 const Catalog = () => {
-  const allProduct = useSelector((state) => state.productModal.value);
+  const allProduct = useSelector(getAllProduct);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const loaded = allProduct && allProduct.length > 1;
