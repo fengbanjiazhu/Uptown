@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import ChatBox from "./chatbot/ChatBox";
 
@@ -10,10 +10,10 @@ const Helmet = (props) => {
   }, []);
 
   return (
-    <Fragment>
+    <>
       <div>{props.children}</div>
       <ChatBox></ChatBox>
-    </Fragment>
+    </>
   );
 };
 
