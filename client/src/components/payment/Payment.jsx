@@ -8,7 +8,7 @@ function Payment() {
   const { clientSecret } = useParams();
 
   const stripePromise = loadStripe(
-    "pk_test_51N1PBAIq5PvrzIVYO5l0JOUPBovheTfXjrwNCMtBfOVsHd0tKrTWZcvSwZzBldttQuTXrzEIUddZRyQSa1EXiD8s00iQ8im3UH"
+    "pk_test_51OHLboKSmJhQj8AK5D7kLdDuuHXRfCqivZu8AZzqSZ2ycpFVhK9DT9dAKGpg6NMkepLyoQkx4vj3XYXsjfyJHOn200kYe1j2IO"
   );
 
   return (
