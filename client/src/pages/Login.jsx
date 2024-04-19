@@ -16,6 +16,7 @@ const Login = () => {
   const onFinish = async (values) => {
     try {
       const data = await fetchPostData(`${urlUser}/login`, values);
+      if (data.status !== "success") throw new Error(data);
       alert("Login successful!");
 
       const userData = {
